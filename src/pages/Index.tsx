@@ -1,6 +1,5 @@
-
 import { useState } from "react";
-import { Search, Sparkles, TrendingUp, TrendingDown, Clock, Brain, Code, Palette, Briefcase, Globe, Zap, Target } from "lucide-react";
+import { Search, Sparkles, TrendingUp, TrendingDown, Clock, Brain, Code, Palette, Briefcase, Globe, Zap, Target, Heart, Users, MessageCircle, Lightbulb, Shield, BookOpen, Gamepad2, Camera, Music, PenTool, Calculator, Languages, Compass, FlaskConical, Rocket, TreePine } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -29,7 +28,7 @@ const skillsData: Skill[] = [
     category: 'Emerging Tech',
     description: 'Design and develop intelligent systems, neural networks, and automated decision-making algorithms',
     status: 'emerging',
-    relevancePeriod: '2024-2040+',
+    relevancePeriod: 'Until 2050+',
     demandLevel: 'high',
     icon: Brain,
     color: 'from-purple-500 to-pink-500'
@@ -40,7 +39,7 @@ const skillsData: Skill[] = [
     category: 'Emerging Tech',
     description: 'Harness quantum mechanics for revolutionary computational power and cryptography',
     status: 'emerging',
-    relevancePeriod: '2025-2050+',
+    relevancePeriod: 'Until 2050+',
     demandLevel: 'high',
     icon: Zap,
     color: 'from-blue-500 to-cyan-500'
@@ -51,10 +50,21 @@ const skillsData: Skill[] = [
     category: 'Emerging Tech',
     description: 'Build decentralized applications, smart contracts, and next-gen internet infrastructure',
     status: 'emerging',
-    relevancePeriod: '2024-2035+',
+    relevancePeriod: 'Until 2050+',
     demandLevel: 'high',
     icon: Globe,
     color: 'from-green-500 to-teal-500'
+  },
+  {
+    id: 'ar-vr',
+    name: 'Augmented & Virtual Reality',
+    category: 'Emerging Tech',
+    description: 'Create immersive digital experiences and mixed reality applications',
+    status: 'emerging',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: Gamepad2,
+    color: 'from-violet-500 to-purple-500'
   },
   
   // Digital Skills
@@ -64,7 +74,7 @@ const skillsData: Skill[] = [
     category: 'Digital Skills',
     description: 'Extract insights from big data, create predictive models, and drive data-driven decisions',
     status: 'stable',
-    relevancePeriod: '2020-2040+',
+    relevancePeriod: 'Until 2050+',
     demandLevel: 'high',
     icon: TrendingUp,
     color: 'from-orange-500 to-red-500'
@@ -75,7 +85,7 @@ const skillsData: Skill[] = [
     category: 'Digital Skills',
     description: 'Protect digital assets, prevent cyber threats, and ensure data privacy',
     status: 'stable',
-    relevancePeriod: '2015-2045+',
+    relevancePeriod: 'Until 2050+',
     demandLevel: 'high',
     icon: Target,
     color: 'from-red-500 to-pink-500'
@@ -86,7 +96,7 @@ const skillsData: Skill[] = [
     category: 'Digital Skills',
     description: 'Design scalable cloud infrastructure and streamline software deployment',
     status: 'stable',
-    relevancePeriod: '2018-2040+',
+    relevancePeriod: 'Until 2050+',
     demandLevel: 'high',
     icon: Code,
     color: 'from-indigo-500 to-purple-500'
@@ -99,7 +109,7 @@ const skillsData: Skill[] = [
     category: 'Creative & Design',
     description: 'Create intuitive user experiences and visually appealing digital interfaces',
     status: 'stable',
-    relevancePeriod: '2015-2040+',
+    relevancePeriod: 'Until 2050+',
     demandLevel: 'high',
     icon: Palette,
     color: 'from-pink-500 to-rose-500'
@@ -110,10 +120,67 @@ const skillsData: Skill[] = [
     category: 'Creative & Design',
     description: 'Drive online engagement, optimize conversion funnels, and build brand presence',
     status: 'stable',
-    relevancePeriod: '2010-2035+',
+    relevancePeriod: 'Until 2045',
     demandLevel: 'medium',
     icon: Sparkles,
     color: 'from-yellow-500 to-orange-500'
+  },
+  {
+    id: 'content-creation',
+    name: 'Digital Content Creation',
+    category: 'Creative & Design',
+    description: 'Produce engaging multimedia content across various digital platforms',
+    status: 'stable',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: Camera,
+    color: 'from-emerald-500 to-teal-500'
+  },
+  
+  // Soft Skills & Emotional Intelligence
+  {
+    id: 'emotional-intelligence',
+    name: 'Emotional Intelligence',
+    category: 'Soft Skills',
+    description: 'Understand and manage emotions effectively in personal and professional settings',
+    status: 'stable',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: Heart,
+    color: 'from-pink-500 to-red-500'
+  },
+  {
+    id: 'leadership',
+    name: 'Leadership & Team Management',
+    category: 'Soft Skills',
+    description: 'Guide teams, make strategic decisions, and inspire others towards common goals',
+    status: 'stable',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: Users,
+    color: 'from-blue-500 to-indigo-500'
+  },
+  {
+    id: 'communication',
+    name: 'Advanced Communication',
+    category: 'Soft Skills',
+    description: 'Master verbal, written, and digital communication across diverse audiences',
+    status: 'stable',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: MessageCircle,
+    color: 'from-cyan-500 to-blue-500'
+  },
+  {
+    id: 'critical-thinking',
+    name: 'Critical Thinking & Problem Solving',
+    category: 'Soft Skills',
+    description: 'Analyze complex problems, evaluate solutions, and make informed decisions',
+    status: 'stable',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: Lightbulb,
+    color: 'from-yellow-500 to-amber-500'
   },
   
   // Business Skills
@@ -123,20 +190,129 @@ const skillsData: Skill[] = [
     category: 'Business Skills',
     description: 'Lead cross-functional teams, manage digital transformation, and deliver results',
     status: 'stable',
-    relevancePeriod: '2005-2040+',
+    relevancePeriod: 'Until 2050+',
     demandLevel: 'high',
     icon: Briefcase,
     color: 'from-teal-500 to-blue-500'
+  },
+  {
+    id: 'entrepreneurship',
+    name: 'Entrepreneurship & Innovation',
+    category: 'Business Skills',
+    description: 'Identify opportunities, build ventures, and drive innovative solutions',
+    status: 'emerging',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: Rocket,
+    color: 'from-purple-500 to-indigo-500'
+  },
+  
+  // Language & Communication
+  {
+    id: 'multilingual',
+    name: 'Multilingual Communication',
+    category: 'Language Skills',
+    description: 'Communicate effectively across multiple languages and cultural contexts',
+    status: 'stable',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: Languages,
+    color: 'from-green-500 to-emerald-500'
+  },
+  
+  // Life Skills & Personal Development
+  {
+    id: 'adaptability',
+    name: 'Adaptability & Resilience',
+    category: 'Life Skills',
+    description: 'Navigate change, bounce back from setbacks, and thrive in uncertainty',
+    status: 'emerging',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: Compass,
+    color: 'from-slate-500 to-gray-500'
+  },
+  {
+    id: 'financial-literacy',
+    name: 'Financial Literacy & Management',
+    category: 'Life Skills',
+    description: 'Understand personal finance, investments, and economic principles',
+    status: 'stable',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: Calculator,
+    color: 'from-emerald-500 to-green-500'
+  },
+  {
+    id: 'sustainability',
+    name: 'Sustainability & Environmental Awareness',
+    category: 'Life Skills',
+    description: 'Understand environmental impact and promote sustainable practices',
+    status: 'emerging',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: TreePine,
+    color: 'from-green-600 to-emerald-600'
+  },
+  
+  // STEM Skills
+  {
+    id: 'biotechnology',
+    name: 'Biotechnology & Genetic Engineering',
+    category: 'STEM Skills',
+    description: 'Apply biological systems for technological and medical advancement',
+    status: 'emerging',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: FlaskConical,
+    color: 'from-lime-500 to-green-500'
+  },
+  
+  // Creative Arts
+  {
+    id: 'music-production',
+    name: 'Music Production & Audio Design',
+    category: 'Creative Arts',
+    description: 'Create, produce, and engineer music and audio content for various media',
+    status: 'stable',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'medium',
+    icon: Music,
+    color: 'from-violet-500 to-purple-500'
+  },
+  {
+    id: 'graphic-design',
+    name: 'Graphic Design & Visual Arts',
+    category: 'Creative Arts',
+    description: 'Create visual communications and artistic expressions across digital and print media',
+    status: 'stable',
+    relevancePeriod: 'Until 2045',
+    demandLevel: 'medium',
+    icon: PenTool,
+    color: 'from-rose-500 to-pink-500'
+  },
+  
+  // Academic Skills
+  {
+    id: 'research-methodology',
+    name: 'Research & Analysis Methods',
+    category: 'Academic Skills',
+    description: 'Conduct systematic research, analyze data, and present findings effectively',
+    status: 'stable',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: BookOpen,
+    color: 'from-blue-600 to-indigo-600'
   },
   
   // Declining Skills (to show contrast)
   {
     id: 'basic-data-entry',
     name: 'Basic Data Entry',
-    category: 'Traditional Skills',
+    category: 'Outdated Skills',
     description: 'Manual data input and basic spreadsheet operations',
     status: 'declining',
-    relevancePeriod: '1990-2025',
+    relevancePeriod: '1990-2030',
     demandLevel: 'low',
     icon: Clock,
     color: 'from-gray-500 to-gray-400'
@@ -144,13 +320,24 @@ const skillsData: Skill[] = [
   {
     id: 'manual-accounting',
     name: 'Manual Bookkeeping',
-    category: 'Traditional Skills',
+    category: 'Outdated Skills',
     description: 'Paper-based accounting and manual financial record keeping',
     status: 'declining',
-    relevancePeriod: '1980-2024',
+    relevancePeriod: '1980-2025',
     demandLevel: 'low',
     icon: TrendingDown,
     color: 'from-gray-600 to-gray-500'
+  },
+  {
+    id: 'typing-speed',
+    name: 'Basic Typing Speed',
+    category: 'Outdated Skills',
+    description: 'Focus on raw typing speed without digital literacy or advanced computer skills',
+    status: 'declining',
+    relevancePeriod: '1990-2030',
+    demandLevel: 'low',
+    icon: Clock,
+    color: 'from-gray-500 to-slate-500'
   }
 ];
 
@@ -159,8 +346,14 @@ const categories = [
   'Emerging Tech',
   'Digital Skills',
   'Creative & Design',
+  'Soft Skills',
   'Business Skills',
-  'Traditional Skills'
+  'Language Skills',
+  'Life Skills',
+  'STEM Skills',
+  'Creative Arts',
+  'Academic Skills',
+  'Outdated Skills'
 ];
 
 const Index = () => {
@@ -279,10 +472,10 @@ const Index = () => {
             <Card className="glass-card border-pink-500/30 text-center">
               <CardHeader>
                 <CardTitle className="text-3xl font-bold text-gradient">
-                  2040+
+                  Until 2050+
                 </CardTitle>
                 <CardDescription className="text-gray-300">
-                  Skills Relevant Beyond 2040
+                  Skills Relevant Beyond 2050
                 </CardDescription>
               </CardHeader>
             </Card>

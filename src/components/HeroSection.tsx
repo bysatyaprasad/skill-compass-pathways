@@ -52,11 +52,11 @@ export const HeroSection = () => {
         
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in" style={{ animationDelay: '0.6s' }}>
           <div className="text-center">
-            <div className="text-3xl font-bold text-gradient mb-2">50+</div>
-            <div className="text-gray-400">Future Skills Mapped</div>
+            <div className="text-3xl font-bold text-gradient mb-2">200+</div>
+            <div className="text-gray-400">Skills & Growing</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-gradient mb-2">2024-2050</div>
+            <div className="text-3xl font-bold text-gradient mb-2">Until 2050</div>
             <div className="text-gray-400">Relevance Timeline</div>
           </div>
           <div className="text-center">
