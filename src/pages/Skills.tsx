@@ -1,4 +1,3 @@
-
 import { useState, useMemo } from "react";
 import { Search, Filter, TrendingUp, TrendingDown, Minus, Clock, Brain, Code, Palette, Briefcase, Globe, Zap, Target, Heart, Users, MessageCircle, Lightbulb, Shield, BookOpen, Gamepad2, Camera, Music, PenTool, Calculator, Languages, Compass, FlaskConical, Rocket, TreePine, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,6 +7,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { SkillCard } from "@/components/SkillCard";
 import { CategoryFilter } from "@/components/CategoryFilter";
+import { FoundationalSkillsBanner } from "@/components/FoundationalSkillsBanner";
+import { SkillsStats } from "@/components/SkillsStats";
+import { LearningPathSuggestion } from "@/components/LearningPathSuggestion";
 
 interface Skill {
   id: string;
@@ -22,11 +24,104 @@ interface Skill {
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   timeToLearn: string;
   salary: string;
+  isFoundational?: boolean;
 }
 
-// Expanded skills data with more comprehensive coverage
+// Expanded skills data with foundational skills marked
 const skillsData: Skill[] = [
-  // ... keep existing skills from Index.tsx and add new ones
+  // Foundational Skills (Essential for everyone)
+  {
+    id: 'digital-literacy',
+    name: 'Digital Literacy & Computer Skills',
+    category: 'Foundational Skills',
+    description: 'Master essential computer skills, internet navigation, and digital communication tools',
+    status: 'stable',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: Code,
+    color: 'from-blue-500 to-indigo-500',
+    difficulty: 'beginner',
+    timeToLearn: '2-4 weeks',
+    salary: 'N/A',
+    isFoundational: true
+  },
+  {
+    id: 'communication',
+    name: 'Advanced Communication',
+    category: 'Foundational Skills',
+    description: 'Master verbal, written, and digital communication across diverse audiences',
+    status: 'stable',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: MessageCircle,
+    color: 'from-cyan-500 to-blue-500',
+    difficulty: 'beginner',
+    timeToLearn: 'Ongoing',
+    salary: 'N/A',
+    isFoundational: true
+  },
+  {
+    id: 'critical-thinking',
+    name: 'Critical Thinking & Problem Solving',
+    category: 'Foundational Skills',
+    description: 'Analyze complex problems, evaluate solutions, and make informed decisions',
+    status: 'stable',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: Lightbulb,
+    color: 'from-yellow-500 to-amber-500',
+    difficulty: 'beginner',
+    timeToLearn: 'Ongoing',
+    salary: 'N/A',
+    isFoundational: true
+  },
+  {
+    id: 'emotional-intelligence',
+    name: 'Emotional Intelligence',
+    category: 'Foundational Skills',
+    description: 'Understand and manage emotions effectively in personal and professional settings',
+    status: 'stable',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: Heart,
+    color: 'from-pink-500 to-red-500',
+    difficulty: 'beginner',
+    timeToLearn: 'Ongoing',
+    salary: 'N/A',
+    isFoundational: true
+  },
+  {
+    id: 'financial-literacy',
+    name: 'Financial Literacy & Management',
+    category: 'Foundational Skills',
+    description: 'Understand personal finance, investments, and economic principles',
+    status: 'stable',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: Calculator,
+    color: 'from-emerald-500 to-green-500',
+    difficulty: 'beginner',
+    timeToLearn: '3-6 months',
+    salary: 'N/A',
+    isFoundational: true
+  },
+  {
+    id: 'adaptability',
+    name: 'Adaptability & Resilience',
+    category: 'Foundational Skills',
+    description: 'Navigate change, bounce back from setbacks, and thrive in uncertainty',
+    status: 'emerging',
+    relevancePeriod: 'Until 2050+',
+    demandLevel: 'high',
+    icon: Compass,
+    color: 'from-slate-500 to-gray-500',
+    difficulty: 'beginner',
+    timeToLearn: 'Ongoing',
+    salary: 'N/A',
+    isFoundational: true
+  },
+
+  // ... keep existing code (all the other skills from the original array)
   {
     id: 'ai-ml',
     name: 'Artificial Intelligence & Machine Learning',
@@ -83,8 +178,6 @@ const skillsData: Skill[] = [
     timeToLearn: '9-15 months',
     salary: '₹10-40 LPA'
   },
-  
-  // Digital Skills
   {
     id: 'data-science',
     name: 'Data Science & Analytics',
@@ -127,8 +220,6 @@ const skillsData: Skill[] = [
     timeToLearn: '6-12 months',
     salary: '₹8-30 LPA'
   },
-  
-  // Creative & Design
   {
     id: 'ux-ui',
     name: 'UX/UI Design',
@@ -171,22 +262,6 @@ const skillsData: Skill[] = [
     timeToLearn: '3-6 months',
     salary: '₹4-18 LPA'
   },
-  
-  // Soft Skills & Emotional Intelligence
-  {
-    id: 'emotional-intelligence',
-    name: 'Emotional Intelligence',
-    category: 'Soft Skills',
-    description: 'Understand and manage emotions effectively in personal and professional settings',
-    status: 'stable',
-    relevancePeriod: 'Until 2050+',
-    demandLevel: 'high',
-    icon: Heart,
-    color: 'from-pink-500 to-red-500',
-    difficulty: 'beginner',
-    timeToLearn: 'Ongoing',
-    salary: 'N/A'
-  },
   {
     id: 'leadership',
     name: 'Leadership & Team Management',
@@ -201,36 +276,6 @@ const skillsData: Skill[] = [
     timeToLearn: 'Ongoing',
     salary: 'N/A'
   },
-  {
-    id: 'communication',
-    name: 'Advanced Communication',
-    category: 'Soft Skills',
-    description: 'Master verbal, written, and digital communication across diverse audiences',
-    status: 'stable',
-    relevancePeriod: 'Until 2050+',
-    demandLevel: 'high',
-    icon: MessageCircle,
-    color: 'from-cyan-500 to-blue-500',
-    difficulty: 'beginner',
-    timeToLearn: 'Ongoing',
-    salary: 'N/A'
-  },
-  {
-    id: 'critical-thinking',
-    name: 'Critical Thinking & Problem Solving',
-    category: 'Soft Skills',
-    description: 'Analyze complex problems, evaluate solutions, and make informed decisions',
-    status: 'stable',
-    relevancePeriod: 'Until 2050+',
-    demandLevel: 'high',
-    icon: Lightbulb,
-    color: 'from-yellow-500 to-amber-500',
-    difficulty: 'beginner',
-    timeToLearn: 'Ongoing',
-    salary: 'N/A'
-  },
-  
-  // Business Skills
   {
     id: 'project-management',
     name: 'Agile Project Management',
@@ -259,8 +304,6 @@ const skillsData: Skill[] = [
     timeToLearn: 'Ongoing',
     salary: 'Varies'
   },
-  
-  // Language & Communication
   {
     id: 'multilingual',
     name: 'Multilingual Communication',
@@ -274,36 +317,6 @@ const skillsData: Skill[] = [
     difficulty: 'intermediate',
     timeToLearn: 'Varies',
     salary: '₹6-25 LPA'
-  },
-  
-  // Life Skills & Personal Development
-  {
-    id: 'adaptability',
-    name: 'Adaptability & Resilience',
-    category: 'Life Skills',
-    description: 'Navigate change, bounce back from setbacks, and thrive in uncertainty',
-    status: 'emerging',
-    relevancePeriod: 'Until 2050+',
-    demandLevel: 'high',
-    icon: Compass,
-    color: 'from-slate-500 to-gray-500',
-    difficulty: 'beginner',
-    timeToLearn: 'Ongoing',
-    salary: 'N/A'
-  },
-  {
-    id: 'financial-literacy',
-    name: 'Financial Literacy & Management',
-    category: 'Life Skills',
-    description: 'Understand personal finance, investments, and economic principles',
-    status: 'stable',
-    relevancePeriod: 'Until 2050+',
-    demandLevel: 'high',
-    icon: Calculator,
-    color: 'from-emerald-500 to-green-500',
-    difficulty: 'beginner',
-    timeToLearn: '3-6 months',
-    salary: 'N/A'
   },
   {
     id: 'sustainability',
@@ -319,8 +332,6 @@ const skillsData: Skill[] = [
     timeToLearn: 'Ongoing',
     salary: 'N/A'
   },
-  
-  // STEM Skills
   {
     id: 'biotechnology',
     name: 'Biotechnology & Genetic Engineering',
@@ -335,8 +346,6 @@ const skillsData: Skill[] = [
     timeToLearn: '12-24 months',
     salary: '₹10-45 LPA'
   },
-  
-  // Creative Arts
   {
     id: 'music-production',
     name: 'Music Production & Audio Design',
@@ -365,8 +374,6 @@ const skillsData: Skill[] = [
     timeToLearn: '3-6 months',
     salary: '₹3-12 LPA'
   },
-  
-  // Academic Skills
   {
     id: 'research-methodology',
     name: 'Research & Analysis Methods',
@@ -381,8 +388,6 @@ const skillsData: Skill[] = [
     timeToLearn: '6-12 months',
     salary: '₹5-20 LPA'
   },
-  
-  // Declining Skills (to show contrast)
   {
     id: 'basic-data-entry',
     name: 'Basic Data Entry',
@@ -429,6 +434,7 @@ const skillsData: Skill[] = [
 
 const categories = [
   'All Skills',
+  'Foundational Skills',
   'Emerging Tech',
   'Digital Skills',
   'Creative & Design',
@@ -449,9 +455,15 @@ const Skills = () => {
   const [demandFilter, setDemandFilter] = useState('all');
   const [difficultyFilter, setDifficultyFilter] = useState('all');
   const [sortBy, setSortBy] = useState('relevance');
+  const [showFoundationalOnly, setShowFoundationalOnly] = useState(false);
 
   const filteredAndSortedSkills = useMemo(() => {
     let filtered = skillsData;
+    
+    // Foundational skills filter
+    if (showFoundationalOnly) {
+      filtered = filtered.filter(skill => skill.isFoundational);
+    }
     
     // Category filter
     if (selectedCategory !== 'All Skills') {
@@ -483,6 +495,10 @@ const Skills = () => {
     
     // Sorting
     return filtered.sort((a, b) => {
+      // Always prioritize foundational skills
+      if (a.isFoundational && !b.isFoundational) return -1;
+      if (!a.isFoundational && b.isFoundational) return 1;
+      
       switch (sortBy) {
         case 'name':
           return a.name.localeCompare(b.name);
@@ -496,7 +512,25 @@ const Skills = () => {
           return 0;
       }
     });
-  }, [searchTerm, selectedCategory, statusFilter, demandFilter, difficultyFilter, sortBy]);
+  }, [searchTerm, selectedCategory, statusFilter, demandFilter, difficultyFilter, sortBy, showFoundationalOnly]);
+
+  const handleFilterFoundational = () => {
+    setShowFoundationalOnly(true);
+    setSelectedCategory('Foundational Skills');
+  };
+
+  const clearAllFilters = () => {
+    setSearchTerm('');
+    setSelectedCategory('All Skills');
+    setStatusFilter('all');
+    setDemandFilter('all');
+    setDifficultyFilter('all');
+    setSortBy('relevance');
+    setShowFoundationalOnly(false);
+  };
+
+  const foundationalSkillsCount = skillsData.filter(skill => skill.isFoundational).length;
+  const emergingSkillsCount = skillsData.filter(skill => skill.status === 'emerging').length;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-20">
@@ -507,9 +541,23 @@ const Skills = () => {
             Skills Explorer
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Discover, filter, and explore skills that will shape your future career
+            Discover, filter, and explore skills that will shape your future career. Start with foundational skills, then advance to specialized areas.
           </p>
         </div>
+
+        {/* Skills Stats */}
+        <SkillsStats 
+          totalSkills={skillsData.length}
+          foundationalSkills={foundationalSkillsCount}
+          emergingSkills={emergingSkillsCount}
+          categories={categories.length - 1}
+        />
+
+        {/* Foundational Skills Banner */}
+        <FoundationalSkillsBanner onFilterFoundational={handleFilterFoundational} />
+
+        {/* Learning Path Suggestions */}
+        <LearningPathSuggestion />
 
         {/* Advanced Filters */}
         <Card className="glass-card mb-8">
@@ -532,7 +580,7 @@ const Skills = () => {
             </div>
 
             {/* Filter Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
               <Select value={statusFilter} onValueChange={setStatusFilter}>
                 <SelectTrigger className="bg-white/10 border-white/20 text-white">
                   <SelectValue placeholder="Status" />
@@ -582,14 +630,18 @@ const Skills = () => {
               </Select>
 
               <Button
-                onClick={() => {
-                  setSearchTerm('');
-                  setSelectedCategory('All Skills');
-                  setStatusFilter('all');
-                  setDemandFilter('all');
-                  setDifficultyFilter('all');
-                  setSortBy('relevance');
-                }}
+                onClick={() => setShowFoundationalOnly(!showFoundationalOnly)}
+                variant={showFoundationalOnly ? "default" : "outline"}
+                className={showFoundationalOnly 
+                  ? "bg-yellow-600 hover:bg-yellow-700 text-white" 
+                  : "bg-white/10 border-white/20 text-white hover:bg-white/20"
+                }
+              >
+                Foundational Only
+              </Button>
+
+              <Button
+                onClick={clearAllFilters}
                 variant="outline"
                 className="bg-white/10 border-white/20 text-white hover:bg-white/20"
               >
@@ -612,6 +664,7 @@ const Skills = () => {
             Showing {filteredAndSortedSkills.length} skills
             {selectedCategory !== 'All Skills' && ` in ${selectedCategory}`}
             {searchTerm && ` matching "${searchTerm}"`}
+            {showFoundationalOnly && ' (Foundational skills prioritized)'}
           </p>
         </div>
 
@@ -630,13 +683,7 @@ const Skills = () => {
           <div className="text-center py-12">
             <div className="text-gray-400 text-lg mb-4">No skills found matching your criteria</div>
             <Button
-              onClick={() => {
-                setSearchTerm('');
-                setSelectedCategory('All Skills');
-                setStatusFilter('all');
-                setDemandFilter('all');
-                setDifficultyFilter('all');
-              }}
+              onClick={clearAllFilters}
               variant="outline"
               className="bg-white/10 border-white/20 text-white hover:bg-white/20"
             >

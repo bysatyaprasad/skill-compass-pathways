@@ -115,4 +115,27 @@
   .skill-card-hover {
     @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25;
   }
+
+  /* Enhanced animations */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Foundational skill special effects */
+  .foundational-glow {
+    box-shadow: 0 0 25px rgba(234, 179, 8, 0.3);
+  }
+
+  .foundational-glow:hover {
+    box-shadow: 0 0 35px rgba(234, 179, 8, 0.5);
+  }
 }
