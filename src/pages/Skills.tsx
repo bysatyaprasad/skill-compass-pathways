@@ -3,7 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, Filter, Star, TrendingUp, Clock, Users, Award, Briefcase, Code, Palette, Heart, DollarSign, GraduationCap, Leaf, Scale, Flask, Wrench, Truck, MessageCircle, ArrowUpRight, Scan, Telescope } from 'lucide-react';
+import { Search, Filter, Star, TrendingUp, Clock, Users, Award, Briefcase, Code, Palette, Heart, DollarSign, GraduationCap, Leaf, Scale, Beaker, Wrench, Truck, MessageCircle, ArrowUpRight, Scan, Telescope, Stethoscope, PiggyBank, BookOpen, TreePine, Gavel, Microscope, Settings, Plane, Megaphone, Building, Lightbulb, Zap, Camera, Music, Paintbrush, Pen, Globe, Smartphone, Shield, Database, BarChart, Target, Handshake, Headphones, Cpu, Car, Home, Store, Utensils, Coffee, ShoppingBag, Shirt, Scissors, HardHat, Hammer } from 'lucide-react';
 
 const skillsData = [
   {
@@ -79,7 +79,7 @@ const skillsData = [
     skills: [
       { name: 'Web Scraping', level: 'Intermediate', icon: Scan },
       { name: 'Data Analysis', level: 'Basic', icon: Scale },
-      { name: 'Machine Learning', level: 'Basic', icon: Flask },
+      { name: 'Machine Learning', level: 'Basic', icon: Beaker },
       { name: 'Problem Solving', level: 'Advanced', icon: Wrench },
       { name: 'Communication', level: 'Advanced', icon: MessageCircle },
     ],
