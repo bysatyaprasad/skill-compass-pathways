@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger, NavigationMenuContent } from "@/components/ui/navigation-menu";
-import { Sparkles, Brain, Target, Lightbulb, Menu, X, Star } from "lucide-react";
+import { Sparkles, Brain, Target, Lightbulb, Menu, X, Star, DollarSign } from "lucide-react";
 
 export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -12,6 +12,7 @@ export const Navigation = () => {
   const navItems = [
     { name: "Home", path: "/", icon: Sparkles },
     { name: "Foundation", path: "/foundational-skills", icon: Star },
+    { name: "Financial Freedom", path: "/financial-freedom", icon: DollarSign },
     { name: "Skills Explorer", path: "/skills", icon: Brain },
     { name: "AI Prompts", path: "/ai-prompts", icon: Lightbulb },
     { name: "Career Paths", path: "/career-paths", icon: Target },

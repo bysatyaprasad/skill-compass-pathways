@@ -3,7 +3,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Brain, Target, Lightbulb, ArrowRight, Sparkles, TrendingUp, Star, Users, MessageCircle, Heart } from "lucide-react";
+import { Brain, Target, Lightbulb, ArrowRight, Sparkles, TrendingUp, Star, Users, MessageCircle, Heart, DollarSign, Coins, IndianRupee } from "lucide-react";
 
 const Index = () => {
   return (
@@ -51,6 +51,66 @@ const Index = () => {
             <Link to="/foundational-skills">
               <Button className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white px-8 py-4 text-lg font-semibold rounded-2xl">
                 Learn Foundational Skills
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Financial Freedom Section */}
+      <section className="py-16 px-4 bg-gradient-to-r from-green-900/30 to-emerald-900/30">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-sm border border-green-500/30 rounded-full px-6 py-2 mb-6">
+              <DollarSign className="h-5 w-5 text-green-400" />
+              <span className="text-sm font-medium text-green-300">Path to Wealth</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+              Achieve Financial Freedom
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+              Transform your skills into wealth-generating assets. Learn proven strategies to build 
+              multiple income streams and achieve financial independence through strategic skill building.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <Card className="glass-card text-center hover:scale-105 transition-all duration-300">
+              <CardContent className="p-6">
+                <div className="p-4 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg w-16 h-16 mx-auto mb-4">
+                  <IndianRupee className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-white text-lg font-semibold mb-2">India-Specific Strategies</h3>
+                <p className="text-gray-300 text-sm">Tailored for Indian market conditions, tax laws, and investment opportunities</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="glass-card text-center hover:scale-105 transition-all duration-300">
+              <CardContent className="p-6">
+                <div className="p-4 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg w-16 h-16 mx-auto mb-4">
+                  <TrendingUp className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-white text-lg font-semibold mb-2">Scalable Income</h3>
+                <p className="text-gray-300 text-sm">Move from trading time for money to building assets that work for you</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="glass-card text-center hover:scale-105 transition-all duration-300">
+              <CardContent className="p-6">
+                <div className="p-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg w-16 h-16 mx-auto mb-4">
+                  <Coins className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-white text-lg font-semibold mb-2">Practical Action Plans</h3>
+                <p className="text-gray-300 text-sm">Step-by-step strategies you can implement starting today</p>
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div className="text-center">
+            <Link to="/financial-freedom">
+              <Button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-4 text-lg font-semibold rounded-2xl">
+                Start Your Wealth Journey
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
