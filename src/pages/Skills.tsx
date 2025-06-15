@@ -118,8 +118,6 @@ const skillsData: Skill[] = [
     salary: 'N/A',
     isFoundational: true
   },
-
-  // ... keep existing code (all the other skills from the original array)
   {
     id: 'ai-ml',
     name: 'Artificial Intelligence & Machine Learning',
@@ -524,12 +522,9 @@ const Skills = () => {
             Skills Explorer
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Discover, filter, and explore skills that will shape your future career. Start with foundational skills, then advance to specialized areas.
+            Discover, filter, and explore skills that will shape your future career. From foundational skills to cutting-edge technologies.
           </p>
         </div>
-
-        {/* Foundational Skills Article */}
-        <FoundationalSkillsArticle />
 
         {/* Advanced Filters */}
         <Card className="glass-card mb-8">

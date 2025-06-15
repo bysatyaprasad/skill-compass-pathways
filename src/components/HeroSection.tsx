@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, TrendingUp } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const HeroSection = () => {
   return (
@@ -33,26 +34,30 @@ export const HeroSection = () => {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-slide-up" style={{ animationDelay: '0.4s' }}>
-          <Button 
-            size="lg" 
-            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 text-lg font-semibold rounded-2xl shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 animate-glow group min-w-[200px]"
-          >
-            Explore Skills
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          <Link to="/skills">
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 text-lg font-semibold rounded-2xl shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 animate-glow group min-w-[200px]"
+            >
+              Explore Skills
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
           
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="border-2 border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg font-semibold rounded-2xl backdrop-blur-sm min-w-[200px]"
-          >
-            Learn More
-          </Button>
+          <Link to="/foundational-skills">
+            <Button 
+              variant="outline" 
+              size="lg"
+              className="border-2 border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg font-semibold rounded-2xl backdrop-blur-sm min-w-[200px]"
+            >
+              Start with Basics
+            </Button>
+          </Link>
         </div>
         
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in" style={{ animationDelay: '0.6s' }}>
           <div className="text-center">
-            <div className="text-3xl font-bold text-gradient mb-2">200+</div>
+            <div className="text-3xl font-bold text-gradient mb-2">500+</div>
             <div className="text-gray-400">Skills & Growing</div>
           </div>
           <div className="text-center">

@@ -3,12 +3,60 @@ import { HeroSection } from "@/components/HeroSection";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Brain, Target, Lightbulb, ArrowRight, Sparkles, TrendingUp } from "lucide-react";
+import { Brain, Target, Lightbulb, ArrowRight, Sparkles, TrendingUp, Star, Users, MessageCircle, Heart } from "lucide-react";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <HeroSection />
+      
+      {/* Foundational Skills Teaser Section */}
+      <section className="py-16 px-4 bg-gradient-to-r from-yellow-900/30 to-orange-900/30">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 backdrop-blur-sm border border-yellow-500/30 rounded-full px-6 py-2 mb-6">
+              <Star className="h-5 w-5 text-yellow-400" />
+              <span className="text-sm font-medium text-yellow-300">Start Here - Foundation Skills</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+              Master the Skills That Matter Most
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+              Before diving into specialized skills, build a solid foundation. These 6 essential skills 
+              will amplify every other ability you develop and future-proof your career.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+            {[
+              { name: "Digital Literacy", icon: Brain, color: "from-blue-500 to-indigo-500" },
+              { name: "Communication", icon: MessageCircle, color: "from-cyan-500 to-blue-500" },
+              { name: "Critical Thinking", icon: Lightbulb, color: "from-yellow-500 to-amber-500" },
+              { name: "Emotional Intelligence", icon: Heart, color: "from-pink-500 to-red-500" },
+              { name: "Financial Literacy", icon: TrendingUp, color: "from-emerald-500 to-green-500" },
+              { name: "Adaptability", icon: Target, color: "from-slate-500 to-gray-500" }
+            ].map((skill, index) => (
+              <Card key={skill.name} className="glass-card text-center hover:scale-105 transition-all duration-300">
+                <CardContent className="p-4">
+                  <div className={`p-3 bg-gradient-to-br ${skill.color} rounded-lg w-12 h-12 mx-auto mb-3`}>
+                    <skill.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-white text-sm font-medium">{skill.name}</h3>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          
+          <div className="text-center">
+            <Link to="/foundational-skills">
+              <Button className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white px-8 py-4 text-lg font-semibold rounded-2xl">
+                Learn Foundational Skills
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
       
       {/* Features Section */}
       <section className="py-16 px-4">
