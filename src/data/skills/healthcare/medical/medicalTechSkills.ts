@@ -30,5 +30,19 @@ export const medicalTechSkills: Skill[] = [
     difficulty: "intermediate",
     timeToLearn: "4-7 months",
     salary: "₹7-18 LPA"
+  },
+  {
+    id: "medical-imaging",
+    name: "Medical Imaging Technology",
+    category: "Healthcare Technology",
+    description: "Advanced imaging technologies for medical diagnosis and treatment planning.",
+    status: "stable",
+    relevancePeriod: "Next 15+ years",
+    demandLevel: "high",
+    icon: Scan,
+    color: "from-purple-600 to-blue-600",
+    difficulty: "advanced",
+    timeToLearn: "8-12 months",
+    salary: "₹10-25 LPA"
   }
 ];

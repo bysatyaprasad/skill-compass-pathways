@@ -1,5 +1,5 @@
 
-import { BarChart3 } from "lucide-react";
+import { Scan } from "lucide-react";
 import { Skill } from "../../../skillsData";
 
 export const healthcareManagementSkills: Skill[] = [
@@ -7,28 +7,28 @@ export const healthcareManagementSkills: Skill[] = [
     id: "healthcare-analytics",
     name: "Healthcare Analytics",
     category: "Healthcare Technology",
-    description: "Data analysis and insights generation to improve healthcare delivery, patient outcomes, and operational efficiency.",
+    description: "Data analysis and business intelligence tools specifically designed for healthcare organizations.",
     status: "emerging",
     relevancePeriod: "Next 12+ years",
     demandLevel: "high",
-    icon: BarChart3,
-    color: "from-blue-600 to-green-600",
+    icon: Scan,
+    color: "from-teal-600 to-blue-600",
     difficulty: "intermediate",
-    timeToLearn: "4-8 months",
-    salary: "₹7-18 LPA"
+    timeToLearn: "5-8 months",
+    salary: "₹8-20 LPA"
   },
   {
     id: "healthcare-compliance",
-    name: "Healthcare Compliance",
+    name: "Healthcare Compliance Systems",
     category: "Healthcare Technology",
-    description: "Understanding and implementing healthcare regulations, HIPAA, and medical data privacy standards.",
+    description: "Systems and processes for ensuring healthcare organizations meet regulatory requirements.",
     status: "stable",
-    relevancePeriod: "Next 15+ years",
+    relevancePeriod: "Next 10+ years",
     demandLevel: "medium",
-    icon: BarChart3,
-    color: "from-purple-600 to-blue-600",
+    icon: Scan,
+    color: "from-red-600 to-pink-600",
     difficulty: "intermediate",
-    timeToLearn: "3-5 months",
+    timeToLearn: "4-6 months",
     salary: "₹6-15 LPA"
   }
 ];

@@ -1,34 +1,34 @@
 
-import { BarChart3 } from "lucide-react";
+import { Telescope } from "lucide-react";
 import { Skill } from "../../../skillsData";
 
 export const environmentalSkills: Skill[] = [
   {
-    id: "carbon-footprint-analysis",
-    name: "Carbon Footprint Analysis",
+    id: "environmental-monitoring",
+    name: "Environmental Monitoring",
     category: "Sustainability Technology",
-    description: "Measurement and analysis of greenhouse gas emissions to help organizations reduce their environmental impact.",
-    status: "emerging",
-    relevancePeriod: "Next 15+ years",
-    demandLevel: "medium",
-    icon: BarChart3,
-    color: "from-green-600 to-blue-600",
-    difficulty: "intermediate",
-    timeToLearn: "4-6 months",
-    salary: "₹5-15 LPA"
-  },
-  {
-    id: "environmental-impact-assessment",
-    name: "Environmental Impact Assessment",
-    category: "Sustainability Technology",
-    description: "Evaluating the environmental consequences of proposed projects and development activities.",
+    description: "Technologies and methods for tracking environmental conditions and pollution levels.",
     status: "stable",
     relevancePeriod: "Next 12+ years",
     demandLevel: "medium",
-    icon: BarChart3,
-    color: "from-emerald-600 to-teal-600",
+    icon: Telescope,
+    color: "from-blue-600 to-green-600",
     difficulty: "intermediate",
-    timeToLearn: "5-7 months",
+    timeToLearn: "4-7 months",
     salary: "₹6-16 LPA"
+  },
+  {
+    id: "carbon-footprint-analysis",
+    name: "Carbon Footprint Analysis",
+    category: "Sustainability Technology",
+    description: "Methodologies for measuring and analyzing carbon emissions and environmental impact.",
+    status: "emerging",
+    relevancePeriod: "Next 10+ years",
+    demandLevel: "high",
+    icon: Telescope,
+    color: "from-green-600 to-teal-600",
+    difficulty: "intermediate",
+    timeToLearn: "5-8 months",
+    salary: "₹7-18 LPA"
   }
 ];

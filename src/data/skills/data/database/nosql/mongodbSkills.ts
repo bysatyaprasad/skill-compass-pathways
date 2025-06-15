@@ -21,14 +21,14 @@ export const mongodbSkills: Skill[] = [
     id: "cassandra",
     name: "Apache Cassandra",
     category: "Data & Analytics",
-    description: "Highly scalable NoSQL database designed for handling large amounts of data across many servers.",
+    description: "Highly scalable NoSQL database designed to handle large amounts of data across many commodity servers.",
     status: "stable",
     relevancePeriod: "Next 8+ years",
     demandLevel: "medium",
     icon: Database,
-    color: "from-purple-600 to-pink-600",
+    color: "from-gray-600 to-blue-600",
     difficulty: "advanced",
-    timeToLearn: "5-7 months",
-    salary: "₹8-20 LPA"
+    timeToLearn: "4-6 months",
+    salary: "₹8-18 LPA"
   }
 ];
