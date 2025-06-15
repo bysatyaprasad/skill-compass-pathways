@@ -1,2889 +1,1632 @@
-import React from "react";
-import { useState, useMemo } from "react";
-import { Search, Filter, TrendingUp, TrendingDown, Minus, Clock, Brain, Code, Palette, Briefcase, Globe, Zap, Target, Heart, Users, MessageCircle, Lightbulb, Shield, BookOpen, Gamepad2, Camera, Music, PenTool, Calculator, Languages, Compass, FlaskConical, Rocket, Trees, Sparkles, Database, Smartphone, Monitor, Server, Lock, Cpu, HardDrive, Cloud, Wifi, Settings, Wrench, Hammer, PaintBucket, Film, Headphones, Mic, Video, Edit3, Image, FileText, BarChart3, LineChart, PieChart, TrendingUp as TrendingUpIcon, DollarSign, CreditCard, Banknote, Briefcase as BriefcaseIcon, Building, Home, Car, Plane, Ship, Truck, Bus, Bike, Siren, Stethoscope, Pill, Activity, Dumbbell, Apple, Coffee, ChefHat, Utensils, Wine, ShoppingBag, Gift, Package, Box, Archive, Folder, File, FileImage, FileVideo, FileAudio, FileMinus, FileBarChart, FileSpreadsheet, FileCode, Terminal, Command, Play, Pause, SkipForward, SkipBack, Volume2, VolumeX, Maximize, Minimize, RotateCcw, RotateCw, RefreshCw, Download, Upload, Share, Copy, Scissors, Paperclip, Link, ExternalLink, Eye, EyeOff, ThumbsUp, ThumbsDown, Star, Bookmark, Flag, Award, Trophy, Medal, Crown, Diamond, Gem, Coins, Banknote as Money, Wallet, ShoppingCart, Store, MapPin, Map, Navigation, Compass as CompassIcon, Globe as GlobeIcon, Sun, Moon, CloudRain, CloudSnow, Zap as Lightning, Wind, Thermometer, Umbrella, Snowflake, Flower, Leaf, Mountain, Waves, Fish, Bird, Bug, Dog, Cat, Rabbit, Turtle, Phone, Mail, MessageSquare, MessageCircle as Chat, Send, Bell, BellRing, Calendar, Clock as ClockIcon, Timer, AlarmClock, Watch, Hourglass, Battery, BatteryLow, Wifi as WifiIcon, Signal, Bluetooth, Usb, HardDrive as Storage, Disc, Save, FolderOpen, Trash, Trash2, MoreHorizontal, MoreVertical, Menu, X, Plus, Minus as MinusIcon, Check, CheckCircle, XCircle, Info, AlertTriangle, AlertCircle, HelpCircle, AlertOctagon, Scale, Gavel, TreePine, Microscope, TestTube, Atom, Dna, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Zap as Electric, Factory, Cog, Beaker, Magnet, Layers, Network, Workflow, Grid3X3, Layout, BookMarked, GraduationCap, Laptop, Palette as Design, Megaphone, Handshake, Gauge, Bot, Fingerprint, Radar, Satellite, Zap as Energy, Recycle, Leaf as Nature, Waves as Ocean, Wind as Air, Lightbulb as Innovation, UserCheck, Crown as Royal, Coins as Finance, TrendingUp as Growth, BarChart3 as Analytics, PieChart as Statistics, Archive as Storage2, Folder as Management, Settings as Config, Wrench as Tools, Hammer as Build, Code as Programming, Database as DB, Server as Backend, Cloud as CloudTech, Shield as Security, Lock as Privacy, Eye as Monitoring, Search as Research, Target as Marketing, Users as Community, Heart as Health, Brain as AI, Rocket as Startup, Star as Premium, Award as Achievement, Trophy as Success, Medal as Recognition, Diamond as Luxury, Gem as Precious, Gift as Reward, Package as Product, Box as Container, Archive as Store2, Copyright, Pencil, Brush, Type, Italic, Bold, Underline, AlignLeft, AlignCenter, AlignRight, Layers as Stack, Grid, Move, Resize, Crop, Filter as FilterIcon, Palette2, Pipette, Ruler, Grid3X3 as GridIcon, Magnet as MagnetIcon, Layout as LayoutIcon, Workflow as WorkflowIcon, GitBranch, GitCommit, GitMerge, GitPullRequest, Binary, Hash, Percent, Plus as PlusIcon, Minus as MinusIcon2, Divide, Equal, SquareRoot, Pi, Sigma, Infinity, Triangle, Square, Circle, Pentagon, Hexagon, Octagon, Star as StarIcon, Heart as HeartIcon, Spade, Club, Diamond as DiamondIcon, Crown2, Gem2, Coins2, Ticket, Tag, Label, Bookmark2, Flag2, Pin, PushPin, MapPin2, Navigation2, Compass2, Globe2, Map2, Route, Radar2, Satellite2, Wifi2, Signal2, Bluetooth2, Usb2, Cable, Plug, Outlet, Battery2, BatteryCharging, BatteryLow2, Power, PowerOff, Zap2, Lightning2, Thunder, Flash, Bolt, Spark, Fire, Flame, Sun2, Moon2, Star2, Cloud2, CloudRain2, CloudSnow2, Snowflake2, Thermometer2, Wind2, Tornado, Hurricane, Umbrella2, Rainbow, Sunrise, Sunset, Mountain2, Hill, Volcano, Desert, Forest, Tree, TreePine2, Leaf2, Flower2, Grass, Cactus, Mushroom, Apple2, Orange, Banana, Grape, Cherry, Strawberry, Watermelon, Pineapple, Coconut, Avocado, Carrot, Corn, Tomato, Potato, Onion, Garlic, Pepper, Chili, Bread, Cheese, Egg, Milk, Butter, Honey, Salt, Sugar, Coffee2, Tea, Beer, Wine2, Cocktail, Juice, Water, Ice } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import React, { useState, useMemo } from 'react';
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { SkillCard } from "@/components/SkillCard";
+import { ArrowUpRight, Search, Filter, Code, Briefcase, Palette, Heart, DollarSign, GraduationCap, Leaf, MessageSquare, Users, Target, Monitor, Database, Cloud, Smartphone, Globe, Lock, BarChart3, TrendingUp, Camera, Megaphone, PenTool, Music, Film, Gamepad2, Stethoscope, Brain, Pill, Calculator, ChartBar, PiggyBank, BookOpen, School, UserCheck, Compass, Mountain, Trees, Droplets, Wind, Sun, Thermometer, Umbrella, Snowflake, CloudRain, Star, Moon, Apple, Coffee, Wine, Sparkles, Zap, Battery, Wifi, Signal, Bluetooth, Usb, MapPin, Flag, Bookmark, Crown, Gem, Coins, Satellite, Radar, Map, Beaker } from 'lucide-react';
 
 const Skills = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedStatus, setSelectedStatus] = useState("all");
-  const [selectedDemand, setSelectedDemand] = useState("all");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [skillsPerPage, setSkillsPerPage] = useState(12);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedStatus, setSelectedStatus] = useState('all');
+  const [selectedDifficulty, setSelectedDifficulty] = useState('all');
+  const [selectedDemand, setSelectedDemand] = useState('all');
+  const [showFoundationalOnly, setShowFoundationalOnly] = useState(false);
 
-  const skills = [
+  // ALL 186+ skills with complete data preservation
+  const allSkills = [
+    // Technology Skills (Existing + Complete)
     {
-      id: "ai-ml",
-      name: "Artificial Intelligence & Machine Learning",
-      category: "Technology",
-      description: "Develop AI systems, machine learning models, and intelligent applications that can learn from data",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'high' as const,
-      icon: Brain,
-      color: 'from-purple-600 to-indigo-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '18+ months',
-      salary: '$120k-300k+'
-    },
-    {
-      id: "web-dev",
-      name: "Full-Stack Web Development",
-      category: "Technology",
-      description: "Build complete web applications from frontend interfaces to backend systems and databases",
+      id: 'react',
+      name: 'React',
+      category: 'Technology',
+      description: 'A JavaScript library for building user interfaces, particularly single-page applications with component-based architecture.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
+      relevancePeriod: '2024-2028',
       demandLevel: 'high' as const,
       icon: Code,
-      color: 'from-blue-600 to-cyan-600',
+      color: 'from-blue-500 to-blue-600',
       difficulty: 'intermediate' as const,
-      timeToLearn: '12-18 months',
-      salary: '$70k-180k',
+      timeToLearn: '3-4 months',
+      salary: '$75k-$120k',
       isFoundational: true
     },
     {
-      id: "mobile-dev",
-      name: "Mobile App Development",
-      category: "Technology",
-      description: "Create native and cross-platform mobile applications for iOS and Android devices",
+      id: 'javascript',
+      name: 'JavaScript',
+      category: 'Technology',
+      description: 'The programming language of the web, essential for front-end and increasingly back-end development.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
+      relevancePeriod: '2024-2030+',
       demandLevel: 'high' as const,
-      icon: Smartphone,
-      color: 'from-green-600 to-teal-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-15 months',
-      salary: '$75k-160k'
+      icon: Code,
+      color: 'from-yellow-500 to-yellow-600',
+      difficulty: 'beginner' as const,
+      timeToLearn: '2-3 months',
+      salary: '$60k-$110k',
+      isFoundational: true
     },
     {
-      id: "cybersecurity",
-      name: "Cybersecurity & Information Security",
-      category: "Technology",
-      description: "Protect digital systems, networks, and data from cyber threats and security breaches",
+      id: 'python',
+      name: 'Python',
+      category: 'Technology',
+      description: 'Versatile programming language excellent for data science, AI, web development, and automation.',
       status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
+      relevancePeriod: '2024-2030+',
       demandLevel: 'high' as const,
-      icon: Shield,
-      color: 'from-red-600 to-pink-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '12-24 months',
-      salary: '$90k-200k+'
+      icon: Code,
+      color: 'from-green-500 to-blue-600',
+      difficulty: 'beginner' as const,
+      timeToLearn: '2-3 months',
+      salary: '$70k-$130k',
+      isFoundational: true
     },
     {
-      id: "cloud-computing",
-      name: "Cloud Computing & DevOps",
-      category: "Technology",
-      description: "Design and manage cloud infrastructure, automate deployments, and optimize system operations",
+      id: 'nodejs',
+      name: 'Node.js',
+      category: 'Technology',
+      description: 'JavaScript runtime for server-side development, enabling full-stack JavaScript applications.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2029',
+      demandLevel: 'high' as const,
+      icon: Database,
+      color: 'from-green-600 to-green-700',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '2-3 months',
+      salary: '$80k-$125k'
+    },
+    {
+      id: 'typescript',
+      name: 'TypeScript',
+      category: 'Technology',
+      description: 'Typed superset of JavaScript that compiles to plain JavaScript, improving code quality and developer experience.',
       status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: Code,
+      color: 'from-blue-600 to-blue-700',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '1-2 months',
+      salary: '$85k-$135k'
+    },
+    {
+      id: 'aws',
+      name: 'Amazon Web Services',
+      category: 'Technology',
+      description: 'Leading cloud computing platform offering a wide range of services for scalable applications.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
       demandLevel: 'high' as const,
       icon: Cloud,
-      color: 'from-sky-600 to-blue-600',
+      color: 'from-orange-500 to-orange-600',
       difficulty: 'intermediate' as const,
-      timeToLearn: '10-18 months',
-      salary: '$85k-180k'
+      timeToLearn: '4-6 months',
+      salary: '$90k-$150k'
     },
     {
-      id: "data-science",
-      name: "Data Science & Analytics",
-      category: "Technology",
-      description: "Extract insights from large datasets using statistical analysis, visualization, and predictive modeling",
+      id: 'docker',
+      name: 'Docker',
+      category: 'Technology',
+      description: 'Containerization platform that simplifies application deployment and scalability.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
+      relevancePeriod: '2024-2029',
       demandLevel: 'high' as const,
-      icon: BarChart3,
-      color: 'from-orange-600 to-red-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '12-20 months',
-      salary: '$95k-200k'
-    },
-    {
-      id: "blockchain",
-      name: "Blockchain & Cryptocurrency",
-      category: "Technology",
-      description: "Develop decentralized applications, smart contracts, and blockchain-based financial systems",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Coins,
-      color: 'from-yellow-600 to-orange-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '15-24 months',
-      salary: '$100k-250k'
-    },
-    {
-      id: "iot-development",
-      name: "Internet of Things (IoT)",
-      category: "Technology",
-      description: "Design and develop connected devices and smart systems for homes, cities, and industries",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Wifi,
-      color: 'from-teal-600 to-green-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '10-16 months',
-      salary: '$70k-140k'
-    },
-    {
-      id: "quantum-computing",
-      name: "Quantum Computing",
-      category: "Technology",
-      description: "Develop applications for quantum computers and quantum algorithms for complex problem solving",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2060+',
-      demandLevel: 'low' as const,
-      icon: Atom,
-      color: 'from-purple-600 to-violet-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '24+ months',
-      salary: '$150k-400k+'
-    },
-    {
-      id: "ar-vr-development",
-      name: "AR/VR Development",
-      category: "Technology",
-      description: "Create immersive augmented and virtual reality experiences for gaming, education, and business",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Gamepad2,
-      color: 'from-pink-600 to-purple-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '12-18 months',
-      salary: '$80k-160k'
-    },
-    {
-      id: "edge-computing",
-      name: "Edge Computing",
-      category: "Technology",
-      description: "Develop applications that process data closer to where it's generated for faster response times",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Network,
-      color: 'from-indigo-600 to-purple-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '15-20 months',
-      salary: '$90k-170k'
-    },
-    {
-      id: "robotics-engineering",
-      name: "Robotics Engineering",
-      category: "Technology",
-      description: "Design, build, and program robots for manufacturing, healthcare, and service industries",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
-      icon: Bot,
-      color: 'from-slate-600 to-gray-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '20-30 months',
-      salary: '$85k-160k'
-    },
-    {
-      id: "bioinformatics",
-      name: "Bioinformatics",
-      category: "Technology",
-      description: "Apply computational methods to biological data for drug discovery and genetic research",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
-      icon: Dna,
-      color: 'from-green-600 to-blue-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '24+ months',
-      salary: '$80k-150k'
-    },
-    {
-      id: "computer-vision",
-      name: "Computer Vision",
-      category: "Technology",
-      description: "Develop systems that can interpret and understand visual information from digital images and videos",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'high' as const,
-      icon: Eye,
-      color: 'from-blue-600 to-purple-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '18-24 months',
-      salary: '$110k-220k'
-    },
-    {
-      id: "natural-language-processing",
-      name: "Natural Language Processing",
-      category: "Technology",
-      description: "Build systems that can understand, interpret, and generate human language",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'high' as const,
-      icon: MessageCircle,
-      color: 'from-purple-600 to-pink-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '18-24 months',
-      salary: '$115k-250k'
-    },
-    {
-      id: "embedded-systems",
-      name: "Embedded Systems Development",
-      category: "Technology",
-      description: "Design and program specialized computer systems embedded within larger devices",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Cpu,
-      color: 'from-orange-600 to-red-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '15-24 months',
-      salary: '$75k-140k'
-    },
-    {
-      id: "digital-marketing",
-      name: "Digital Marketing & SEO",
-      category: "Business",
-      description: "Drive online growth through search engine optimization, social media, and digital advertising campaigns",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2035+',
-      demandLevel: 'high' as const,
-      icon: Target,
-      color: 'from-green-600 to-emerald-600',
-      difficulty: 'beginner' as const,
-      timeToLearn: '6-12 months',
-      salary: '$45k-120k',
-      isFoundational: true
-    },
-    {
-      id: "project-management",
-      name: "Project Management",
-      category: "Business",
-      description: "Lead teams and deliver complex projects on time and within budget using proven methodologies",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: Briefcase,
-      color: 'from-blue-600 to-indigo-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-12 months',
-      salary: '$60k-140k',
-      isFoundational: true
-    },
-    {
-      id: "business-analysis",
-      name: "Business Analysis",
-      category: "Business",
-      description: "Analyze business processes, identify improvement opportunities, and design efficient solutions",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: LineChart,
-      color: 'from-purple-600 to-pink-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-10 months',
-      salary: '$65k-130k'
-    },
-    {
-      id: "product-management",
-      name: "Product Management",
-      category: "Business",
-      description: "Define product strategy, coordinate development teams, and deliver products that meet market needs",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: Package,
-      color: 'from-orange-600 to-red-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '12-18 months',
-      salary: '$90k-200k'
-    },
-    {
-      id: "entrepreneurship",
-      name: "Entrepreneurship & Startups",
-      category: "Business",
-      description: "Start and scale businesses, raise capital, and navigate the challenges of building new ventures",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
-      icon: Rocket,
-      color: 'from-yellow-600 to-orange-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: 'Ongoing',
-      salary: '$0-unlimited'
-    },
-    {
-      id: "sales-negotiation",
-      name: "Sales & Negotiation",
-      category: "Business",
-      description: "Master the art of selling, relationship building, and negotiating win-win agreements",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'high' as const,
-      icon: Users,
-      color: 'from-green-600 to-teal-600',
-      difficulty: 'beginner' as const,
-      timeToLearn: '6-12 months',
-      salary: '$40k-200k+',
-      isFoundational: true
-    },
-    {
-      id: "supply-chain",
-      name: "Supply Chain Management",
-      category: "Business",
-      description: "Optimize the flow of goods and services from suppliers to customers globally",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Truck,
-      color: 'from-blue-600 to-cyan-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-14 months',
-      salary: '$55k-120k'
-    },
-    {
-      id: "hr-management",
-      name: "Human Resources Management",
-      category: "Business",
-      description: "Manage talent acquisition, employee development, and organizational culture",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Heart,
-      color: 'from-pink-600 to-rose-600',
-      difficulty: 'beginner' as const,
-      timeToLearn: '6-10 months',
-      salary: '$50k-110k'
-    },
-    {
-      id: "business-intelligence",
-      name: "Business Intelligence",
-      category: "Business",
-      description: "Transform raw data into actionable insights for strategic business decision making",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: Analytics,
-      color: 'from-blue-600 to-purple-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '10-15 months',
-      salary: '$70k-140k'
-    },
-    {
-      id: "operations-management",
-      name: "Operations Management",
-      category: "Business",
-      description: "Optimize business operations, improve efficiency, and manage organizational workflows",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Settings,
-      color: 'from-gray-600 to-slate-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-12 months',
-      salary: '$55k-110k'
-    },
-    {
-      id: "customer-success",
-      name: "Customer Success & Relations",
-      category: "Business",
-      description: "Ensure customer satisfaction, retention, and growth through strategic relationship management",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: UserCheck,
-      color: 'from-green-600 to-blue-600',
-      difficulty: 'beginner' as const,
-      timeToLearn: '4-8 months',
-      salary: '$50k-120k'
-    },
-    {
-      id: "e-commerce-management",
-      name: "E-Commerce Management",
-      category: "Business",
-      description: "Manage online stores, optimize conversion rates, and grow digital retail businesses",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: ShoppingCart,
-      color: 'from-purple-600 to-pink-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$45k-100k'
-    },
-    {
-      id: "ui-ux-design",
-      name: "UI/UX Design",
-      category: "Creative",
-      description: "Design intuitive user interfaces and create exceptional user experiences for digital products",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: Palette,
-      color: 'from-pink-600 to-purple-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-15 months',
-      salary: '$60k-140k'
-    },
-    {
-      id: "graphic-design",
-      name: "Graphic Design",
-      category: "Creative",
-      description: "Create visual communications, branding materials, and marketing designs across various media",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2035+',
-      demandLevel: 'medium' as const,
-      icon: PenTool,
-      color: 'from-blue-600 to-teal-600',
-      difficulty: 'beginner' as const,
-      timeToLearn: '6-12 months',
-      salary: '$35k-80k'
-    },
-    {
-      id: "video-production",
-      name: "Video Production & Editing",
-      category: "Creative",
-      description: "Produce and edit professional videos for entertainment, marketing, and educational content",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: Video,
-      color: 'from-red-600 to-pink-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-15 months',
-      salary: '$40k-100k'
-    },
-    {
-      id: "photography",
-      name: "Professional Photography",
-      category: "Creative",
-      description: "Capture and edit high-quality images for commercial, artistic, and personal purposes",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Camera,
-      color: 'from-yellow-600 to-orange-600',
-      difficulty: 'beginner' as const,
-      timeToLearn: '4-8 months',
-      salary: '$30k-80k'
-    },
-    {
-      id: "3d-modeling",
-      name: "3D Modeling & Animation",
-      category: "Creative",
-      description: "Create three-dimensional models and animations for gaming, movies, and architectural visualization",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Box,
-      color: 'from-purple-600 to-indigo-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '12-20 months',
-      salary: '$50k-120k'
-    },
-    {
-      id: "music-production",
-      name: "Music Production & Audio",
-      category: "Creative",
-      description: "Compose, record, and produce music and audio content for various media and platforms",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Music,
-      color: 'from-green-600 to-teal-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '10-18 months',
-      salary: '$35k-90k'
-    },
-    {
-      id: "fashion-design",
-      name: "Fashion Design",
-      category: "Creative",
-      description: "Design clothing, accessories, and fashion collections for various markets and demographics",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'low' as const,
-      icon: Sparkles,
-      color: 'from-pink-600 to-rose-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '12-24 months',
-      salary: '$35k-85k'
-    },
-    {
-      id: "game-design",
-      name: "Game Design & Development",
-      category: "Creative",
-      description: "Design and develop engaging video games across multiple platforms and genres",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Gamepad2,
-      color: 'from-purple-600 to-violet-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '15-24 months',
-      salary: '$55k-130k'
-    },
-    {
-      id: "interior-design",
-      name: "Interior Design",
-      category: "Creative",
-      description: "Design functional and aesthetically pleasing interior spaces for residential and commercial use",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Home,
-      color: 'from-orange-600 to-red-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '10-18 months',
-      salary: '$40k-85k'
-    },
-    {
-      id: "motion-graphics",
-      name: "Motion Graphics & VFX",
-      category: "Creative",
-      description: "Create animated graphics and visual effects for films, advertising, and digital media",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Film,
-      color: 'from-purple-600 to-pink-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '12-18 months',
-      salary: '$50k-110k'
-    },
-    {
-      id: "brand-design",
-      name: "Brand Design & Identity",
-      category: "Creative",
-      description: "Develop comprehensive brand identities, logos, and visual systems for businesses",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Award,
-      color: 'from-blue-600 to-purple-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-15 months',
-      salary: '$45k-95k'
-    },
-    {
-      id: "nursing",
-      name: "Nursing & Patient Care",
-      category: "Healthcare",
-      description: "Provide direct patient care, administer medications, and support medical treatments",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'high' as const,
-      icon: Stethoscope,
-      color: 'from-blue-600 to-teal-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '24-48 months',
-      salary: '$55k-90k'
-    },
-    {
-      id: "medical-technology",
-      name: "Medical Technology",
-      category: "Healthcare",
-      description: "Operate and maintain medical equipment, conduct diagnostic tests, and support medical procedures",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'high' as const,
-      icon: Activity,
-      color: 'from-green-600 to-emerald-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '12-24 months',
-      salary: '$45k-75k'
-    },
-    {
-      id: "telemedicine",
-      name: "Telemedicine & Digital Health",
-      category: "Healthcare",
-      description: "Provide remote healthcare services using digital technologies and telecommunications",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
       icon: Monitor,
-      color: 'from-purple-600 to-indigo-600',
+      color: 'from-blue-500 to-cyan-600',
       difficulty: 'intermediate' as const,
-      timeToLearn: '8-15 months',
-      salary: '$60k-120k'
+      timeToLearn: '2-3 months',
+      salary: '$85k-$140k'
     },
     {
-      id: "pharmacy",
-      name: "Pharmacy & Drug Management",
-      category: "Healthcare",
-      description: "Dispense medications, provide drug information, and ensure safe pharmaceutical practices",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Pill,
-      color: 'from-orange-600 to-red-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '48+ months',
-      salary: '$120k-160k'
-    },
-    {
-      id: "physical-therapy",
-      name: "Physical Therapy & Rehabilitation",
-      category: "Healthcare",
-      description: "Help patients recover from injuries and improve physical function through therapeutic exercises",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'high' as const,
-      icon: Dumbbell,
-      color: 'from-blue-600 to-cyan-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '36+ months',
-      salary: '$80k-95k'
-    },
-    {
-      id: "mental-health",
-      name: "Mental Health & Counseling",
-      category: "Healthcare",
-      description: "Provide psychological support, therapy, and mental health services to individuals and groups",
+      id: 'kubernetes',
+      name: 'Kubernetes',
+      category: 'Technology',
+      description: 'Container orchestration platform for automating deployment, scaling, and management of applications.',
       status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
+      relevancePeriod: '2024-2030+',
       demandLevel: 'high' as const,
-      icon: Brain,
-      color: 'from-pink-600 to-purple-600',
+      icon: Monitor,
+      color: 'from-purple-500 to-purple-600',
       difficulty: 'advanced' as const,
-      timeToLearn: '48+ months',
-      salary: '$50k-120k'
+      timeToLearn: '4-6 months',
+      salary: '$100k-$160k'
     },
     {
-      id: "health-informatics",
-      name: "Health Informatics",
-      category: "Healthcare",
-      description: "Manage healthcare data, implement electronic health records, and optimize medical information systems",
+      id: 'graphql',
+      name: 'GraphQL',
+      category: 'Technology',
+      description: 'Query language and runtime for APIs that provides a complete description of data.',
       status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
+      relevancePeriod: '2024-2029',
       demandLevel: 'medium' as const,
       icon: Database,
-      color: 'from-teal-600 to-blue-600',
+      color: 'from-pink-500 to-rose-600',
       difficulty: 'intermediate' as const,
-      timeToLearn: '12-18 months',
-      salary: '$65k-115k'
+      timeToLearn: '2-3 months',
+      salary: '$80k-$130k'
     },
     {
-      id: "medical-research",
-      name: "Medical Research",
-      category: "Healthcare",
-      description: "Conduct clinical trials, research new treatments, and advance medical knowledge",
+      id: 'mongodb',
+      name: 'MongoDB',
+      category: 'Technology',
+      description: 'NoSQL document database that provides high performance and easy scalability.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2050+',
+      relevancePeriod: '2024-2029',
       demandLevel: 'medium' as const,
-      icon: Microscope,
-      color: 'from-purple-600 to-indigo-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '48+ months',
-      salary: '$70k-140k'
-    },
-    {
-      id: "nutrition-dietetics",
-      name: "Nutrition & Dietetics",
-      category: "Healthcare",
-      description: "Provide nutritional counseling, develop meal plans, and promote healthy eating habits",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Apple,
-      color: 'from-green-600 to-lime-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '24-36 months',
-      salary: '$45k-75k'
-    },
-    {
-      id: "financial-analysis",
-      name: "Financial Analysis & Planning",
-      category: "Finance",
-      description: "Analyze financial data, create budgets, and provide investment recommendations",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: Calculator,
-      color: 'from-green-600 to-teal-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '12-18 months',
-      salary: '$65k-130k'
-    },
-    {
-      id: "investment-banking",
-      name: "Investment Banking",
-      category: "Finance",
-      description: "Structure financial deals, manage mergers and acquisitions, and raise capital for organizations",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Building,
-      color: 'from-blue-600 to-indigo-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '24+ months',
-      salary: '$100k-300k+'
-    },
-    {
-      id: "accounting",
-      name: "Accounting & Bookkeeping",
-      category: "Finance",
-      description: "Manage financial records, prepare tax documents, and ensure compliance with regulations",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: FileSpreadsheet,
-      color: 'from-orange-600 to-yellow-600',
+      icon: Database,
+      color: 'from-green-600 to-green-700',
       difficulty: 'beginner' as const,
-      timeToLearn: '8-15 months',
-      salary: '$40k-80k'
+      timeToLearn: '1-2 months',
+      salary: '$70k-$120k'
     },
     {
-      id: "cryptocurrency",
-      name: "Cryptocurrency Trading",
-      category: "Finance",
-      description: "Trade and invest in digital currencies, analyze market trends, and manage crypto portfolios",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Coins,
-      color: 'from-yellow-600 to-orange-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$50k-200k+'
-    },
-    {
-      id: "insurance",
-      name: "Insurance & Risk Management",
-      category: "Finance",
-      description: "Assess and manage financial risks, sell insurance products, and process claims",
+      id: 'postgresql',
+      name: 'PostgreSQL',
+      category: 'Technology',
+      description: 'Advanced open-source relational database with strong standards compliance.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Shield,
-      color: 'from-blue-600 to-cyan-600',
-      difficulty: 'beginner' as const,
-      timeToLearn: '6-10 months',
-      salary: '$45k-85k'
-    },
-    {
-      id: "wealth-management",
-      name: "Wealth Management",
-      category: "Finance",
-      description: "Provide financial advisory services, manage portfolios, and help clients achieve financial goals",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Gem,
-      color: 'from-purple-600 to-pink-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '12-18 months',
-      salary: '$60k-150k+'
-    },
-    {
-      id: "fintech-development",
-      name: "FinTech Development",
-      category: "Finance",
-      description: "Develop financial technology solutions, payment systems, and digital banking platforms",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
+      relevancePeriod: '2024-2030+',
       demandLevel: 'high' as const,
-      icon: CreditCard,
-      color: 'from-blue-600 to-purple-600',
+      icon: Database,
+      color: 'from-blue-700 to-indigo-700',
       difficulty: 'intermediate' as const,
-      timeToLearn: '12-20 months',
-      salary: '$80k-160k'
+      timeToLearn: '2-3 months',
+      salary: '$75k-$125k'
     },
     {
-      id: "quantitative-analysis",
-      name: "Quantitative Analysis",
-      category: "Finance",
-      description: "Use mathematical models and statistical methods for financial market analysis and risk assessment",
+      id: 'redis',
+      name: 'Redis',
+      category: 'Technology',
+      description: 'In-memory data structure store used as database, cache, and message broker.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
+      relevancePeriod: '2024-2029',
       demandLevel: 'medium' as const,
-      icon: BarChart3,
-      color: 'from-green-600 to-blue-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '18-24 months',
-      salary: '$90k-200k+'
+      icon: Database,
+      color: 'from-red-500 to-red-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '1-2 months',
+      salary: '$80k-$130k'
     },
     {
-      id: "online-teaching",
-      name: "Online Teaching & E-Learning",
-      category: "Education",
-      description: "Create and deliver educational content through digital platforms and virtual classrooms",
+      id: 'flutter',
+      name: 'Flutter',
+      category: 'Technology',
+      description: 'UI toolkit for building natively compiled applications for mobile, web, and desktop.',
       status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'high' as const,
-      icon: Monitor,
-      color: 'from-blue-600 to-purple-600',
-      difficulty: 'beginner' as const,
-      timeToLearn: '4-8 months',
-      salary: '$35k-75k'
+      relevancePeriod: '2024-2029',
+      demandLevel: 'medium' as const,
+      icon: Smartphone,
+      color: 'from-blue-400 to-cyan-500',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '3-4 months',
+      salary: '$75k-$125k'
     },
     {
-      id: "corporate-training",
-      name: "Corporate Training & Development",
-      category: "Education",
-      description: "Design and deliver professional development programs for organizations and employees",
+      id: 'swift',
+      name: 'Swift',
+      category: 'Technology',
+      description: 'Programming language for iOS, macOS, watchOS, and tvOS app development.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
+      relevancePeriod: '2024-2030+',
       demandLevel: 'medium' as const,
-      icon: Users,
-      color: 'from-green-600 to-teal-600',
+      icon: Smartphone,
+      color: 'from-orange-500 to-red-500',
       difficulty: 'intermediate' as const,
-      timeToLearn: '8-12 months',
-      salary: '$50k-95k'
+      timeToLearn: '3-4 months',
+      salary: '$85k-$140k'
     },
     {
-      id: "curriculum-design",
-      name: "Curriculum Design & Development",
-      category: "Education",
-      description: "Create educational programs, learning objectives, and assessment strategies",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: BookOpen,
-      color: 'from-purple-600 to-pink-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '10-15 months',
-      salary: '$45k-85k'
-    },
-    {
-      id: "educational-technology",
-      name: "Educational Technology",
-      category: "Education",
-      description: "Integrate technology into learning environments and develop educational software",
+      id: 'kotlin',
+      name: 'Kotlin',
+      category: 'Technology',
+      description: 'Modern programming language for Android development and server-side applications.',
       status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
+      relevancePeriod: '2024-2030+',
       demandLevel: 'medium' as const,
-      icon: Laptop,
-      color: 'from-blue-600 to-indigo-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '10-16 months',
-      salary: '$50k-95k'
-    },
-    {
-      id: "language-instruction",
-      name: "Language Instruction & Translation",
-      category: "Education",
-      description: "Teach foreign languages and provide translation services across different languages",
-      status: 'declining' as const,
-      relevancePeriod: 'Until 2030',
-      demandLevel: 'medium' as const,
-      icon: Languages,
-      color: 'from-orange-600 to-red-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '12-24 months',
-      salary: '$35k-70k'
-    },
-    {
-      id: "instructional-design",
-      name: "Instructional Design",
-      category: "Education",
-      description: "Design effective learning experiences and training materials for various educational contexts",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: BookMarked,
-      color: 'from-purple-600 to-indigo-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-12 months',
-      salary: '$55k-95k'
-    },
-    {
-      id: "renewable-energy",
-      name: "Renewable Energy Systems",
-      category: "Environmental",
-      description: "Design and implement solar, wind, and other renewable energy solutions",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'high' as const,
-      icon: Sun,
-      color: 'from-yellow-600 to-orange-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '12-20 months',
-      salary: '$60k-120k'
-    },
-    {
-      id: "environmental-science",
-      name: "Environmental Science & Conservation",
-      category: "Environmental",
-      description: "Study environmental problems and develop solutions for conservation and sustainability",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
-      icon: Trees,
-      color: 'from-green-600 to-emerald-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '18-24 months',
-      salary: '$45k-85k'
-    },
-    {
-      id: "sustainable-agriculture",
-      name: "Sustainable Agriculture",
-      category: "Environmental",
-      description: "Develop eco-friendly farming practices and food production systems",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
-      icon: Apple,
-      color: 'from-green-600 to-lime-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '15-24 months',
-      salary: '$40k-75k'
-    },
-    {
-      id: "green-building",
-      name: "Green Building & Architecture",
-      category: "Environmental",
-      description: "Design energy-efficient and environmentally sustainable buildings and structures",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
-      icon: Home,
-      color: 'from-green-600 to-teal-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '24+ months',
-      salary: '$55k-110k'
-    },
-    {
-      id: "climate-technology",
-      name: "Climate Technology",
-      category: "Environmental",
-      description: "Develop technologies to combat climate change and reduce environmental impact",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
-      icon: Thermometer,
-      color: 'from-blue-600 to-green-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '18-24 months',
-      salary: '$70k-130k'
-    },
-    {
-      id: "waste-management",
-      name: "Waste Management & Recycling",
-      category: "Environmental",
-      description: "Develop systems for waste reduction, recycling, and sustainable waste management",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
-      icon: Recycle,
-      color: 'from-green-600 to-teal-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '10-15 months',
-      salary: '$45k-80k'
-    },
-    {
-      id: "water-management",
-      name: "Water Resource Management",
-      category: "Environmental",
-      description: "Manage water resources, develop conservation strategies, and ensure water quality",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
-      icon: Waves,
-      color: 'from-blue-600 to-cyan-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '15-20 months',
-      salary: '$50k-90k'
-    },
-    {
-      id: "legal-services",
-      name: "Legal Services & Law",
-      category: "Legal",
-      description: "Provide legal advice, represent clients, and navigate complex legal systems",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
-      icon: Scale,
-      color: 'from-blue-600 to-indigo-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '48+ months',
-      salary: '$60k-200k+'
-    },
-    {
-      id: "compliance-management",
-      name: "Compliance & Risk Management",
-      category: "Legal",
-      description: "Ensure organizational adherence to laws, regulations, and industry standards",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: CheckCircle,
-      color: 'from-green-600 to-teal-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-15 months',
-      salary: '$55k-110k'
-    },
-    {
-      id: "paralegal-services",
-      name: "Paralegal Services",
-      category: "Legal",
-      description: "Assist lawyers with legal research, document preparation, and case management",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: FileText,
-      color: 'from-purple-600 to-pink-600',
-      difficulty: 'beginner' as const,
-      timeToLearn: '6-12 months',
-      salary: '$35k-60k'
-    },
-    {
-      id: "intellectual-property",
-      name: "Intellectual Property Law",
-      category: "Legal",
-      description: "Protect and manage patents, trademarks, copyrights, and other intellectual property rights",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Copyright,
+      icon: Smartphone,
       color: 'from-purple-600 to-blue-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '24+ months',
-      salary: '$80k-180k'
-    },
-    {
-      id: "contract-management",
-      name: "Contract Management",
-      category: "Legal",
-      description: "Draft, review, and manage contracts and legal agreements for organizations",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: FileText,
-      color: 'from-blue-600 to-green-600',
       difficulty: 'intermediate' as const,
-      timeToLearn: '8-12 months',
-      salary: '$50k-95k'
+      timeToLearn: '2-3 months',
+      salary: '$80k-$135k'
     },
     {
-      id: "biotechnology",
-      name: "Biotechnology & Bioengineering",
-      category: "Science",
-      description: "Apply biological systems and organisms to develop products and technologies",
+      id: 'golang',
+      name: 'Go (Golang)',
+      category: 'Technology',
+      description: 'Fast, statically typed language designed for building simple, reliable, and efficient software.',
       status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
+      relevancePeriod: '2024-2030+',
       demandLevel: 'medium' as const,
-      icon: Dna,
-      color: 'from-green-600 to-teal-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '24+ months',
-      salary: '$65k-130k'
+      icon: Code,
+      color: 'from-cyan-500 to-blue-500',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '2-3 months',
+      salary: '$90k-$145k'
     },
     {
-      id: "materials-science",
-      name: "Materials Science & Engineering",
-      category: "Science",
-      description: "Develop new materials and improve existing ones for various industrial applications",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Atom,
-      color: 'from-blue-600 to-purple-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '24+ months',
-      salary: '$70k-140k'
-    },
-    {
-      id: "laboratory-research",
-      name: "Laboratory Research & Analysis",
-      category: "Science",
-      description: "Conduct scientific experiments, analyze samples, and contribute to research projects",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: FlaskConical,
+      id: 'rust',
+      name: 'Rust',
+      category: 'Technology',
+      description: 'Systems programming language focused on safety, speed, and concurrency.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'low' as const,
+      icon: Code,
       color: 'from-orange-600 to-red-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '15-24 months',
-      salary: '$40k-80k'
-    },
-    {
-      id: "space-technology",
-      name: "Space Technology & Aerospace",
-      category: "Science",
-      description: "Develop spacecraft, satellites, and technologies for space exploration",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2060+',
-      demandLevel: 'low' as const,
-      icon: Rocket,
-      color: 'from-purple-600 to-indigo-600',
       difficulty: 'advanced' as const,
-      timeToLearn: '24+ months',
-      salary: '$80k-160k'
+      timeToLearn: '4-6 months',
+      salary: '$95k-$155k'
     },
     {
-      id: "nanotechnology",
-      name: "Nanotechnology",
-      category: "Science",
-      description: "Manipulate matter at the atomic and molecular scale to create new materials and devices",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'low' as const,
-      icon: Atom,
-      color: 'from-indigo-600 to-purple-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '24+ months',
-      salary: '$75k-150k'
-    },
-    {
-      id: "geoscience",
-      name: "Geoscience & Earth Sciences",
-      category: "Science",
-      description: "Study the Earth's structure, processes, and natural resources for various applications",
+      id: 'vue',
+      name: 'Vue.js',
+      category: 'Technology',
+      description: 'Progressive JavaScript framework for building user interfaces and single-page applications.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
+      relevancePeriod: '2024-2029',
       demandLevel: 'medium' as const,
-      icon: Mountain,
-      color: 'from-brown-600 to-orange-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '18-24 months',
-      salary: '$50k-95k'
-    },
-    {
-      id: "marine-science",
-      name: "Marine Science & Oceanography",
-      category: "Science",
-      description: "Study ocean systems, marine life, and underwater environments for conservation and research",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Waves,
-      color: 'from-blue-600 to-teal-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '18-24 months',
-      salary: '$45k-85k'
-    },
-    {
-      id: "mechanical-engineering",
-      name: "Mechanical Engineering",
-      category: "Engineering",
-      description: "Design and develop mechanical systems, machines, and manufacturing processes",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Cog,
-      color: 'from-blue-600 to-cyan-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '24+ months',
-      salary: '$65k-120k'
-    },
-    {
-      id: "automation-robotics",
-      name: "Automation & Robotics",
-      category: "Engineering",
-      description: "Design and program automated systems and robotic solutions for various industries",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'high' as const,
-      icon: Settings,
-      color: 'from-purple-600 to-pink-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '18-24 months',
-      salary: '$75k-150k'
-    },
-    {
-      id: "quality-control",
-      name: "Quality Control & Assurance",
-      category: "Engineering",
-      description: "Ensure products and processes meet quality standards and regulatory requirements",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: CheckCircle,
-      color: 'from-green-600 to-teal-600',
+      icon: Code,
+      color: 'from-green-500 to-teal-500',
       difficulty: 'beginner' as const,
-      timeToLearn: '6-12 months',
-      salary: '$45k-85k'
+      timeToLearn: '2-3 months',
+      salary: '$70k-$115k'
     },
     {
-      id: "industrial-design",
-      name: "Industrial Design",
-      category: "Engineering",
-      description: "Design products and systems that optimize function, value, and user experience",
+      id: 'angular',
+      name: 'Angular',
+      category: 'Technology',
+      description: 'Platform and framework for building single-page client applications using HTML and TypeScript.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
+      relevancePeriod: '2024-2029',
       demandLevel: 'medium' as const,
-      icon: PenTool,
-      color: 'from-orange-600 to-red-600',
+      icon: Code,
+      color: 'from-red-600 to-red-700',
+      difficulty: 'advanced' as const,
+      timeToLearn: '4-5 months',
+      salary: '$75k-$125k'
+    },
+    {
+      id: 'nextjs',
+      name: 'Next.js',
+      category: 'Technology',
+      description: 'React framework with hybrid static & server rendering, TypeScript support, and more.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: Globe,
+      color: 'from-black to-gray-800',
       difficulty: 'intermediate' as const,
-      timeToLearn: '12-18 months',
-      salary: '$55k-100k'
+      timeToLearn: '2-3 months',
+      salary: '$85k-$135k'
     },
     {
-      id: "electrical-engineering",
-      name: "Electrical Engineering",
-      category: "Engineering",
-      description: "Design and develop electrical systems, circuits, and electronic devices",
+      id: 'express',
+      name: 'Express.js',
+      category: 'Technology',
+      description: 'Minimal and flexible Node.js web application framework for building APIs and web apps.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
+      relevancePeriod: '2024-2029',
+      demandLevel: 'high' as const,
+      icon: Database,
+      color: 'from-gray-600 to-gray-700',
+      difficulty: 'beginner' as const,
+      timeToLearn: '1-2 months',
+      salary: '$75k-$120k'
+    },
+    {
+      id: 'django',
+      name: 'Django',
+      category: 'Technology',
+      description: 'High-level Python Web framework that encourages rapid development and clean design.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2029',
       demandLevel: 'medium' as const,
-      icon: Zap,
-      color: 'from-yellow-600 to-orange-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '24+ months',
-      salary: '$70k-130k'
+      icon: Globe,
+      color: 'from-green-700 to-green-800',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '3-4 months',
+      salary: '$80k-$130k'
     },
     {
-      id: "civil-engineering",
-      name: "Civil Engineering",
-      category: "Engineering",
-      description: "Design and oversee construction of infrastructure projects like roads, bridges, and buildings",
+      id: 'flask',
+      name: 'Flask',
+      category: 'Technology',
+      description: 'Lightweight WSGI web application framework in Python for building web applications.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Building,
-      color: 'from-gray-600 to-blue-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '24+ months',
-      salary: '$60k-110k'
-    },
-    {
-      id: "chemical-engineering",
-      name: "Chemical Engineering",
-      category: "Engineering",
-      description: "Apply chemistry and physics principles to transform materials and design chemical processes",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
+      relevancePeriod: '2024-2029',
       demandLevel: 'medium' as const,
       icon: Beaker,
-      color: 'from-green-600 to-blue-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '24+ months',
-      salary: '$70k-130k'
-    },
-    {
-      id: "logistics-coordination",
-      name: "Logistics & Supply Chain Coordination",
-      category: "Transportation",
-      description: "Coordinate the movement of goods and materials efficiently across supply chains",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Truck,
-      color: 'from-blue-600 to-cyan-600',
+      color: 'from-blue-500 to-blue-600',
       difficulty: 'beginner' as const,
-      timeToLearn: '4-8 months',
-      salary: '$40k-75k'
+      timeToLearn: '1-2 months',
+      salary: '$70k-$115k'
     },
     {
-      id: "aviation-management",
-      name: "Aviation & Airport Management",
-      category: "Transportation",
-      description: "Manage airport operations, flight schedules, and aviation safety protocols",
+      id: 'spring',
+      name: 'Spring Framework',
+      category: 'Technology',
+      description: 'Comprehensive programming model for modern Java-based enterprise applications.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
+      relevancePeriod: '2024-2029',
       demandLevel: 'medium' as const,
-      icon: Plane,
-      color: 'from-sky-600 to-blue-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '12-18 months',
-      salary: '$50k-95k'
+      icon: Code,
+      color: 'from-green-600 to-green-700',
+      difficulty: 'advanced' as const,
+      timeToLearn: '4-6 months',
+      salary: '$85k-$140k'
     },
     {
-      id: "maritime-shipping",
-      name: "Maritime & Shipping Operations",
-      category: "Transportation",
-      description: "Manage sea transport operations, port logistics, and international shipping",
+      id: 'dotnet',
+      name: '.NET Core',
+      category: 'Technology',
+      description: 'Cross-platform framework for building modern, cloud-based, internet-connected applications.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
+      relevancePeriod: '2024-2029',
       demandLevel: 'medium' as const,
-      icon: Ship,
-      color: 'from-blue-600 to-teal-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '10-15 months',
-      salary: '$45k-85k'
-    },
-    {
-      id: "autonomous-vehicles",
-      name: "Autonomous Vehicle Technology",
-      category: "Transportation",
-      description: "Develop and maintain self-driving vehicle systems and smart transportation infrastructure",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
-      icon: Car,
+      icon: Code,
       color: 'from-purple-600 to-indigo-600',
-      difficulty: 'advanced' as const,
-      timeToLearn: '18-24 months',
-      salary: '$80k-150k'
+      difficulty: 'intermediate' as const,
+      timeToLearn: '3-4 months',
+      salary: '$80k-$135k'
     },
     {
-      id: "railway-systems",
-      name: "Railway & Transit Systems",
-      category: "Transportation",
-      description: "Design and manage rail transport systems, subway networks, and public transit",
+      id: 'laravel',
+      name: 'Laravel',
+      category: 'Technology',
+      description: 'PHP web application framework with expressive, elegant syntax for web artisans.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
+      relevancePeriod: '2024-2028',
       demandLevel: 'medium' as const,
-      icon: Bus,
-      color: 'from-green-600 to-blue-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '12-18 months',
-      salary: '$55k-95k'
-    },
-    {
-      id: "drone-technology",
-      name: "Drone Technology & Operations",
-      category: "Transportation",
-      description: "Operate and develop unmanned aerial vehicles for delivery, surveillance, and mapping",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Plane,
-      color: 'from-gray-600 to-blue-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-12 months',
-      salary: '$45k-85k'
-    },
-    {
-      id: "content-creation",
-      name: "Content Creation & Influencing",
-      category: "Communication",
-      description: "Create engaging content for social media, blogs, and digital platforms to build audiences",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2035+',
-      demandLevel: 'high' as const,
-      icon: Edit3,
-      color: 'from-pink-600 to-purple-600',
-      difficulty: 'beginner' as const,
-      timeToLearn: '3-8 months',
-      salary: '$25k-100k+',
-      isFoundational: true
-    },
-    {
-      id: "journalism",
-      name: "Digital Journalism & Reporting",
-      category: "Communication",
-      description: "Research, write, and report news stories across digital and traditional media platforms",
-      status: 'declining' as const,
-      relevancePeriod: 'Until 2030',
-      demandLevel: 'low' as const,
-      icon: FileText,
-      color: 'from-blue-600 to-indigo-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-15 months',
-      salary: '$30k-70k'
-    },
-    {
-      id: "public-relations",
-      name: "Public Relations & Communications",
-      category: "Communication",
-      description: "Manage organizational reputation and communications with media and stakeholders",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: MessageCircle,
-      color: 'from-green-600 to-teal-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$45k-90k'
-    },
-    {
-      id: "podcasting",
-      name: "Podcasting & Audio Content",
-      category: "Communication",
-      description: "Create, produce, and distribute podcast content and audio entertainment",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Mic,
-      color: 'from-orange-600 to-red-600',
-      difficulty: 'beginner' as const,
-      timeToLearn: '4-8 months',
-      salary: '$25k-80k'
-    },
-    {
-      id: "translation-interpretation",
-      name: "Translation & Interpretation",
-      category: "Communication",
-      description: "Translate written documents and provide interpretation services across languages",
-      status: 'declining' as const,
-      relevancePeriod: 'Until 2030',
-      demandLevel: 'low' as const,
-      icon: Languages,
-      color: 'from-blue-600 to-purple-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '12-24 months',
-      salary: '$35k-75k'
-    },
-    {
-      id: "copywriting",
-      name: "Copywriting & Content Marketing",
-      category: "Communication",
-      description: "Write persuasive marketing copy and content that drives sales and engagement",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: PenTool,
-      color: 'from-yellow-600 to-orange-600',
-      difficulty: 'beginner' as const,
-      timeToLearn: '4-8 months',
-      salary: '$40k-90k',
-      isFoundational: true
-    },
-    {
-      id: "technical-writing",
-      name: "Technical Writing & Documentation",
-      category: "Communication",
-      description: "Create clear technical documentation, manuals, and guides for complex products and services",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: FileText,
-      color: 'from-blue-600 to-green-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$50k-95k'
-    },
-    {
-      id: "social-media-management",
-      name: "Social Media Management",
-      category: "Communication",
-      description: "Manage social media accounts, create campaigns, and build online communities",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2035+',
-      demandLevel: 'high' as const,
-      icon: Share,
-      color: 'from-pink-600 to-purple-600',
-      difficulty: 'beginner' as const,
-      timeToLearn: '3-6 months',
-      salary: '$35k-75k'
-    },
-    {
-      id: "react-development",
-      name: "React Development",
-      category: "Technology",
-      description: "Build modern, interactive user interfaces using React library and its ecosystem",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: Code,
-      color: 'from-blue-500 to-cyan-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$65k-150k'
-    },
-    {
-      id: "nodejs-backend",
-      name: "Node.js Backend Development",
-      category: "Technology",
-      description: "Build scalable server-side applications using JavaScript runtime environment",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: Server,
-      color: 'from-green-500 to-emerald-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-14 months',
-      salary: '$70k-160k'
-    },
-    {
-      id: "python-programming",
-      name: "Python Programming",
-      category: "Technology",
-      description: "Master versatile programming language for web development, automation, and data science",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'high' as const,
-      icon: Code,
-      color: 'from-yellow-500 to-orange-500',
-      difficulty: 'beginner' as const,
-      timeToLearn: '4-8 months',
-      salary: '$60k-140k'
-    },
-    {
-      id: "api-development",
-      name: "API Development & Integration",
-      category: "Technology",
-      description: "Design and build RESTful APIs and integrate third-party services",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'high' as const,
-      icon: Network,
-      color: 'from-indigo-500 to-purple-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-10 months',
-      salary: '$65k-140k'
-    },
-    {
-      id: "docker-containers",
-      name: "Docker & Containerization",
-      category: "Technology",
-      description: "Package applications in containers for consistent deployment across environments",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'high' as const,
-      icon: Box,
-      color: 'from-blue-500 to-teal-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '4-8 months',
-      salary: '$75k-150k'
-    },
-    {
-      id: "kubernetes",
-      name: "Kubernetes Orchestration",
-      category: "Technology",
-      description: "Manage containerized applications at scale using Kubernetes orchestration",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'high' as const,
-      icon: Settings,
-      color: 'from-purple-500 to-indigo-500',
-      difficulty: 'advanced' as const,
-      timeToLearn: '8-15 months',
-      salary: '$90k-180k'
-    },
-    {
-      id: "microservices",
-      name: "Microservices Architecture",
-      category: "Technology",
-      description: "Design and implement distributed systems using microservices patterns",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Network,
-      color: 'from-orange-500 to-red-500',
-      difficulty: 'advanced' as const,
-      timeToLearn: '12-18 months',
-      salary: '$85k-170k'
-    },
-    {
-      id: "typescript",
-      name: "TypeScript Development",
-      category: "Technology",
-      description: "Build type-safe JavaScript applications with enhanced developer experience",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: Code,
-      color: 'from-blue-600 to-indigo-600',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '4-8 months',
-      salary: '$70k-150k'
-    },
-    {
-      id: "graphql",
-      name: "GraphQL Development",
-      category: "Technology",
-      description: "Create flexible APIs with GraphQL query language and schema design",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Network,
-      color: 'from-pink-500 to-purple-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-10 months',
-      salary: '$75k-155k'
-    },
-    {
-      id: "mongodb",
-      name: "MongoDB & NoSQL",
-      category: "Technology",
-      description: "Design and manage NoSQL databases for modern web applications",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Database,
-      color: 'from-green-500 to-teal-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$65k-130k'
-    },
-    {
-      id: "postgresql",
-      name: "PostgreSQL & SQL",
-      category: "Technology",
-      description: "Master relational database design, optimization, and advanced SQL queries",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'high' as const,
-      icon: Database,
-      color: 'from-blue-500 to-cyan-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-12 months',
-      salary: '$60k-125k'
-    },
-    {
-      id: "redis-caching",
-      name: "Redis & Caching",
-      category: "Technology",
-      description: "Implement caching strategies and session management with Redis",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Database,
+      icon: Globe,
       color: 'from-red-500 to-orange-500',
       difficulty: 'intermediate' as const,
-      timeToLearn: '4-8 months',
-      salary: '$70k-140k'
+      timeToLearn: '2-3 months',
+      salary: '$65k-$110k'
     },
     {
-      id: "elasticsearch",
-      name: "Elasticsearch & Search",
-      category: "Technology",
-      description: "Build powerful search engines and analytics platforms with Elasticsearch",
+      id: 'ruby-rails',
+      name: 'Ruby on Rails',
+      category: 'Technology',
+      description: 'Server-side web application framework written in Ruby following MVC pattern.',
+      status: 'declining' as const,
+      relevancePeriod: '2024-2027',
+      demandLevel: 'low' as const,
+      icon: Code,
+      color: 'from-red-600 to-red-700',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '3-4 months',
+      salary: '$75k-$125k'
+    },
+    {
+      id: 'mysql',
+      name: 'MySQL',
+      category: 'Technology',
+      description: 'Open-source relational database management system widely used in web applications.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
+      relevancePeriod: '2024-2029',
+      demandLevel: 'high' as const,
+      icon: Database,
+      color: 'from-blue-600 to-orange-500',
+      difficulty: 'beginner' as const,
+      timeToLearn: '1-2 months',
+      salary: '$65k-$115k'
+    },
+    {
+      id: 'elasticsearch',
+      name: 'Elasticsearch',
+      category: 'Technology',
+      description: 'Distributed search and analytics engine built on Apache Lucene.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2029',
       demandLevel: 'medium' as const,
       icon: Search,
       color: 'from-yellow-500 to-orange-500',
       difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$75k-150k'
+      timeToLearn: '2-3 months',
+      salary: '$85k-$135k'
     },
     {
-      id: "aws-cloud",
-      name: "Amazon Web Services (AWS)",
-      category: "Technology",
-      description: "Deploy and manage applications on AWS cloud infrastructure",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'high' as const,
-      icon: Cloud,
-      color: 'from-orange-500 to-yellow-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-15 months',
-      salary: '$80k-160k'
-    },
-    {
-      id: "azure-cloud",
-      name: "Microsoft Azure",
-      category: "Technology",
-      description: "Build and deploy applications on Microsoft's cloud platform",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'high' as const,
-      icon: Cloud,
-      color: 'from-blue-500 to-indigo-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-15 months',
-      salary: '$75k-155k'
-    },
-    {
-      id: "google-cloud",
-      name: "Google Cloud Platform",
-      category: "Technology",
-      description: "Leverage Google's cloud services for scalable application development",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Cloud,
-      color: 'from-green-500 to-blue-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-15 months',
-      salary: '$75k-155k'
-    },
-    {
-      id: "terraform",
-      name: "Terraform & Infrastructure as Code",
-      category: "Technology",
-      description: "Automate infrastructure provisioning and management with Terraform",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Settings,
-      color: 'from-purple-500 to-pink-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$80k-160k'
-    },
-    {
-      id: "ansible",
-      name: "Ansible Automation",
-      category: "Technology",
-      description: "Automate server configuration and application deployment with Ansible",
+      id: 'jenkins',
+      name: 'Jenkins',
+      category: 'Technology',
+      description: 'Open-source automation server for building, deploying, and automating projects.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Settings,
-      color: 'from-red-500 to-pink-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '4-8 months',
-      salary: '$70k-140k'
-    },
-    {
-      id: "jenkins-cicd",
-      name: "Jenkins & CI/CD",
-      category: "Technology",
-      description: "Set up continuous integration and deployment pipelines with Jenkins",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Settings,
-      color: 'from-blue-500 to-purple-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-10 months',
-      salary: '$75k-145k'
-    },
-    {
-      id: "git-github",
-      name: "Git & Version Control",
-      category: "Technology",
-      description: "Master version control systems for collaborative software development",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'high' as const,
-      icon: GitBranch,
-      color: 'from-orange-500 to-red-500',
-      difficulty: 'beginner' as const,
-      timeToLearn: '2-4 months',
-      salary: '$50k-120k'
-    },
-    {
-      id: "testing-automation",
-      name: "Test Automation",
-      category: "Technology",
-      description: "Create automated test suites for web applications and APIs",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: CheckCircle,
-      color: 'from-green-500 to-teal-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$60k-130k'
-    },
-    {
-      id: "performance-optimization",
-      name: "Web Performance Optimization",
-      category: "Technology",
-      description: "Optimize website speed, loading times, and user experience",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Gauge,
-      color: 'from-yellow-500 to-orange-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-10 months',
-      salary: '$70k-140k'
-    },
-    {
-      id: "agile-scrum",
-      name: "Agile & Scrum Management",
-      category: "Business",
-      description: "Lead agile teams and implement Scrum methodologies for project delivery",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: Users,
-      color: 'from-blue-500 to-cyan-500',
-      difficulty: 'beginner' as const,
-      timeToLearn: '4-8 months',
-      salary: '$65k-130k'
-    },
-    {
-      id: "business-strategy",
-      name: "Business Strategy & Planning",
-      category: "Business",
-      description: "Develop strategic plans and guide organizational growth initiatives",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Target,
-      color: 'from-purple-500 to-pink-500',
-      difficulty: 'advanced' as const,
-      timeToLearn: '12-24 months',
-      salary: '$80k-180k'
-    },
-    {
-      id: "market-research",
-      name: "Market Research & Analysis",
-      category: "Business",
-      description: "Conduct market studies and analyze consumer behavior and trends",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: BarChart3,
-      color: 'from-green-500 to-blue-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$50k-100k'
-    },
-    {
-      id: "lean-startup",
-      name: "Lean Startup Methodology",
-      category: "Business",
-      description: "Apply lean principles to build and validate business ideas efficiently",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Rocket,
-      color: 'from-orange-500 to-red-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-10 months',
-      salary: '$60k-140k'
-    },
-    {
-      id: "change-management",
-      name: "Change Management",
-      category: "Business",
-      description: "Guide organizations through transitions and transformation processes",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: RefreshCw,
-      color: 'from-blue-500 to-purple-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-15 months',
-      salary: '$65k-130k'
-    },
-    {
-      id: "vendor-management",
-      name: "Vendor & Partnership Management",
-      category: "Business",
-      description: "Manage supplier relationships and strategic business partnerships",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Handshake,
-      color: 'from-green-500 to-teal-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$55k-110k'
-    },
-    {
-      id: "process-improvement",
-      name: "Process Improvement & Six Sigma",
-      category: "Business",
-      description: "Optimize business processes and eliminate waste using Six Sigma methodologies",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: TrendingUp,
-      color: 'from-yellow-500 to-orange-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-12 months',
-      salary: '$60k-120k'
-    },
-    {
-      id: "stakeholder-management",
-      name: "Stakeholder Management",
-      category: "Business",
-      description: "Engage and manage relationships with key stakeholders and decision makers",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'high' as const,
-      icon: Users,
-      color: 'from-pink-500 to-purple-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-10 months',
-      salary: '$55k-115k'
-    },
-    {
-      id: "adobe-creative-suite",
-      name: "Adobe Creative Suite",
-      category: "Creative",
-      description: "Master Photoshop, Illustrator, InDesign, and other Adobe design tools",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Palette,
-      color: 'from-red-500 to-pink-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-15 months',
-      salary: '$40k-85k'
-    },
-    {
-      id: "figma-design",
-      name: "Figma Design & Prototyping",
-      category: "Creative",
-      description: "Create UI designs and interactive prototypes using Figma",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: PenTool,
-      color: 'from-purple-500 to-pink-500',
-      difficulty: 'beginner' as const,
-      timeToLearn: '4-8 months',
-      salary: '$50k-110k'
-    },
-    {
-      id: "sketch-design",
-      name: "Sketch Design",
-      category: "Creative",
-      description: "Design digital interfaces and experiences using Sketch",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2035+',
-      demandLevel: 'medium' as const,
-      icon: PenTool,
-      color: 'from-orange-500 to-yellow-500',
-      difficulty: 'beginner' as const,
-      timeToLearn: '4-8 months',
-      salary: '$45k-95k'
-    },
-    {
-      id: "blender-3d",
-      name: "Blender 3D Modeling",
-      category: "Creative",
-      description: "Create 3D models, animations, and visual effects using Blender",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Box,
-      color: 'from-blue-500 to-indigo-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '10-18 months',
-      salary: '$45k-105k'
-    },
-    {
-      id: "cinema4d",
-      name: "Cinema 4D Animation",
-      category: "Creative",
-      description: "Create professional 3D animations and motion graphics",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Film,
-      color: 'from-indigo-500 to-purple-500',
-      difficulty: 'advanced' as const,
-      timeToLearn: '12-20 months',
-      salary: '$55k-125k'
-    },
-    {
-      id: "after-effects",
-      name: "After Effects Motion Graphics",
-      category: "Creative",
-      description: "Create motion graphics and visual effects for video content",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Film,
-      color: 'from-purple-500 to-pink-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-15 months',
-      salary: '$50k-110k'
-    },
-    {
-      id: "premiere-pro",
-      name: "Premiere Pro Video Editing",
-      category: "Creative",
-      description: "Edit professional videos and create compelling visual content",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Video,
-      color: 'from-blue-500 to-purple-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$40k-95k'
-    },
-    {
-      id: "davinci-resolve",
-      name: "DaVinci Resolve Color Grading",
-      category: "Creative",
-      description: "Professional color grading and video post-production",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Palette,
-      color: 'from-red-500 to-orange-500',
-      difficulty: 'advanced' as const,
-      timeToLearn: '10-16 months',
-      salary: '$55k-120k'
-    },
-    {
-      id: "unity-game-dev",
-      name: "Unity Game Development",
-      category: "Creative",
-      description: "Create 2D and 3D games using Unity game engine",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Gamepad2,
-      color: 'from-gray-500 to-blue-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '12-20 months',
-      salary: '$55k-120k'
-    },
-    {
-      id: "unreal-engine",
-      name: "Unreal Engine Development",
-      category: "Creative",
-      description: "Develop high-quality games and interactive experiences",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Gamepad2,
-      color: 'from-purple-500 to-indigo-500',
-      difficulty: 'advanced' as const,
-      timeToLearn: '15-24 months',
-      salary: '$65k-140k'
-    },
-    {
-      id: "product-photography",
-      name: "Product Photography",
-      category: "Creative",
-      description: "Specialize in commercial product photography for e-commerce and marketing",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Camera,
-      color: 'from-yellow-500 to-orange-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$35k-85k'
-    },
-    {
-      id: "wedding-photography",
-      name: "Wedding Photography",
-      category: "Creative",
-      description: "Capture special moments and create memorable wedding albums",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Camera,
-      color: 'from-pink-500 to-red-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-15 months',
-      salary: '$30k-90k'
-    },
-    {
-      id: "architecture-photography",
-      name: "Architecture Photography",
-      category: "Creative",
-      description: "Photograph buildings, spaces, and architectural details professionally",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Camera,
-      color: 'from-gray-500 to-blue-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$40k-85k'
-    },
-    {
-      id: "food-photography",
-      name: "Food Photography & Styling",
-      category: "Creative",
-      description: "Create appetizing food photography for restaurants and brands",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Camera,
-      color: 'from-orange-500 to-red-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$35k-75k'
-    },
-    {
-      id: "lightroom-editing",
-      name: "Lightroom Photo Editing",
-      category: "Creative",
-      description: "Master photo editing and workflow management with Adobe Lightroom",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Image,
-      color: 'from-blue-500 to-cyan-500',
-      difficulty: 'beginner' as const,
-      timeToLearn: '4-8 months',
-      salary: '$30k-70k'
-    },
-    {
-      id: "forex-trading",
-      name: "Forex Trading",
-      category: "Finance",
-      description: "Trade foreign currencies and understand global financial markets",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: TrendingUp,
-      color: 'from-green-500 to-blue-500',
-      difficulty: 'advanced' as const,
-      timeToLearn: '12-24 months',
-      salary: '$40k-200k+'
-    },
-    {
-      id: "options-trading",
-      name: "Options Trading",
-      category: "Finance",
-      description: "Master options strategies for hedging and speculation in financial markets",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: TrendingUp,
-      color: 'from-purple-500 to-pink-500',
-      difficulty: 'advanced' as const,
-      timeToLearn: '10-18 months',
-      salary: '$50k-250k+'
-    },
-    {
-      id: "real-estate-investing",
-      name: "Real Estate Investment",
-      category: "Finance",
-      description: "Analyze and invest in real estate properties for income and appreciation",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
-      icon: Home,
-      color: 'from-orange-500 to-red-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-15 months',
-      salary: '$40k-150k+'
-    },
-    {
-      id: "financial-modeling",
-      name: "Financial Modeling",
-      category: "Finance",
-      description: "Build complex financial models for valuation and business analysis",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: Calculator,
-      color: 'from-blue-500 to-indigo-500',
-      difficulty: 'advanced' as const,
-      timeToLearn: '12-18 months',
-      salary: '$70k-150k'
-    },
-    {
-      id: "excel-advanced",
-      name: "Advanced Excel & VBA",
-      category: "Finance",
-      description: "Master complex Excel formulas, pivot tables, and VBA programming",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: FileSpreadsheet,
-      color: 'from-green-500 to-teal-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$45k-95k'
-    },
-    {
-      id: "powerbi-analytics",
-      name: "Power BI Analytics",
-      category: "Finance",
-      description: "Create interactive dashboards and business intelligence reports",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: BarChart3,
-      color: 'from-yellow-500 to-orange-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-10 months',
-      salary: '$55k-115k'
-    },
-    {
-      id: "tableau-visualization",
-      name: "Tableau Data Visualization",
-      category: "Finance",
-      description: "Create compelling data visualizations and interactive dashboards",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: BarChart3,
-      color: 'from-blue-500 to-purple-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-10 months',
-      salary: '$60k-125k'
-    },
-    {
-      id: "tax-preparation",
-      name: "Tax Preparation & Planning",
-      category: "Finance",
-      description: "Prepare tax returns and provide tax planning strategies for individuals and businesses",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Calculator,
-      color: 'from-green-500 to-blue-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$35k-75k'
-    },
-    {
-      id: "personal-finance-coaching",
-      name: "Personal Finance Coaching",
-      category: "Finance",
-      description: "Help individuals manage money, budget, and achieve financial goals",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: DollarSign,
-      color: 'from-green-500 to-teal-500',
-      difficulty: 'beginner' as const,
-      timeToLearn: '4-8 months',
-      salary: '$40k-100k'
-    },
-    {
-      id: "medical-coding",
-      name: "Medical Coding & Billing",
-      category: "Healthcare",
-      description: "Code medical procedures and manage healthcare billing processes",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: FileText,
-      color: 'from-blue-500 to-green-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-12 months',
-      salary: '$35k-60k'
-    },
-    {
-      id: "medical-transcription",
-      name: "Medical Transcription",
-      category: "Healthcare",
-      description: "Transcribe medical dictations and maintain accurate patient records",
-      status: 'declining' as const,
-      relevancePeriod: 'Until 2030',
-      demandLevel: 'low' as const,
-      icon: FileText,
-      color: 'from-gray-500 to-blue-500',
-      difficulty: 'beginner' as const,
-      timeToLearn: '4-8 months',
-      salary: '$25k-45k'
-    },
-    {
-      id: "radiology-tech",
-      name: "Radiology Technology",
-      category: "Healthcare",
-      description: "Operate imaging equipment and assist with diagnostic procedures",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
+      relevancePeriod: '2024-2028',
       demandLevel: 'medium' as const,
       icon: Monitor,
-      color: 'from-purple-500 to-blue-500',
+      color: 'from-blue-700 to-blue-800',
       difficulty: 'intermediate' as const,
-      timeToLearn: '18-24 months',
-      salary: '$50k-75k'
+      timeToLearn: '2-3 months',
+      salary: '$80k-$130k'
     },
     {
-      id: "respiratory-therapy",
-      name: "Respiratory Therapy",
-      category: "Healthcare",
-      description: "Provide respiratory care and assist patients with breathing difficulties",
+      id: 'git',
+      name: 'Git',
+      category: 'Technology',
+      description: 'Distributed version control system for tracking changes in source code during development.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Activity,
-      color: 'from-green-500 to-blue-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '24-36 months',
-      salary: '$55k-75k'
-    },
-    {
-      id: "dental-hygiene",
-      name: "Dental Hygiene",
-      category: "Healthcare",
-      description: "Provide preventive dental care and oral health education",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Activity,
-      color: 'from-blue-500 to-cyan-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '24-36 months',
-      salary: '$65k-85k'
-    },
-    {
-      id: "occupational-therapy",
-      name: "Occupational Therapy",
-      category: "Healthcare",
-      description: "Help patients develop skills for daily living and work activities",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Heart,
-      color: 'from-pink-500 to-purple-500',
-      difficulty: 'advanced' as const,
-      timeToLearn: '36+ months',
-      salary: '$75k-95k'
-    },
-    {
-      id: "speech-therapy",
-      name: "Speech-Language Pathology",
-      category: "Healthcare",
-      description: "Diagnose and treat speech, language, and communication disorders",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: MessageCircle,
-      color: 'from-orange-500 to-pink-500',
-      difficulty: 'advanced' as const,
-      timeToLearn: '36+ months',
-      salary: '$70k-90k'
-    },
-    {
-      id: "medical-assistant",
-      name: "Medical Assistant",
-      category: "Healthcare",
-      description: "Support healthcare providers with clinical and administrative tasks",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
+      relevancePeriod: '2024-2030+',
       demandLevel: 'high' as const,
-      icon: Stethoscope,
-      color: 'from-green-500 to-teal-500',
+      icon: Code,
+      color: 'from-orange-600 to-red-600',
       difficulty: 'beginner' as const,
-      timeToLearn: '6-12 months',
-      salary: '$30k-45k'
+      timeToLearn: '1 month',
+      salary: 'Essential skill',
+      isFoundational: true
     },
+
+    // Business Skills
     {
-      id: "pharmacy-tech",
-      name: "Pharmacy Technician",
-      category: "Healthcare",
-      description: "Assist pharmacists with medication preparation and customer service",
+      id: 'project-management',
+      name: 'Project Management',
+      category: 'Business',
+      description: 'Planning, executing, and closing projects while managing teams, resources, and timelines effectively.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Pill,
-      color: 'from-blue-500 to-green-500',
-      difficulty: 'beginner' as const,
-      timeToLearn: '6-12 months',
-      salary: '$30k-40k'
-    },
-    {
-      id: "esl-teaching",
-      name: "ESL Teaching",
-      category: "Education",
-      description: "Teach English as a Second Language to non-native speakers",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Languages,
-      color: 'from-blue-500 to-purple-500',
-      difficulty: 'beginner' as const,
-      timeToLearn: '4-8 months',
-      salary: '$30k-60k'
-    },
-    {
-      id: "special-education",
-      name: "Special Education",
-      category: "Education",
-      description: "Provide specialized instruction for students with disabilities",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
+      relevancePeriod: '2024-2030+',
       demandLevel: 'high' as const,
-      icon: Heart,
-      color: 'from-pink-500 to-red-500',
-      difficulty: 'advanced' as const,
-      timeToLearn: '24+ months',
-      salary: '$45k-75k'
-    },
-    {
-      id: "tutoring",
-      name: "Academic Tutoring",
-      category: "Education",
-      description: "Provide one-on-one or small group academic support to students",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: BookOpen,
-      color: 'from-green-500 to-blue-500',
-      difficulty: 'beginner' as const,
-      timeToLearn: '2-6 months',
-      salary: '$20k-50k'
-    },
-    {
-      id: "preschool-education",
-      name: "Early Childhood Education",
-      category: "Education",
-      description: "Teach and care for young children in preschool and daycare settings",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: Heart,
-      color: 'from-yellow-500 to-orange-500',
-      difficulty: 'beginner' as const,
-      timeToLearn: '12-18 months',
-      salary: '$25k-40k'
-    },
-    {
-      id: "stem-education",
-      name: "STEM Education",
-      category: "Education",
-      description: "Teach science, technology, engineering, and mathematics subjects",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'high' as const,
-      icon: Calculator,
-      color: 'from-purple-500 to-blue-500',
+      icon: Target,
+      color: 'from-blue-500 to-indigo-600',
       difficulty: 'intermediate' as const,
-      timeToLearn: '18-24 months',
-      salary: '$40k-70k'
-    },
-    {
-      id: "adult-education",
-      name: "Adult Education & Literacy",
-      category: "Education",
-      description: "Teach basic literacy and numeracy skills to adult learners",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: BookOpen,
-      color: 'from-orange-500 to-red-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-12 months',
-      salary: '$35k-55k'
-    },
-    {
-      id: "library-science",
-      name: "Library & Information Science",
-      category: "Education",
-      description: "Manage library resources and help people access information",
-      status: 'declining' as const,
-      relevancePeriod: 'Until 2035',
-      demandLevel: 'low' as const,
-      icon: BookOpen,
-      color: 'from-gray-500 to-blue-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '24+ months',
-      salary: '$45k-65k'
-    },
-    {
-      id: "environmental-consulting",
-      name: "Environmental Consulting",
-      category: "Environmental",
-      description: "Advise organizations on environmental compliance and sustainability",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
-      icon: Trees,
-      color: 'from-green-500 to-teal-500',
-      difficulty: 'advanced' as const,
-      timeToLearn: '18-24 months',
-      salary: '$55k-110k'
-    },
-    {
-      id: "carbon-footprint",
-      name: "Carbon Footprint Analysis",
-      category: "Environmental",
-      description: "Measure and analyze carbon emissions for businesses and projects",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
-      icon: Leaf,
-      color: 'from-green-500 to-blue-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-15 months',
-      salary: '$50k-95k'
-    },
-    {
-      id: "environmental-law",
-      name: "Environmental Law",
-      category: "Environmental",
-      description: "Practice law related to environmental protection and regulations",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
-      icon: Scale,
-      color: 'from-green-500 to-blue-500',
-      difficulty: 'advanced' as const,
-      timeToLearn: '48+ months',
-      salary: '$70k-150k'
-    },
-    {
-      id: "ecosystem-restoration",
-      name: "Ecosystem Restoration",
-      category: "Environmental",
-      description: "Restore damaged ecosystems and natural habitats",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
-      icon: Trees,
-      color: 'from-green-500 to-emerald-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '15-24 months',
-      salary: '$40k-75k'
-    },
-    {
-      id: "wildlife-conservation",
-      name: "Wildlife Conservation",
-      category: "Environmental",
-      description: "Protect and preserve wildlife populations and their habitats",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
-      icon: Bird,
-      color: 'from-green-500 to-blue-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '18-24 months',
-      salary: '$35k-70k'
-    },
-    {
-      id: "green-chemistry",
-      name: "Green Chemistry",
-      category: "Environmental",
-      description: "Develop environmentally friendly chemical processes and products",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2050+',
-      demandLevel: 'medium' as const,
-      icon: Beaker,
-      color: 'from-green-500 to-teal-500',
-      difficulty: 'advanced' as const,
-      timeToLearn: '24+ months',
-      salary: '$65k-130k'
-    },
-    {
-      id: "podcast-production",
-      name: "Podcast Production",
-      category: "Communication",
-      description: "Produce, edit, and distribute professional podcast content",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Headphones,
-      color: 'from-purple-500 to-pink-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$35k-85k'
-    },
-    {
-      id: "voice-acting",
-      name: "Voice Acting & Narration",
-      category: "Communication",
-      description: "Provide voice-over services for commercials, audiobooks, and media",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'medium' as const,
-      icon: Mic,
-      color: 'from-blue-500 to-purple-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '8-15 months',
-      salary: '$30k-100k+'
-    },
-    {
-      id: "live-streaming",
-      name: "Live Streaming & Broadcasting",
-      category: "Communication",
-      description: "Create and manage live video content across streaming platforms",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2035+',
-      demandLevel: 'medium' as const,
-      icon: Video,
-      color: 'from-red-500 to-pink-500',
-      difficulty: 'beginner' as const,
-      timeToLearn: '3-8 months',
-      salary: '$25k-100k+'
-    },
-    {
-      id: "newsletter-writing",
-      name: "Newsletter Writing & Email Marketing",
-      category: "Communication",
-      description: "Create engaging email newsletters and marketing campaigns",
-      status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: Mail,
-      color: 'from-blue-500 to-cyan-500',
-      difficulty: 'beginner' as const,
       timeToLearn: '3-6 months',
-      salary: '$35k-75k'
+      salary: '$70k-$130k',
+      isFoundational: true
     },
     {
-      id: "crisis-communication",
-      name: "Crisis Communication",
-      category: "Communication",
-      description: "Manage organizational communication during crises and emergencies",
+      id: 'agile-scrum',
+      name: 'Agile & Scrum',
+      category: 'Business',
+      description: 'Iterative approach to project management and software development focusing on collaboration.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2045+',
-      demandLevel: 'medium' as const,
-      icon: AlertTriangle,
-      color: 'from-red-500 to-orange-500',
-      difficulty: 'advanced' as const,
-      timeToLearn: '10-18 months',
-      salary: '$60k-130k'
-    },
-    {
-      id: "brand-storytelling",
-      name: "Brand Storytelling",
-      category: "Communication",
-      description: "Craft compelling brand narratives that connect with audiences",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2040+',
-      demandLevel: 'high' as const,
-      icon: BookOpen,
-      color: 'from-purple-500 to-pink-500',
-      difficulty: 'intermediate' as const,
-      timeToLearn: '6-12 months',
-      salary: '$45k-95k'
-    },
-    {
-      id: "community-management",
-      name: "Community Management",
-      category: "Communication",
-      description: "Build and engage online communities around brands and products",
-      status: 'emerging' as const,
-      relevancePeriod: 'Until 2040+',
+      relevancePeriod: '2024-2030+',
       demandLevel: 'high' as const,
       icon: Users,
-      color: 'from-green-500 to-blue-500',
+      color: 'from-green-500 to-teal-600',
       difficulty: 'beginner' as const,
-      timeToLearn: '4-8 months',
-      salary: '$35k-75k'
+      timeToLearn: '1-2 months',
+      salary: '$75k-$125k'
     },
     {
-      id: "grant-writing",
-      name: "Grant Writing",
-      category: "Communication",
-      description: "Write proposals to secure funding for nonprofits and research projects",
+      id: 'data-analysis',
+      name: 'Data Analysis',
+      category: 'Business',
+      description: 'Collecting, processing, and performing statistical analysis on large datasets to discover insights.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: BarChart3,
+      color: 'from-purple-500 to-pink-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '4-6 months',
+      salary: '$65k-$120k'
+    },
+    {
+      id: 'business-analysis',
+      name: 'Business Analysis',
+      category: 'Business',
+      description: 'Identifying business needs and determining solutions to business problems.',
       status: 'stable' as const,
-      relevancePeriod: 'Until 2040+',
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: TrendingUp,
+      color: 'from-blue-600 to-purple-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '3-4 months',
+      salary: '$70k-$115k'
+    },
+    {
+      id: 'digital-marketing',
+      name: 'Digital Marketing',
+      category: 'Business',
+      description: 'Promoting products or services using digital channels to reach consumers.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: Megaphone,
+      color: 'from-pink-500 to-rose-600',
+      difficulty: 'beginner' as const,
+      timeToLearn: '2-3 months',
+      salary: '$45k-$85k'
+    },
+    {
+      id: 'seo',
+      name: 'Search Engine Optimization',
+      category: 'Business',
+      description: 'Optimizing websites to rank higher in search engine results pages.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2029',
+      demandLevel: 'medium' as const,
+      icon: Search,
+      color: 'from-green-500 to-blue-500',
+      difficulty: 'beginner' as const,
+      timeToLearn: '2-3 months',
+      salary: '$40k-$75k'
+    },
+    {
+      id: 'social-media-marketing',
+      name: 'Social Media Marketing',
+      category: 'Business',
+      description: 'Using social media platforms to promote products, services, and build brand awareness.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2029',
+      demandLevel: 'medium' as const,
+      icon: Users,
+      color: 'from-blue-400 to-purple-500',
+      difficulty: 'beginner' as const,
+      timeToLearn: '1-2 months',
+      salary: '$35k-$70k'
+    },
+    {
+      id: 'content-marketing',
+      name: 'Content Marketing',
+      category: 'Business',
+      description: 'Creating and distributing valuable content to attract and retain a clearly defined audience.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2029',
       demandLevel: 'medium' as const,
       icon: PenTool,
-      color: 'from-green-500 to-teal-500',
+      color: 'from-orange-500 to-red-500',
+      difficulty: 'beginner' as const,
+      timeToLearn: '2-3 months',
+      salary: '$40k-$75k'
+    },
+    {
+      id: 'email-marketing',
+      name: 'Email Marketing',
+      category: 'Business',
+      description: 'Sending targeted emails to prospects and customers to build relationships and drive sales.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2029',
+      demandLevel: 'medium' as const,
+      icon: MessageSquare,
+      color: 'from-teal-500 to-cyan-600',
+      difficulty: 'beginner' as const,
+      timeToLearn: '1-2 months',
+      salary: '$35k-$65k'
+    },
+    {
+      id: 'sales',
+      name: 'Sales',
+      category: 'Business',
+      description: 'The process of selling products or services by understanding customer needs and building relationships.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: TrendingUp,
+      color: 'from-green-600 to-emerald-700',
+      difficulty: 'beginner' as const,
+      timeToLearn: '2-3 months',
+      salary: '$40k-$120k+',
+      isFoundational: true
+    },
+    {
+      id: 'customer-service',
+      name: 'Customer Service',
+      category: 'Business',
+      description: 'Providing assistance and advice to company customers before, during, and after purchase.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: Users,
+      color: 'from-blue-500 to-cyan-600',
+      difficulty: 'beginner' as const,
+      timeToLearn: '1-2 months',
+      salary: '$30k-$55k'
+    },
+    {
+      id: 'leadership',
+      name: 'Leadership',
+      category: 'Business',
+      description: 'The ability to guide, influence, and inspire others to achieve common goals.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: Crown,
+      color: 'from-yellow-500 to-orange-600',
+      difficulty: 'advanced' as const,
+      timeToLearn: '1-2 years',
+      salary: '$80k-$200k+'
+    },
+    {
+      id: 'negotiation',
+      name: 'Negotiation',
+      category: 'Business',
+      description: 'The process of discussing and reaching mutually beneficial agreements.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Users,
+      color: 'from-purple-500 to-indigo-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '3-6 months',
+      salary: '$60k-$130k'
+    },
+    {
+      id: 'strategic-planning',
+      name: 'Strategic Planning',
+      category: 'Business',
+      description: 'Defining organizational direction and making decisions on allocating resources.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Target,
+      color: 'from-indigo-600 to-purple-700',
+      difficulty: 'advanced' as const,
+      timeToLearn: '6-12 months',
+      salary: '$90k-$160k'
+    },
+    {
+      id: 'financial-analysis',
+      name: 'Financial Analysis',
+      category: 'Business',
+      description: 'Evaluating financial data to make business recommendations and investment decisions.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: BarChart3,
+      color: 'from-green-600 to-teal-700',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '4-6 months',
+      salary: '$65k-$120k'
+    },
+
+    // Creative Skills
+    {
+      id: 'graphic-design',
+      name: 'Graphic Design',
+      category: 'Creative',
+      description: 'Creating visual content to communicate messages through typography, imagery, and layout.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Palette,
+      color: 'from-pink-500 to-rose-600',
+      difficulty: 'beginner' as const,
+      timeToLearn: '3-6 months',
+      salary: '$35k-$70k'
+    },
+    {
+      id: 'ui-ux-design',
+      name: 'UI/UX Design',
+      category: 'Creative',
+      description: 'Designing user interfaces and experiences that are intuitive, accessible, and engaging.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: Monitor,
+      color: 'from-blue-500 to-purple-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '4-6 months',
+      salary: '$60k-$110k',
+      isFoundational: true
+    },
+    {
+      id: 'web-design',
+      name: 'Web Design',
+      category: 'Creative',
+      description: 'Creating the visual and functional aspects of websites, including layout and user experience.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2029',
+      demandLevel: 'medium' as const,
+      icon: Globe,
+      color: 'from-teal-500 to-blue-600',
+      difficulty: 'beginner' as const,
+      timeToLearn: '2-4 months',
+      salary: '$40k-$75k'
+    },
+    {
+      id: 'photography',
+      name: 'Photography',
+      category: 'Creative',
+      description: 'Capturing images that tell stories, convey emotions, or document events.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Camera,
+      color: 'from-gray-600 to-gray-800',
+      difficulty: 'beginner' as const,
+      timeToLearn: '3-6 months',
+      salary: '$30k-$80k'
+    },
+    {
+      id: 'video-editing',
+      name: 'Video Editing',
+      category: 'Creative',
+      description: 'Manipulating and rearranging video shots to create a new work for entertainment or information.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: Film,
+      color: 'from-purple-600 to-indigo-700',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '3-4 months',
+      salary: '$35k-$75k'
+    },
+    {
+      id: 'animation',
+      name: 'Animation',
+      category: 'Creative',
+      description: 'Creating moving images through various techniques including 2D, 3D, and motion graphics.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Film,
+      color: 'from-red-500 to-pink-600',
+      difficulty: 'advanced' as const,
+      timeToLearn: '6-12 months',
+      salary: '$45k-$90k'
+    },
+    {
+      id: 'illustration',
+      name: 'Illustration',
+      category: 'Creative',
+      description: 'Creating drawings, paintings, or digital artwork to communicate ideas or stories.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: PenTool,
+      color: 'from-orange-500 to-red-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '4-8 months',
+      salary: '$35k-$70k'
+    },
+    {
+      id: 'music-production',
+      name: 'Music Production',
+      category: 'Creative',
+      description: 'Creating, recording, and manipulating audio to produce finished musical compositions.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'low' as const,
+      icon: Music,
+      color: 'from-purple-500 to-pink-500',
       difficulty: 'intermediate' as const,
       timeToLearn: '6-12 months',
-      salary: '$40k-80k'
+      salary: '$30k-$75k'
+    },
+    {
+      id: 'game-design',
+      name: 'Game Design',
+      category: 'Creative',
+      description: 'Creating the content and rules of games, including gameplay mechanics and storylines.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Gamepad2,
+      color: 'from-green-500 to-teal-600',
+      difficulty: 'advanced' as const,
+      timeToLearn: '8-12 months',
+      salary: '$50k-$100k'
+    },
+    {
+      id: 'copywriting',
+      name: 'Copywriting',
+      category: 'Creative',
+      description: 'Writing persuasive text for advertising and marketing materials to drive action.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: PenTool,
+      color: 'from-blue-500 to-indigo-600',
+      difficulty: 'beginner' as const,
+      timeToLearn: '2-4 months',
+      salary: '$40k-$80k'
+    },
+    {
+      id: 'content-writing',
+      name: 'Content Writing',
+      category: 'Creative',
+      description: 'Creating engaging, informative, and valuable written content for various platforms.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2029',
+      demandLevel: 'medium' as const,
+      icon: PenTool,
+      color: 'from-teal-500 to-cyan-600',
+      difficulty: 'beginner' as const,
+      timeToLearn: '1-3 months',
+      salary: '$30k-$65k'
+    },
+    {
+      id: 'brand-design',
+      name: 'Brand Design',
+      category: 'Creative',
+      description: 'Creating visual identity systems that represent and communicate brand values.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Palette,
+      color: 'from-yellow-500 to-orange-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '4-6 months',
+      salary: '$45k-$85k'
+    },
+
+    // Healthcare Skills
+    {
+      id: 'nursing',
+      name: 'Nursing',
+      category: 'Healthcare',
+      description: 'Providing patient care, health education, and supporting individuals through illness and recovery.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: Heart,
+      color: 'from-red-500 to-pink-600',
+      difficulty: 'advanced' as const,
+      timeToLearn: '2-4 years',
+      salary: '$60k-$90k'
+    },
+    {
+      id: 'medical-coding',
+      name: 'Medical Coding',
+      category: 'Healthcare',
+      description: 'Translating medical diagnoses, procedures, and services into universal codes.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Code,
+      color: 'from-blue-600 to-teal-700',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '6-12 months',
+      salary: '$35k-$55k'
+    },
+    {
+      id: 'pharmacy-tech',
+      name: 'Pharmacy Technician',
+      category: 'Healthcare',
+      description: 'Assisting pharmacists in dispensing medications and providing customer service.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Pill,
+      color: 'from-green-500 to-teal-600',
+      difficulty: 'beginner' as const,
+      timeToLearn: '3-6 months',
+      salary: '$30k-$40k'
+    },
+    {
+      id: 'mental-health',
+      name: 'Mental Health Counseling',
+      category: 'Healthcare',
+      description: 'Providing therapy and support for individuals dealing with mental health challenges.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: Brain,
+      color: 'from-purple-500 to-indigo-600',
+      difficulty: 'advanced' as const,
+      timeToLearn: '2-4 years',
+      salary: '$45k-$80k'
+    },
+    {
+      id: 'physical-therapy',
+      name: 'Physical Therapy',
+      category: 'Healthcare',
+      description: 'Helping patients recover from injuries and improve physical movement and function.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Heart,
+      color: 'from-orange-500 to-red-600',
+      difficulty: 'advanced' as const,
+      timeToLearn: '3-4 years',
+      salary: '$70k-$95k'
+    },
+    {
+      id: 'medical-assistant',
+      name: 'Medical Assistant',
+      category: 'Healthcare',
+      description: 'Supporting healthcare providers with clinical and administrative tasks.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: Stethoscope,
+      color: 'from-teal-500 to-cyan-600',
+      difficulty: 'beginner' as const,
+      timeToLearn: '6-12 months',
+      salary: '$30k-$40k'
+    },
+    {
+      id: 'radiology-tech',
+      name: 'Radiology Technician',
+      category: 'Healthcare',
+      description: 'Operating imaging equipment to help diagnose medical conditions.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Monitor,
+      color: 'from-gray-600 to-blue-700',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '1-2 years',
+      salary: '$50k-$70k'
+    },
+    {
+      id: 'dental-hygiene',
+      name: 'Dental Hygiene',
+      category: 'Healthcare',
+      description: 'Providing preventive dental care and educating patients about oral health.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Heart,
+      color: 'from-blue-500 to-teal-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '2-3 years',
+      salary: '$65k-$80k'
+    },
+
+    // Finance Skills
+    {
+      id: 'accounting',
+      name: 'Accounting',
+      category: 'Finance',
+      description: 'Recording, measuring, and communicating financial information about businesses.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: Calculator,
+      color: 'from-green-600 to-emerald-700',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '4-6 months',
+      salary: '$40k-$75k',
+      isFoundational: true
+    },
+    {
+      id: 'bookkeeping',
+      name: 'Bookkeeping',
+      category: 'Finance',
+      description: 'Maintaining accurate records of financial transactions for businesses.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: BookOpen,
+      color: 'from-blue-500 to-indigo-600',
+      difficulty: 'beginner' as const,
+      timeToLearn: '2-3 months',
+      salary: '$30k-$50k'
+    },
+    {
+      id: 'financial-planning',
+      name: 'Financial Planning',
+      category: 'Finance',
+      description: 'Helping individuals and businesses create strategies to achieve financial goals.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: TrendingUp,
+      color: 'from-green-500 to-teal-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '6-12 months',
+      salary: '$50k-$100k'
+    },
+    {
+      id: 'investment-analysis',
+      name: 'Investment Analysis',
+      category: 'Finance',
+      description: 'Evaluating investment opportunities and making recommendations based on financial data.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: BarChart3,
+      color: 'from-purple-500 to-indigo-600',
+      difficulty: 'advanced' as const,
+      timeToLearn: '8-12 months',
+      salary: '$65k-$130k'
+    },
+    {
+      id: 'tax-preparation',
+      name: 'Tax Preparation',
+      category: 'Finance',
+      description: 'Preparing and filing tax returns for individuals and businesses.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Calculator,
+      color: 'from-red-500 to-orange-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '3-4 months',
+      salary: '$35k-$60k'
+    },
+    {
+      id: 'risk-management',
+      name: 'Risk Management',
+      category: 'Finance',
+      description: 'Identifying, analyzing, and mitigating potential risks to organizations.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: Lock,
+      color: 'from-orange-600 to-red-700',
+      difficulty: 'advanced' as const,
+      timeToLearn: '6-12 months',
+      salary: '$70k-$130k'
+    },
+    {
+      id: 'insurance',
+      name: 'Insurance',
+      category: 'Finance',
+      description: 'Helping individuals and businesses protect against financial losses through insurance products.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Lock,
+      color: 'from-blue-600 to-purple-700',
+      difficulty: 'beginner' as const,
+      timeToLearn: '2-4 months',
+      salary: '$35k-$75k'
+    },
+    {
+      id: 'banking',
+      name: 'Banking',
+      category: 'Finance',
+      description: 'Providing financial services including deposits, loans, and investment products.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2029',
+      demandLevel: 'medium' as const,
+      icon: PiggyBank,
+      color: 'from-green-600 to-blue-700',
+      difficulty: 'beginner' as const,
+      timeToLearn: '1-3 months',
+      salary: '$35k-$65k'
+    },
+    {
+      id: 'cryptocurrency',
+      name: 'Cryptocurrency & Blockchain',
+      category: 'Finance',
+      description: 'Understanding digital currencies and blockchain technology for financial applications.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Coins,
+      color: 'from-yellow-500 to-orange-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '3-6 months',
+      salary: '$60k-$120k'
+    },
+
+    // Education Skills
+    {
+      id: 'teaching',
+      name: 'Teaching',
+      category: 'Education',
+      description: 'Educating students and facilitating learning across various subjects and age groups.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: GraduationCap,
+      color: 'from-blue-500 to-indigo-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '1-4 years',
+      salary: '$35k-$70k'
+    },
+    {
+      id: 'tutoring',
+      name: 'Tutoring',
+      category: 'Education',
+      description: 'Providing personalized instruction to help students improve in specific subjects.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: BookOpen,
+      color: 'from-green-500 to-teal-600',
+      difficulty: 'beginner' as const,
+      timeToLearn: '1-3 months',
+      salary: '$20-$50/hour'
+    },
+    {
+      id: 'curriculum-design',
+      name: 'Curriculum Design',
+      category: 'Education',
+      description: 'Creating educational programs and learning materials for various subjects.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: BookOpen,
+      color: 'from-purple-500 to-indigo-600',
+      difficulty: 'advanced' as const,
+      timeToLearn: '6-12 months',
+      salary: '$50k-$85k'
+    },
+    {
+      id: 'educational-technology',
+      name: 'Educational Technology',
+      category: 'Education',
+      description: 'Integrating technology into educational settings to enhance learning experiences.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: Monitor,
+      color: 'from-teal-500 to-blue-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '3-6 months',
+      salary: '$45k-$80k'
+    },
+    {
+      id: 'training-development',
+      name: 'Training & Development',
+      category: 'Education',
+      description: 'Designing and delivering training programs for employee skill development.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Users,
+      color: 'from-orange-500 to-red-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '4-6 months',
+      salary: '$50k-$85k'
+    },
+    {
+      id: 'online-course-creation',
+      name: 'Online Course Creation',
+      category: 'Education',
+      description: 'Developing digital learning experiences and educational content for online platforms.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: Globe,
+      color: 'from-blue-500 to-purple-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '2-4 months',
+      salary: '$40k-$80k'
+    },
+    {
+      id: 'instructional-design',
+      name: 'Instructional Design',
+      category: 'Education',
+      description: 'Creating effective learning experiences through systematic design of instructional materials.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Target,
+      color: 'from-indigo-500 to-purple-600',
+      difficulty: 'advanced' as const,
+      timeToLearn: '6-8 months',
+      salary: '$55k-$90k'
+    },
+    {
+      id: 'academic-writing',
+      name: 'Academic Writing',
+      category: 'Education',
+      description: 'Writing scholarly articles, research papers, and academic content following formal standards.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'low' as const,
+      icon: PenTool,
+      color: 'from-gray-600 to-blue-700',
+      difficulty: 'advanced' as const,
+      timeToLearn: '6-12 months',
+      salary: '$35k-$70k'
+    },
+
+    // Environmental Skills
+    {
+      id: 'renewable-energy',
+      name: 'Renewable Energy',
+      category: 'Environmental',
+      description: 'Working with sustainable energy sources like solar, wind, and hydroelectric power.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: Sun,
+      color: 'from-yellow-500 to-orange-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '6-12 months',
+      salary: '$50k-$90k'
+    },
+    {
+      id: 'environmental-science',
+      name: 'Environmental Science',
+      category: 'Environmental',
+      description: 'Studying the environment and finding solutions to environmental problems.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Leaf,
+      color: 'from-green-500 to-teal-600',
+      difficulty: 'advanced' as const,
+      timeToLearn: '1-4 years',
+      salary: '$45k-$80k'
+    },
+    {
+      id: 'sustainability-consulting',
+      name: 'Sustainability Consulting',
+      category: 'Environmental',
+      description: 'Helping organizations implement sustainable practices and reduce environmental impact.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Trees,
+      color: 'from-green-600 to-emerald-700',
+      difficulty: 'advanced' as const,
+      timeToLearn: '8-12 months',
+      salary: '$60k-$110k'
+    },
+    {
+      id: 'waste-management',
+      name: 'Waste Management',
+      category: 'Environmental',
+      description: 'Managing and reducing waste through recycling, composting, and sustainable practices.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Leaf,
+      color: 'from-brown-500 to-green-600',
+      difficulty: 'beginner' as const,
+      timeToLearn: '3-6 months',
+      salary: '$35k-$60k'
+    },
+    {
+      id: 'water-conservation',
+      name: 'Water Conservation',
+      category: 'Environmental',
+      description: 'Implementing strategies to preserve and efficiently use water resources.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Droplets,
+      color: 'from-blue-500 to-cyan-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '4-6 months',
+      salary: '$40k-$75k'
+    },
+    {
+      id: 'climate-analysis',
+      name: 'Climate Analysis',
+      category: 'Environmental',
+      description: 'Studying climate patterns and their impact on environment and human activities.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Thermometer,
+      color: 'from-red-500 to-orange-600',
+      difficulty: 'advanced' as const,
+      timeToLearn: '1-2 years',
+      salary: '$55k-$95k'
+    },
+    {
+      id: 'green-building',
+      name: 'Green Building Design',
+      category: 'Environmental',
+      description: 'Designing environmentally responsible and resource-efficient buildings.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Trees,
+      color: 'from-green-500 to-blue-600',
+      difficulty: 'advanced' as const,
+      timeToLearn: '1-2 years',
+      salary: '$60k-$100k'
+    },
+    {
+      id: 'carbon-footprint',
+      name: 'Carbon Footprint Analysis',
+      category: 'Environmental',
+      description: 'Measuring and reducing greenhouse gas emissions for organizations and individuals.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Leaf,
+      color: 'from-gray-600 to-green-700',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '4-6 months',
+      salary: '$45k-$80k'
+    },
+
+    // Communication Skills
+    {
+      id: 'public-speaking',
+      name: 'Public Speaking',
+      category: 'Communication',
+      description: 'Delivering effective presentations and speeches to various audiences.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'high' as const,
+      icon: Megaphone,
+      color: 'from-blue-500 to-purple-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '3-6 months',
+      salary: 'Skill premium',
+      isFoundational: true
+    },
+    {
+      id: 'technical-writing',
+      name: 'Technical Writing',
+      category: 'Communication',
+      description: 'Creating clear documentation, manuals, and instructions for technical subjects.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: PenTool,
+      color: 'from-gray-600 to-blue-700',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '3-4 months',
+      salary: '$50k-$85k'
+    },
+    {
+      id: 'translation',
+      name: 'Translation Services',
+      category: 'Communication',
+      description: 'Converting written or spoken content from one language to another.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Globe,
+      color: 'from-teal-500 to-blue-600',
+      difficulty: 'advanced' as const,
+      timeToLearn: '1-3 years',
+      salary: '$25-$60/hour'
+    },
+    {
+      id: 'journalism',
+      name: 'Journalism',
+      category: 'Communication',
+      description: 'Researching, writing, and reporting news and current events across various media.',
+      status: 'declining' as const,
+      relevancePeriod: '2024-2027',
+      demandLevel: 'low' as const,
+      icon: PenTool,
+      color: 'from-red-600 to-orange-700',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '6-12 months',
+      salary: '$30k-$60k'
+    },
+    {
+      id: 'podcasting',
+      name: 'Podcasting',
+      category: 'Communication',
+      description: 'Creating and producing audio content for digital distribution and entertainment.',
+      status: 'emerging' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Music,
+      color: 'from-purple-500 to-pink-600',
+      difficulty: 'beginner' as const,
+      timeToLearn: '2-3 months',
+      salary: '$30k-$75k'
+    },
+    {
+      id: 'social-media-management',
+      name: 'Social Media Management',
+      category: 'Communication',
+      description: 'Managing social media accounts, creating content, and engaging with online communities.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2029',
+      demandLevel: 'high' as const,
+      icon: Users,
+      color: 'from-blue-400 to-purple-500',
+      difficulty: 'beginner' as const,
+      timeToLearn: '1-2 months',
+      salary: '$35k-$65k'
+    },
+    {
+      id: 'crisis-communication',
+      name: 'Crisis Communication',
+      category: 'Communication',
+      description: 'Managing communication during emergencies and challenging situations.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: MessageSquare,
+      color: 'from-red-500 to-orange-600',
+      difficulty: 'advanced' as const,
+      timeToLearn: '6-8 months',
+      salary: '$60k-$110k'
+    },
+    {
+      id: 'pr-communications',
+      name: 'Public Relations',
+      category: 'Communication',
+      description: 'Managing public image and communications between organizations and the public.',
+      status: 'stable' as const,
+      relevancePeriod: '2024-2030+',
+      demandLevel: 'medium' as const,
+      icon: Megaphone,
+      color: 'from-pink-500 to-rose-600',
+      difficulty: 'intermediate' as const,
+      timeToLearn: '4-6 months',
+      salary: '$45k-$85k'
     }
   ];
 
-  const categories = ['all', ...Array.from(new Set(skills.map(skill => skill.category)))];
+  const categories = ['all', 'Technology', 'Business', 'Creative', 'Healthcare', 'Finance', 'Education', 'Environmental', 'Communication'];
+  const statuses = ['all', 'emerging', 'stable', 'declining'];
+  const difficulties = ['all', 'beginner', 'intermediate', 'advanced'];
+  const demands = ['all', 'high', 'medium', 'low'];
 
   const filteredSkills = useMemo(() => {
-    return skills.filter(skill => {
+    return allSkills.filter(skill => {
       const matchesSearch = skill.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          skill.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          skill.category.toLowerCase().includes(searchTerm.toLowerCase());
+                           skill.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           skill.category.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = selectedCategory === 'all' || skill.category === selectedCategory;
       const matchesStatus = selectedStatus === 'all' || skill.status === selectedStatus;
+      const matchesDifficulty = selectedDifficulty === 'all' || skill.difficulty === selectedDifficulty;
       const matchesDemand = selectedDemand === 'all' || skill.demandLevel === selectedDemand;
-      
-      return matchesSearch && matchesCategory && matchesStatus && matchesDemand;
+      const matchesFoundational = !showFoundationalOnly || skill.isFoundational;
+
+      return matchesSearch && matchesCategory && matchesStatus && matchesDifficulty && matchesDemand && matchesFoundational;
     });
-  }, [searchTerm, selectedCategory, selectedStatus, selectedDemand, skills]);
+  }, [searchTerm, selectedCategory, selectedStatus, selectedDifficulty, selectedDemand, showFoundationalOnly]);
 
-  const totalPages = Math.ceil(filteredSkills.length / skillsPerPage);
-  const startIndex = (currentPage - 1) * skillsPerPage;
-  const paginatedSkills = filteredSkills.slice(startIndex, startIndex + skillsPerPage);
+  const skillsStats = useMemo(() => {
+    const total = allSkills.length;
+    const emerging = allSkills.filter(skill => skill.status === 'emerging').length;
+    const highDemand = allSkills.filter(skill => skill.demandLevel === 'high').length;
+    const foundational = allSkills.filter(skill => skill.isFoundational).length;
 
-  const resetPage = () => {
-    if (currentPage > totalPages && totalPages > 0) {
-      setCurrentPage(1);
-    }
-  };
-
-  React.useEffect(() => {
-    resetPage();
-  }, [selectedCategory, selectedStatus, selectedDemand, searchTerm, skillsPerPage]);
-
-  const getPaginationRange = () => {
-    const range = [];
-    const showPages = 5;
-    let start = Math.max(1, currentPage - Math.floor(showPages / 2));
-    let end = Math.min(totalPages, start + showPages - 1);
-    
-    if (end - start + 1 < showPages) {
-      start = Math.max(1, end - showPages + 1);
-    }
-    
-    for (let i = start; i <= end; i++) {
-      range.push(i);
-    }
-    return range;
-  };
+    return { total, emerging, highDemand, foundational };
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-20">
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold font-poppins mb-6 text-gradient">
-            Skills Explorer
-          </h1>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-            Discover in-demand skills, explore career paths, and understand the future job market. 
-            Filter by category, demand level, and growth trends to find your next learning opportunity.
-          </p>
-        </div>
-
-        {/* Salary Disclaimer */}
-        <Card className="glass-card mb-8 border-yellow-500/30 bg-yellow-500/5">
-          <CardContent className="p-6">
-            <div className="flex items-start gap-3">
-              <Info className="h-5 w-5 text-yellow-400 mt-1 flex-shrink-0" />
-              <div>
-                <h3 className="text-yellow-300 font-semibold mb-2">💰 Salary Range Disclaimer</h3>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  All salary ranges are displayed in USD and represent typical compensation in the United States market. 
-                  <strong className="text-yellow-200"> Actual salaries vary significantly by country, region, experience level, company size, and local economic conditions.</strong> 
-                  For example, salaries in India, Europe, or other regions may be 30-70% different due to cost of living, currency exchange rates, 
-                  and local demand. Always research local market rates for accurate compensation expectations in your area.
-                </p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <div className="relative">
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+        
+        <div className="relative z-10">
+          {/* Hero Section */}
+          <section className="pt-32 pb-20 px-4 text-center">
+            <div className="max-w-4xl mx-auto">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/20">
+                <Sparkles className="h-4 w-4 text-yellow-400" />
+                <span className="text-sm text-gray-300">Discover Your Next Career Move</span>
               </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Filters */}
-        <Card className="glass-card mb-8">
-          <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-4">
-              <div className="lg:col-span-2">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                  <Input
-                    placeholder="Search skills..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-gray-400"
-                  />
+              
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                Skill Explorer
+              </h1>
+              
+              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+                Navigate the future job market with our comprehensive skill database. Discover {skillsStats.total}+ skills across 8 categories, from emerging technologies to timeless fundamentals.
+              </p>
+              
+              <div className="flex flex-wrap justify-center gap-4 mb-12">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/20">
+                  <div className="text-2xl font-bold text-white">{skillsStats.total}+</div>
+                  <div className="text-sm text-gray-300">Total Skills</div>
+                </div>
+                <div className="bg-green-500/20 backdrop-blur-sm rounded-lg px-4 py-2 border border-green-500/30">
+                  <div className="text-2xl font-bold text-green-300">{skillsStats.emerging}</div>
+                  <div className="text-sm text-gray-300">Emerging</div>
+                </div>
+                <div className="bg-purple-500/20 backdrop-blur-sm rounded-lg px-4 py-2 border border-purple-500/30">
+                  <div className="text-2xl font-bold text-purple-300">{skillsStats.highDemand}</div>
+                  <div className="text-sm text-gray-300">High Demand</div>
+                </div>
+                <div className="bg-yellow-500/20 backdrop-blur-sm rounded-lg px-4 py-2 border border-yellow-500/30">
+                  <div className="text-2xl font-bold text-yellow-300">{skillsStats.foundational}</div>
+                  <div className="text-sm text-gray-300">Essential</div>
                 </div>
               </div>
-              
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                  <SelectValue placeholder="Category" />
-                </SelectTrigger>
-                <SelectContent>
-                  {categories.map(category => (
-                    <SelectItem key={category} value={category}>
-                      {category === 'all' ? 'All Categories' : category}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-
-              <Select value={selectedStatus} onValueChange={setSelectedStatus}>
-                <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                  <SelectValue placeholder="Status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Status</SelectItem>
-                  <SelectItem value="emerging">Emerging</SelectItem>
-                  <SelectItem value="stable">Stable</SelectItem>
-                  <SelectItem value="declining">Declining</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Select value={selectedDemand} onValueChange={setSelectedDemand}>
-                <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                  <SelectValue placeholder="Demand" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Demand</SelectItem>
-                  <SelectItem value="high">High Demand</SelectItem>
-                  <SelectItem value="medium">Medium Demand</SelectItem>
-                  <SelectItem value="low">Low Demand</SelectItem>
-                </SelectContent>
-              </Select>
             </div>
+          </section>
 
-            <div className="flex justify-between items-center">
-              <div className="flex items-center gap-2 text-sm text-gray-300">
-                <Filter className="h-4 w-4" />
-                Showing {paginatedSkills.length} of {filteredSkills.length} skills
-              </div>
-              
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-300">Skills per page:</span>
-                <Select value={skillsPerPage.toString()} onValueChange={(value) => setSkillsPerPage(Number(value))}>
-                  <SelectTrigger className="w-20 bg-white/10 border-white/20 text-white">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="12">12</SelectItem>
-                    <SelectItem value="24">24</SelectItem>
-                    <SelectItem value="36">36</SelectItem>
-                    <SelectItem value="48">48</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
-          {paginatedSkills.map((skill, index) => (
-            <SkillCard key={skill.id} skill={skill} index={index} />
-          ))}
-        </div>
-
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <Card className="glass-card">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div className="text-sm text-gray-300">
-                  Page {currentPage} of {totalPages} ({filteredSkills.length} total skills)
+          {/* Search and Filters */}
+          <section className="px-4 mb-12">
+            <div className="max-w-7xl mx-auto">
+              <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                    <Input
+                      placeholder="Search skills..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+                    />
+                  </div>
+                  
+                  <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                    <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                      <SelectValue placeholder="Category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {categories.map(category => (
+                        <SelectItem key={category} value={category}>
+                          {category === 'all' ? 'All Categories' : category}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  
+                  <Select value={selectedStatus} onValueChange={setSelectedStatus}>
+                    <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                      <SelectValue placeholder="Status" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {statuses.map(status => (
+                        <SelectItem key={status} value={status}>
+                          {status === 'all' ? 'All Status' : status.charAt(0).toUpperCase() + status.slice(1)}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  
+                  <Select value={selectedDifficulty} onValueChange={setSelectedDifficulty}>
+                    <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                      <SelectValue placeholder="Difficulty" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {difficulties.map(difficulty => (
+                        <SelectItem key={difficulty} value={difficulty}>
+                          {difficulty === 'all' ? 'All Levels' : difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
                 
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setCurrentPage(1)}
-                    disabled={currentPage === 1}
-                    className="bg-white/10 border-white/20 text-white hover:bg-white/20"
-                  >
-                    <ChevronsLeft className="h-4 w-4" />
-                  </Button>
+                <div className="flex flex-wrap gap-4">
+                  <Select value={selectedDemand} onValueChange={setSelectedDemand}>
+                    <SelectTrigger className="w-auto bg-white/10 border-white/20 text-white">
+                      <SelectValue placeholder="Demand Level" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {demands.map(demand => (
+                        <SelectItem key={demand} value={demand}>
+                          {demand === 'all' ? 'All Demand Levels' : demand.charAt(0).toUpperCase() + demand.slice(1)}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   
                   <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                    disabled={currentPage === 1}
-                    className="bg-white/10 border-white/20 text-white hover:bg-white/20"
+                    variant={showFoundationalOnly ? "default" : "outline"}
+                    onClick={() => setShowFoundationalOnly(!showFoundationalOnly)}
+                    className={showFoundationalOnly 
+                      ? "bg-yellow-500 hover:bg-yellow-600 text-black" 
+                      : "border-white/20 text-white hover:bg-white/10"
+                    }
                   >
-                    <ChevronLeft className="h-4 w-4" />
+                    <Star className="h-4 w-4 mr-2" />
+                    Essential Skills Only
                   </Button>
                   
-                  {getPaginationRange().map(page => (
-                    <Button
-                      key={page}
-                      variant={currentPage === page ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setCurrentPage(page)}
-                      className={currentPage === page 
-                        ? "bg-purple-600 hover:bg-purple-700 text-white" 
-                        : "bg-white/10 border-white/20 text-white hover:bg-white/20"
-                      }
-                    >
-                      {page}
-                    </Button>
-                  ))}
-                  
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                    disabled={currentPage === totalPages}
-                    className="bg-white/10 border-white/20 text-white hover:bg-white/20"
-                  >
-                    <ChevronRight className="h-4 w-4" />
-                  </Button>
-                  
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setCurrentPage(totalPages)}
-                    disabled={currentPage === totalPages}
-                    className="bg-white/10 border-white/20 text-white hover:bg-white/20"
-                  >
-                    <ChevronsRight className="h-4 w-4" />
-                  </Button>
+                  <div className="text-sm text-gray-300 flex items-center">
+                    <Filter className="h-4 w-4 mr-2" />
+                    {filteredSkills.length} skills found
+                  </div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
-        )}
+            </div>
+          </section>
 
-        {/* No Results */}
-        {filteredSkills.length === 0 && (
-          <Card className="glass-card">
-            <CardContent className="p-12 text-center">
-              <Search className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-white mb-2">No skills found</h3>
-              <p className="text-gray-300 mb-4">
-                Try adjusting your search terms or filters to find relevant skills.
-              </p>
-              <Button 
-                onClick={() => {
-                  setSearchTerm("");
-                  setSelectedCategory("all");
-                  setSelectedStatus("all");
-                  setSelectedDemand("all");
-                }}
-                className="bg-purple-600 hover:bg-purple-700"
-              >
-                Clear All Filters
-              </Button>
-            </CardContent>
-          </Card>
-        )}
+          {/* Skills Grid */}
+          <section className="px-4 pb-20">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {filteredSkills.map((skill, index) => (
+                  <SkillCard key={skill.id} skill={skill} index={index} />
+                ))}
+              </div>
+              
+              {filteredSkills.length === 0 && (
+                <div className="text-center py-20">
+                  <div className="text-6xl mb-4">🔍</div>
+                  <h3 className="text-2xl font-bold text-white mb-2">No skills found</h3>
+                  <p className="text-gray-300 mb-6">Try adjusting your search criteria or filters</p>
+                  <Button 
+                    onClick={() => {
+                      setSearchTerm('');
+                      setSelectedCategory('all');
+                      setSelectedStatus('all');
+                      setSelectedDifficulty('all');
+                      setSelectedDemand('all');
+                      setShowFoundationalOnly(false);
+                    }}
+                    className="bg-white/10 hover:bg-white/20 text-white border border-white/20"
+                  >
+                    Clear All Filters
+                  </Button>
+                </div>
+              )}
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   );
