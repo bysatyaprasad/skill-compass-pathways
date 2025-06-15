@@ -7,9 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { SkillCard } from "@/components/SkillCard";
 import { CategoryFilter } from "@/components/CategoryFilter";
-import { FoundationalSkillsBanner } from "@/components/FoundationalSkillsBanner";
-import { SkillsStats } from "@/components/SkillsStats";
-import { LearningPathSuggestion } from "@/components/LearningPathSuggestion";
+import { FoundationalSkillsArticle } from "@/components/FoundationalSkillsArticle";
 
 interface Skill {
   id: string;
@@ -455,15 +453,9 @@ const Skills = () => {
   const [demandFilter, setDemandFilter] = useState('all');
   const [difficultyFilter, setDifficultyFilter] = useState('all');
   const [sortBy, setSortBy] = useState('relevance');
-  const [showFoundationalOnly, setShowFoundationalOnly] = useState(false);
 
   const filteredAndSortedSkills = useMemo(() => {
     let filtered = skillsData;
-    
-    // Foundational skills filter
-    if (showFoundationalOnly) {
-      filtered = filtered.filter(skill => skill.isFoundational);
-    }
     
     // Category filter
     if (selectedCategory !== 'All Skills') {
@@ -512,12 +504,7 @@ const Skills = () => {
           return 0;
       }
     });
-  }, [searchTerm, selectedCategory, statusFilter, demandFilter, difficultyFilter, sortBy, showFoundationalOnly]);
-
-  const handleFilterFoundational = () => {
-    setShowFoundationalOnly(true);
-    setSelectedCategory('Foundational Skills');
-  };
+  }, [searchTerm, selectedCategory, statusFilter, demandFilter, difficultyFilter, sortBy]);
 
   const clearAllFilters = () => {
     setSearchTerm('');
@@ -526,11 +513,7 @@ const Skills = () => {
     setDemandFilter('all');
     setDifficultyFilter('all');
     setSortBy('relevance');
-    setShowFoundationalOnly(false);
   };
-
-  const foundationalSkillsCount = skillsData.filter(skill => skill.isFoundational).length;
-  const emergingSkillsCount = skillsData.filter(skill => skill.status === 'emerging').length;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-20">
@@ -545,19 +528,8 @@ const Skills = () => {
           </p>
         </div>
 
-        {/* Skills Stats */}
-        <SkillsStats 
-          totalSkills={skillsData.length}
-          foundationalSkills={foundationalSkillsCount}
-          emergingSkills={emergingSkillsCount}
-          categories={categories.length - 1}
-        />
-
-        {/* Foundational Skills Banner */}
-        <FoundationalSkillsBanner onFilterFoundational={handleFilterFoundational} />
-
-        {/* Learning Path Suggestions */}
-        <LearningPathSuggestion />
+        {/* Foundational Skills Article */}
+        <FoundationalSkillsArticle />
 
         {/* Advanced Filters */}
         <Card className="glass-card mb-8">
@@ -580,7 +552,7 @@ const Skills = () => {
             </div>
 
             {/* Filter Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
               <Select value={statusFilter} onValueChange={setStatusFilter}>
                 <SelectTrigger className="bg-white/10 border-white/20 text-white">
                   <SelectValue placeholder="Status" />
@@ -630,17 +602,6 @@ const Skills = () => {
               </Select>
 
               <Button
-                onClick={() => setShowFoundationalOnly(!showFoundationalOnly)}
-                variant={showFoundationalOnly ? "default" : "outline"}
-                className={showFoundationalOnly 
-                  ? "bg-yellow-600 hover:bg-yellow-700 text-white" 
-                  : "bg-white/10 border-white/20 text-white hover:bg-white/20"
-                }
-              >
-                Foundational Only
-              </Button>
-
-              <Button
                 onClick={clearAllFilters}
                 variant="outline"
                 className="bg-white/10 border-white/20 text-white hover:bg-white/20"
@@ -664,7 +625,6 @@ const Skills = () => {
             Showing {filteredAndSortedSkills.length} skills
             {selectedCategory !== 'All Skills' && ` in ${selectedCategory}`}
             {searchTerm && ` matching "${searchTerm}"`}
-            {showFoundationalOnly && ' (Foundational skills prioritized)'}
           </p>
         </div>
 
