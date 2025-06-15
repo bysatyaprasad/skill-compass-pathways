@@ -24,6 +24,9 @@ import { marketingSkills } from "./skills/marketingSkills";
 import { healthcareSkills } from "./skills/healthcareSkills";
 import { educationSkills } from "./skills/educationSkills";
 import { sustainabilitySkills } from "./skills/sustainabilitySkills";
+import { mobileSkills } from "./skills/mobile/mobileSkills";
+import { businessSkills } from "./skills/business/businessSkills";
+import { qaSkills } from "./skills/qa/qaSkills";
 
 export interface Skill {
   id: string;
@@ -40,74 +43,6 @@ export interface Skill {
   salary: string;
   isFoundational?: boolean;
 }
-
-// Mobile Development Skills
-export const mobileSkills: Skill[] = [
-  {
-    id: "react-native",
-    name: "React Native",
-    category: "Mobile Development",
-    description: "Cross-platform framework for building native mobile apps using React, enabling code sharing between iOS and Android.",
-    status: "stable",
-    relevancePeriod: "Next 8+ years",
-    demandLevel: "high",
-    icon: Smartphone,
-    color: "from-cyan-600 to-blue-600",
-    difficulty: "intermediate",
-    timeToLearn: "4-6 months",
-    salary: "₹7-18 LPA"
-  },
-  {
-    id: "flutter",
-    name: "Flutter",
-    category: "Mobile Development",
-    description: "Google's UI toolkit for crafting beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.",
-    status: "emerging",
-    relevancePeriod: "Next 8+ years",
-    demandLevel: "high",
-    icon: Smartphone,
-    color: "from-blue-500 to-indigo-500",
-    difficulty: "intermediate",
-    timeToLearn: "4-6 months",
-    salary: "₹6-16 LPA"
-  }
-];
-
-// Business & Finance Skills
-export const businessSkills: Skill[] = [
-  {
-    id: "financial-modeling",
-    name: "Financial Modeling",
-    category: "Business & Finance",
-    description: "Building mathematical models to represent financial performance and make informed business decisions and valuations.",
-    status: "stable",
-    relevancePeriod: "Next 10+ years",
-    demandLevel: "high",
-    icon: BarChart3,
-    color: "from-emerald-600 to-green-600",
-    difficulty: "intermediate",
-    timeToLearn: "4-6 months",
-    salary: "₹6-18 LPA"
-  }
-];
-
-// Quality Assurance Skills
-export const qaSkills: Skill[] = [
-  {
-    id: "automation-testing",
-    name: "Automation Testing",
-    category: "Quality Assurance",
-    description: "Using tools and scripts to automatically execute test cases, improving efficiency and coverage in software testing.",
-    status: "stable",
-    relevancePeriod: "Next 10+ years",
-    demandLevel: "high",
-    icon: Code,
-    color: "from-indigo-600 to-purple-600",
-    difficulty: "intermediate",
-    timeToLearn: "4-6 months",
-    salary: "₹5-12 LPA"
-  }
-];
 
 // Combine all skills
 export const allSkills: Skill[] = [
