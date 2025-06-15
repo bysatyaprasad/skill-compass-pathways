@@ -8,6 +8,7 @@ import { Navigation } from "@/components/Navigation";
 import Index from "./pages/Index";
 import Skills from "./pages/Skills";
 import FoundationalSkills from "./pages/FoundationalSkills";
+import FinancialFreedom from "./pages/FinancialFreedom";
 import AIPrompts from "./pages/AIPrompts";
 import CareerPaths from "./pages/CareerPaths";
 import NotFound from "./pages/NotFound";
@@ -25,6 +26,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/foundational-skills" element={<FoundationalSkills />} />
+            <Route path="/financial-freedom" element={<FinancialFreedom />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/ai-prompts" element={<AIPrompts />} />
             <Route path="/career-paths" element={<CareerPaths />} />

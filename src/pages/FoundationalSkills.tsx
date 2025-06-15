@@ -4,7 +4,6 @@ import { WhyStartHereSection } from "@/components/foundational-skills/WhyStartHe
 import { TwelveWeekActionPlan } from "@/components/foundational-skills/TwelveWeekActionPlan";
 import { SkillsBreakdown } from "@/components/foundational-skills/SkillsBreakdown";
 import { StrategicLearningPlan } from "@/components/foundational-skills/StrategicLearningPlan";
-import { FinancialFreedomSection } from "@/components/foundational-skills/FinancialFreedomSection";
 import { CallToAction } from "@/components/foundational-skills/CallToAction";
 
 const FoundationalSkills = () => {
@@ -16,7 +15,6 @@ const FoundationalSkills = () => {
         <TwelveWeekActionPlan />
         <SkillsBreakdown />
         <StrategicLearningPlan />
-        <FinancialFreedomSection />
         <CallToAction />
       </div>
     </div>

@@ -18,6 +18,12 @@ export const CallToAction = () => {
             <ArrowRight className="h-4 w-4 ml-2" />
           </Button>
         </Link>
+        <Link to="/financial-freedom">
+          <Button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-3">
+            Achieve Financial Freedom
+            <ArrowRight className="h-4 w-4 ml-2" />
+          </Button>
+        </Link>
         <Link to="/ai-prompts">
           <Button variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 px-8 py-3">
             Get AI Learning Prompts
