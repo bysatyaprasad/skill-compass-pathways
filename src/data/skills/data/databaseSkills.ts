@@ -1,7 +1,6 @@
 
-// Import granular database skill categories
-import { sqlSkills } from "./database/sqlSkills";
-import { nosqlSkills } from "./database/nosqlSkills";
+import { sqlSkills } from "./database/sql/sqlSkills";
+import { nosqlSkills } from "./database/nosql/nosqlSkills";
 import { Skill } from "../../skillsData";
 
 export const databaseSkills: Skill[] = [

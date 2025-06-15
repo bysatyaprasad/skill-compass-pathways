@@ -1,6 +1,8 @@
 
 import { Globe } from "lucide-react";
 import { Skill } from "../../skillsData";
+import { awsSkills } from "./cloud/aws/awsSkills";
+import { azureSkills } from "./cloud/azure/azureSkills";
 
 export const cloudSkills: Skill[] = [
   {
@@ -16,5 +18,7 @@ export const cloudSkills: Skill[] = [
     difficulty: "intermediate",
     timeToLearn: "4-6 months",
     salary: "₹6-18 LPA"
-  }
+  },
+  ...awsSkills,
+  ...azureSkills
 ];

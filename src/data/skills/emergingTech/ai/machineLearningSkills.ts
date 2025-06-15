@@ -1,6 +1,8 @@
 
 import { Brain } from "lucide-react";
 import { Skill } from "../../../skillsData";
+import { tensorflowSkills } from "./frameworks/tensorflowSkills";
+import { nlpSkills } from "./nlp/nlpSkills";
 
 export const machineLearningSkills: Skill[] = [
   {
@@ -30,5 +32,7 @@ export const machineLearningSkills: Skill[] = [
     difficulty: "advanced",
     timeToLearn: "8-12 months",
     salary: "₹15-40 LPA"
-  }
+  },
+  ...tensorflowSkills,
+  ...nlpSkills
 ];
