@@ -4,7 +4,8 @@ import { SkillCard } from "./SkillCard";
 import { CategoryFilter } from "./CategoryFilter";
 import { allSkills, skillCategories, getSkillsByCategory, type Skill } from "@/data/skillsData";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { Search, ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface SkillsGridProps {
   skillsPerPage?: number;
@@ -14,6 +15,7 @@ export const SkillsGrid = ({ skillsPerPage = 12 }: SkillsGridProps) => {
   const [selectedCategory, setSelectedCategory] = useState("All Skills");
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(skillsPerPage);
 
   const filteredSkills = useMemo(() => {
     let skills = getSkillsByCategory(selectedCategory);
@@ -29,9 +31,9 @@ export const SkillsGrid = ({ skillsPerPage = 12 }: SkillsGridProps) => {
     return skills;
   }, [selectedCategory, searchTerm]);
 
-  const totalPages = Math.ceil(filteredSkills.length / skillsPerPage);
-  const startIndex = (currentPage - 1) * skillsPerPage;
-  const currentSkills = filteredSkills.slice(startIndex, startIndex + skillsPerPage);
+  const totalPages = Math.ceil(filteredSkills.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentSkills = filteredSkills.slice(startIndex, startIndex + itemsPerPage);
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
@@ -43,18 +45,40 @@ export const SkillsGrid = ({ skillsPerPage = 12 }: SkillsGridProps) => {
     setCurrentPage(1);
   };
 
+  const handleItemsPerPageChange = (value: number) => {
+    setItemsPerPage(value);
+    setCurrentPage(1);
+  };
+
   return (
     <div className="space-y-8">
       {/* Search and Filter Controls */}
       <div className="space-y-6">
-        <div className="relative max-w-md mx-auto">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-          <Input
-            placeholder="Search skills..."
-            value={searchTerm}
-            onChange={(e) => handleSearchChange(e.target.value)}
-            className="pl-10 bg-white/10 border-white/20 text-white placeholder-gray-400"
-          />
+        <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+          <div className="relative max-w-md w-full">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+            <Input
+              placeholder="Search skills..."
+              value={searchTerm}
+              onChange={(e) => handleSearchChange(e.target.value)}
+              className="pl-10 bg-white/10 border-white/20 text-white placeholder-gray-400"
+            />
+          </div>
+          
+          {/* Items per page selector */}
+          <div className="flex items-center gap-2 text-white">
+            <span className="text-sm">Show:</span>
+            <select
+              value={itemsPerPage}
+              onChange={(e) => handleItemsPerPageChange(Number(e.target.value))}
+              className="bg-white/10 border border-white/20 text-white rounded-lg px-3 py-1 text-sm"
+            >
+              <option value={8} className="bg-gray-800">8 per page</option>
+              <option value={12} className="bg-gray-800">12 per page</option>
+              <option value={24} className="bg-gray-800">24 per page</option>
+              <option value={48} className="bg-gray-800">48 per page</option>
+            </select>
+          </div>
         </div>
         
         <CategoryFilter
@@ -83,53 +107,86 @@ export const SkillsGrid = ({ skillsPerPage = 12 }: SkillsGridProps) => {
         ))}
       </div>
 
-      {/* Pagination */}
+      {/* Enhanced Pagination */}
       {totalPages > 1 && (
-        <div className="flex justify-center items-center space-x-2 mt-8">
-          <button
-            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-            className="px-4 py-2 bg-white/10 border border-white/20 text-white rounded-lg hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
-          >
-            Previous
-          </button>
-          
-          <div className="flex space-x-1">
-            {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-              let pageNum;
-              if (totalPages <= 5) {
-                pageNum = i + 1;
-              } else if (currentPage <= 3) {
-                pageNum = i + 1;
-              } else if (currentPage >= totalPages - 2) {
-                pageNum = totalPages - 4 + i;
-              } else {
-                pageNum = currentPage - 2 + i;
-              }
-              
-              return (
-                <button
-                  key={pageNum}
-                  onClick={() => setCurrentPage(pageNum)}
-                  className={`px-3 py-2 rounded-lg transition-all duration-300 ${
-                    currentPage === pageNum
-                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
-                      : 'bg-white/10 border border-white/20 text-white hover:bg-white/20'
-                  }`}
-                >
-                  {pageNum}
-                </button>
-              );
-            })}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-8">
+          <div className="text-sm text-gray-300">
+            Page {currentPage} of {totalPages} 
+            ({filteredSkills.length} total skills)
           </div>
           
-          <button
-            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-            disabled={currentPage === totalPages}
-            className="px-4 py-2 bg-white/10 border border-white/20 text-white rounded-lg hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
-          >
-            Next
-          </button>
+          <div className="flex items-center space-x-2">
+            <Button
+              onClick={() => setCurrentPage(1)}
+              disabled={currentPage === 1}
+              variant="outline"
+              size="sm"
+              className="bg-white/10 border-white/20 text-white hover:bg-white/20 disabled:opacity-50"
+            >
+              First
+            </Button>
+            
+            <Button
+              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              variant="outline"
+              size="sm"
+              className="bg-white/10 border-white/20 text-white hover:bg-white/20 disabled:opacity-50"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
+            
+            <div className="flex space-x-1">
+              {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                let pageNum;
+                if (totalPages <= 5) {
+                  pageNum = i + 1;
+                } else if (currentPage <= 3) {
+                  pageNum = i + 1;
+                } else if (currentPage >= totalPages - 2) {
+                  pageNum = totalPages - 4 + i;
+                } else {
+                  pageNum = currentPage - 2 + i;
+                }
+                
+                return (
+                  <Button
+                    key={pageNum}
+                    onClick={() => setCurrentPage(pageNum)}
+                    variant={currentPage === pageNum ? "default" : "outline"}
+                    size="sm"
+                    className={`${
+                      currentPage === pageNum
+                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
+                        : 'bg-white/10 border-white/20 text-white hover:bg-white/20'
+                    }`}
+                  >
+                    {pageNum}
+                  </Button>
+                );
+              })}
+            </div>
+            
+            <Button
+              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              variant="outline"
+              size="sm"
+              className="bg-white/10 border-white/20 text-white hover:bg-white/20 disabled:opacity-50"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+            
+            <Button
+              onClick={() => setCurrentPage(totalPages)}
+              disabled={currentPage === totalPages}
+              variant="outline"
+              size="sm"
+              className="bg-white/10 border-white/20 text-white hover:bg-white/20 disabled:opacity-50"
+            >
+              Last
+            </Button>
+          </div>
         </div>
       )}
     </div>
