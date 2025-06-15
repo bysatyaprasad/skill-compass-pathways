@@ -16,10 +16,14 @@ export const SkillsGrid = ({ skillsPerPage = 12 }: SkillsGridProps) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(skillsPerPage);
+  const [selectedDemand, setSelectedDemand] = useState("All");
+  const [selectedStatus, setSelectedStatus] = useState("All");
+  const [selectedDifficulty, setSelectedDifficulty] = useState("All");
 
   const filteredSkills = useMemo(() => {
     let skills = getSkillsByCategory(selectedCategory);
     
+    // Search filter
     if (searchTerm) {
       skills = skills.filter(skill =>
         skill.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -27,9 +31,24 @@ export const SkillsGrid = ({ skillsPerPage = 12 }: SkillsGridProps) => {
         skill.category.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
+
+    // Demand level filter
+    if (selectedDemand !== "All") {
+      skills = skills.filter(skill => skill.demandLevel === selectedDemand);
+    }
+
+    // Status filter
+    if (selectedStatus !== "All") {
+      skills = skills.filter(skill => skill.status === selectedStatus);
+    }
+
+    // Difficulty filter
+    if (selectedDifficulty !== "All") {
+      skills = skills.filter(skill => skill.difficulty === selectedDifficulty);
+    }
     
     return skills;
-  }, [selectedCategory, searchTerm]);
+  }, [selectedCategory, searchTerm, selectedDemand, selectedStatus, selectedDifficulty]);
 
   const totalPages = Math.ceil(filteredSkills.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -47,6 +66,10 @@ export const SkillsGrid = ({ skillsPerPage = 12 }: SkillsGridProps) => {
 
   const handleItemsPerPageChange = (value: number) => {
     setItemsPerPage(value);
+    setCurrentPage(1);
+  };
+
+  const handleFilterChange = () => {
     setCurrentPage(1);
   };
 
@@ -85,6 +108,21 @@ export const SkillsGrid = ({ skillsPerPage = 12 }: SkillsGridProps) => {
           categories={skillCategories}
           selectedCategory={selectedCategory}
           onCategoryChange={handleCategoryChange}
+          selectedDemand={selectedDemand}
+          onDemandChange={(demand) => {
+            setSelectedDemand(demand);
+            handleFilterChange();
+          }}
+          selectedStatus={selectedStatus}
+          onStatusChange={(status) => {
+            setSelectedStatus(status);
+            handleFilterChange();
+          }}
+          selectedDifficulty={selectedDifficulty}
+          onDifficultyChange={(difficulty) => {
+            setSelectedDifficulty(difficulty);
+            handleFilterChange();
+          }}
         />
       </div>
 

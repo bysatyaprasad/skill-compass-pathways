@@ -21,6 +21,9 @@ import { dataSkills } from "./skills/dataSkills";
 import { emergingTechSkills } from "./skills/emergingTechSkills";
 import { designSkills } from "./skills/designSkills";
 import { marketingSkills } from "./skills/marketingSkills";
+import { healthcareSkills } from "./skills/healthcareSkills";
+import { educationSkills } from "./skills/educationSkills";
+import { sustainabilitySkills } from "./skills/sustainabilitySkills";
 
 export interface Skill {
   id: string;
@@ -113,6 +116,9 @@ export const allSkills: Skill[] = [
   ...emergingTechSkills,
   ...designSkills,
   ...marketingSkills,
+  ...healthcareSkills,
+  ...educationSkills,
+  ...sustainabilitySkills,
   ...mobileSkills,
   ...businessSkills,
   ...qaSkills
@@ -126,6 +132,9 @@ export const skillCategories = [
   "Design & Creative",
   "Digital Marketing",
   "Emerging Technology",
+  "Healthcare Technology",
+  "Education Technology",
+  "Sustainability Technology",
   "Mobile Development",
   "Business & Finance",
   "Quality Assurance"
