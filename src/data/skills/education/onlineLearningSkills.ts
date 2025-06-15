@@ -1,7 +1,7 @@
 
-import { onlineLearningSkills as contentOnlineLearningSkills } from "./content/onlineLearningSkills";
+import { onlineLearningSkills as contentSkills } from "./content/onlineLearningSkills";
 import { Skill } from "../../skillsData";
 
 export const onlineLearningSkills: Skill[] = [
-  ...contentOnlineLearningSkills
+  ...contentSkills
 ];
