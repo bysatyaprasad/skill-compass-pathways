@@ -1,4 +1,5 @@
-import { DollarSign, Crown, TrendingDown, TrendingUp, Rocket, Building, Brain, Target, Coins, CheckCircle, Zap, AlertTriangle, IndianRupee, MapPin, Users, Briefcase } from "lucide-react";
+
+import { DollarSign, Crown, TrendingDown, TrendingUp, Rocket, Building, Brain, Target, Coins, CheckCircle, Zap, AlertTriangle, IndianRupee, MapPin, Users, Briefcase, GraduationCap, BookOpen, Coffee, Smartphone } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { financialFreedomPathways, skillToBusinessModels, wealthBuildingStrategies, financialMilestones } from "@/data/financialFreedomData";
@@ -18,25 +19,285 @@ export const FinancialFreedomSection = () => {
             it's about building ownership, equity, and passive income streams that work while you sleep.
           </p>
         </CardHeader>
-        <CardContent className="space-y-8">
-          
-          {/* India-Specific Strategies Section */}
-          <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/30 rounded-lg p-8">
-            <h3 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-              <IndianRupee className="h-8 w-8 text-orange-400" />
-              India-Specific Wealth Building Strategies
-            </h3>
-            <p className="text-gray-300 mb-6">
-              Leverage India's unique opportunities - from the world's largest digital payment ecosystem to 
-              serving 1.4 billion people's growing aspirations. These strategies are designed for Indian market 
-              conditions, tax laws, and cultural context.
-            </p>
-            
+      </Card>
+
+      {/* Beginners Section - Starting from Zero */}
+      <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-lg p-8">
+        <h3 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
+          <GraduationCap className="h-8 w-8 text-blue-400" />
+          Starting from Zero: A Student's Guide to Financial Freedom
+        </h3>
+        <p className="text-gray-300 mb-6">
+          Whether you're in school, college, or just starting out with zero money and skills, 
+          this roadmap will take you from complete beginner to financially independent. 
+          Every millionaire started exactly where you are now.
+        </p>
+        
+        <div className="space-y-8">
+          {/* Phase 1: Foundation Building */}
+          <Card className="bg-white/5 border-white/10">
+            <CardContent className="p-6">
+              <h4 className="text-2xl font-semibold text-blue-300 mb-3 flex items-center gap-2">
+                <BookOpen className="h-6 w-6" />
+                Phase 1: Foundation Building (Months 1-6)
+              </h4>
+              <p className="text-gray-300 mb-4">Build your foundation with zero investment - just time and dedication</p>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                  <h5 className="text-lg font-medium text-white mb-3">Free Skills to Learn First:</h5>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Digital Literacy:</strong> Master Google Workspace, basic computer skills, typing speed 40+ WPM
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Communication:</strong> English speaking/writing, basic presentation skills
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Problem Solving:</strong> Critical thinking, research skills, attention to detail
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Time Management:</strong> Priority setting, deadline management, consistency
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h5 className="text-lg font-medium text-white mb-3">Free Learning Resources:</h5>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2">
+                      <Smartphone className="h-4 w-4 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>YouTube:</strong> FreeCodeCamp, Khan Academy, Coursera free courses
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Smartphone className="h-4 w-4 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Indian Platforms:</strong> NPTEL, Swayam, Unacademy free content
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Smartphone className="h-4 w-4 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Practice Platforms:</strong> HackerRank, Codecademy, Duolingo
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Smartphone className="h-4 w-4 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Library Access:</strong> Local libraries, college resources, free WiFi spaces
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="mt-6 bg-green-500/10 border border-green-500/30 rounded p-4">
+                <p className="text-green-300 font-medium mb-1">Goal for Phase 1:</p>
+                <p className="text-gray-300 text-sm">
+                  Earn your first ₹1,000-5,000 online through small gigs (data entry, content writing, 
+                  social media management for local businesses)
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Phase 2: First Income Streams */}
+          <Card className="bg-white/5 border-white/10">
+            <CardContent className="p-6">
+              <h4 className="text-2xl font-semibold text-blue-300 mb-3 flex items-center gap-2">
+                <Coffee className="h-6 w-6" />
+                Phase 2: First Income Streams (Months 7-12)
+              </h4>
+              <p className="text-gray-300 mb-4">Turn your basic skills into consistent income while building more valuable skills</p>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                  <h5 className="text-lg font-medium text-white mb-3">Low-Skill Income Opportunities:</h5>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2">
+                      <Briefcase className="h-4 w-4 text-orange-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Content Writing:</strong> ₹2-5 per word for blog posts, product descriptions
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Briefcase className="h-4 w-4 text-orange-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Data Entry:</strong> ₹200-500 per hour for accurate, fast typing
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Briefcase className="h-4 w-4 text-orange-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Social Media Management:</strong> ₹5,000-15,000/month for small businesses
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Briefcase className="h-4 w-4 text-orange-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Online Tutoring:</strong> ₹300-800/hour teaching subjects you know well
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h5 className="text-lg font-medium text-white mb-3">Skills to Learn Next (Free):</h5>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2">
+                      <Brain className="h-4 w-4 text-purple-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Canva Design:</strong> Create social media graphics, thumbnails
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Brain className="h-4 w-4 text-purple-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Basic SEO:</strong> Keyword research, content optimization
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Brain className="h-4 w-4 text-purple-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Excel/Google Sheets:</strong> Data analysis, automation basics
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Brain className="h-4 w-4 text-purple-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>WordPress Basics:</strong> Website building, content management
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="mt-6 bg-yellow-500/10 border border-yellow-500/30 rounded p-4">
+                <p className="text-yellow-300 font-medium mb-1">Goal for Phase 2:</p>
+                <p className="text-gray-300 text-sm">
+                  Earn ₹10,000-25,000 monthly while building portfolio and saving money for skill development
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Phase 3: Skill Investment */}
+          <Card className="bg-white/5 border-white/10">
+            <CardContent className="p-6">
+              <h4 className="text-2xl font-semibold text-blue-300 mb-3 flex items-center gap-2">
+                <Rocket className="h-6 w-6" />
+                Phase 3: Skill Investment & Scaling (Year 2+)
+              </h4>
+              <p className="text-gray-300 mb-4">Invest your earnings into high-value skills and scale your income</p>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                  <h5 className="text-lg font-medium text-white mb-3">High-Value Skills to Invest In:</h5>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2">
+                      <Target className="h-4 w-4 text-red-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Web Development:</strong> ₹10,000-15,000 course investment → ₹50,000+ monthly
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Target className="h-4 w-4 text-red-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Digital Marketing:</strong> ₹5,000-8,000 course → ₹30,000+ monthly
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Target className="h-4 w-4 text-red-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Data Analysis:</strong> ₹12,000-20,000 course → ₹60,000+ monthly
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Target className="h-4 w-4 text-red-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>UI/UX Design:</strong> ₹8,000-12,000 course → ₹40,000+ monthly
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h5 className="text-lg font-medium text-white mb-3">Money Management for Students:</h5>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2">
+                      <Coins className="h-4 w-4 text-green-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>50/30/20 Rule:</strong> 50% needs, 30% skills/tools, 20% emergency fund
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Coins className="h-4 w-4 text-green-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Track Every Rupee:</strong> Use apps like Walnut, Money Lover, or simple Excel
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Coins className="h-4 w-4 text-green-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Invest in Learning:</strong> Spend 30% of income on skill development
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Coins className="h-4 w-4 text-green-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">
+                        <strong>Emergency Fund:</strong> Build ₹50,000 safety net before aggressive investing
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="mt-6 bg-purple-500/10 border border-purple-500/30 rounded p-4">
+                <p className="text-purple-300 font-medium mb-1">Goal for Phase 3:</p>
+                <p className="text-gray-300 text-sm">
+                  Reach ₹50,000+ monthly income and start building wealth through investments
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+
+      {/* INDIAN-SPECIFIC SECTION */}
+      <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/30 rounded-lg p-8">
+        <h2 className="text-4xl font-bold text-white mb-6 flex items-center gap-3">
+          <IndianRupee className="h-10 w-10 text-orange-400" />
+          India-Specific Wealth Building Strategies
+        </h2>
+        <p className="text-gray-300 mb-8 text-lg">
+          Leverage India's unique opportunities - from the world's largest digital payment ecosystem to 
+          serving 1.4 billion people's growing aspirations. These strategies are designed for Indian market 
+          conditions, tax laws, and cultural context.
+        </p>
+        
+        <div className="space-y-8">
+          {/* India Strategies */}
+          <div>
+            <h3 className="text-2xl font-bold text-orange-300 mb-6">Strategic Opportunities in India</h3>
             <div className="space-y-6">
               {indiaSpecificStrategies.map((strategy, index) => (
                 <Card key={strategy.strategy} className="bg-white/5 border-white/10">
                   <CardContent className="p-6">
-                    <h4 className="text-2xl font-semibold text-orange-300 mb-3">{strategy.strategy}</h4>
+                    <h4 className="text-xl font-semibold text-orange-300 mb-3">{strategy.strategy}</h4>
                     <p className="text-gray-300 mb-4">{strategy.description}</p>
                     
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -83,15 +344,12 @@ export const FinancialFreedomSection = () => {
 
           {/* India Investment Options */}
           <div>
-            <h3 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-              <TrendingUp className="h-8 w-8 text-blue-400" />
-              Smart Investment Options for Indian Wealth Builders
-            </h3>
+            <h3 className="text-2xl font-bold text-orange-300 mb-6">Smart Investment Options for Indian Wealth Builders</h3>
             <div className="space-y-6">
               {indiaInvestmentOptions.map((category, categoryIndex) => (
                 <Card key={category.category} className="bg-white/5 border-white/10">
                   <CardHeader>
-                    <CardTitle className="text-2xl text-blue-300">{category.category}</CardTitle>
+                    <CardTitle className="text-xl text-blue-300">{category.category}</CardTitle>
                     <p className="text-gray-300">{category.description}</p>
                   </CardHeader>
                   <CardContent>
@@ -126,10 +384,7 @@ export const FinancialFreedomSection = () => {
 
           {/* India-Specific Milestones */}
           <div>
-            <h3 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-              <Target className="h-8 w-8 text-green-400" />
-              Indian Income Milestones & Wealth Progression
-            </h3>
+            <h3 className="text-2xl font-bold text-orange-300 mb-6">Indian Income Milestones & Wealth Progression</h3>
             <div className="space-y-6">
               {indiaSpecificMilestones.map((milestone, index) => (
                 <Card key={milestone.milestone} className="bg-white/5 border-white/10">
@@ -139,7 +394,7 @@ export const FinancialFreedomSection = () => {
                         <IndianRupee className="h-6 w-6" />
                       </div>
                       <div>
-                        <h4 className="text-2xl font-semibold text-green-300">{milestone.milestone}</h4>
+                        <h4 className="text-xl font-semibold text-green-300">{milestone.milestone}</h4>
                         <p className="text-gray-300">{milestone.description}</p>
                         <p className="text-yellow-300 text-sm mt-1">{milestone.context}</p>
                       </div>
@@ -172,16 +427,16 @@ export const FinancialFreedomSection = () => {
           </div>
 
           {/* Practical 12-Month Action Plan for India */}
-          <div className="bg-gradient-to-r from-purple-500/10 to-indigo-500/10 border border-purple-500/30 rounded-lg p-8">
-            <h3 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-              <Rocket className="h-8 w-8 text-purple-400" />
+          <div className="bg-gradient-to-r from-purple-500/10 to-indigo-500/10 border border-purple-500/30 rounded-lg p-6">
+            <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <Rocket className="h-6 w-6 text-purple-400" />
               Your 12-Month Indian Wealth Building Action Plan
             </h3>
             
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {practicalActionPlans.map((phase, index) => (
                 <div key={phase.phase} className="space-y-4">
-                  <h4 className="text-xl font-semibold text-purple-300">{phase.phase}</h4>
+                  <h4 className="text-lg font-semibold text-purple-300">{phase.phase}</h4>
                   <p className="text-sm text-gray-300 font-medium">{phase.focus}</p>
                   
                   <div className="space-y-3">
@@ -209,7 +464,22 @@ export const FinancialFreedomSection = () => {
               ))}
             </div>
           </div>
+        </div>
+      </div>
 
+      {/* GLOBAL SECTION */}
+      <div className="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/30 rounded-lg p-8">
+        <h2 className="text-4xl font-bold text-white mb-6 flex items-center gap-3">
+          <MapPin className="h-10 w-10 text-indigo-400" />
+          Global Wealth Building Strategies
+        </h2>
+        <p className="text-gray-300 mb-8 text-lg">
+          Universal principles and strategies that work across markets and economies. 
+          These approaches focus on skill development, ownership, and wealth multiplication 
+          regardless of your geographic location.
+        </p>
+
+        <div className="space-y-8">
           {/* Wealth Building Philosophy */}
           <div className="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/30 rounded-lg p-6">
             <h3 className="text-2xl font-bold text-yellow-300 mb-4 flex items-center gap-2">
@@ -264,8 +534,8 @@ export const FinancialFreedomSection = () => {
 
           {/* Three-Phase Wealth Building Journey */}
           <div>
-            <h3 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-              <Rocket className="h-8 w-8 text-blue-400" />
+            <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <Rocket className="h-6 w-6 text-blue-400" />
               Your 3-Phase Journey to Financial Freedom
             </h3>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -317,8 +587,8 @@ export const FinancialFreedomSection = () => {
 
           {/* Skill-to-Business Model Mapping */}
           <div>
-            <h3 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-              <Building className="h-8 w-8 text-orange-400" />
+            <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <Building className="h-6 w-6 text-orange-400" />
               Transform Skills into Scalable Business Models
             </h3>
             <div className="space-y-6">
@@ -363,8 +633,8 @@ export const FinancialFreedomSection = () => {
 
           {/* Advanced Wealth Building Strategies */}
           <div>
-            <h3 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-              <Brain className="h-8 w-8 text-purple-400" />
+            <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <Brain className="h-6 w-6 text-purple-400" />
               Advanced Wealth Multiplication Strategies
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -396,8 +666,8 @@ export const FinancialFreedomSection = () => {
 
           {/* Financial Milestones */}
           <div>
-            <h3 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-              <Target className="h-8 w-8 text-green-400" />
+            <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <Target className="h-6 w-6 text-green-400" />
               Global Income Milestones & Wealth Building Progression
             </h3>
             <div className="space-y-6">
@@ -409,7 +679,7 @@ export const FinancialFreedomSection = () => {
                         <Coins className="h-6 w-6" />
                       </div>
                       <div>
-                        <h4 className="text-2xl font-semibold text-green-300">{milestone.milestone}</h4>
+                        <h4 className="text-xl font-semibold text-green-300">{milestone.milestone}</h4>
                         <p className="text-gray-300">{milestone.description}</p>
                       </div>
                       <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30 ml-auto">
@@ -442,8 +712,8 @@ export const FinancialFreedomSection = () => {
 
           {/* Action Plan */}
           <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/30 rounded-lg p-8">
-            <h3 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-              <Rocket className="h-8 w-8 text-orange-400" />
+            <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <Rocket className="h-6 w-6 text-orange-400" />
               Your 30-Day Financial Freedom Action Plan
             </h3>
             
@@ -507,9 +777,8 @@ export const FinancialFreedomSection = () => {
               </div>
             </div>
           </div>
-          
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 };
