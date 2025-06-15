@@ -3,10 +3,14 @@
 import { aiSkills } from "./emergingTech/aiSkills";
 import { securitySkills } from "./emergingTech/securitySkills";
 import { cloudSkills } from "./emergingTech/cloudSkills";
+import { iotSkills } from "./emergingTech/iot/iotSkills";
+import { devopsSkills } from "./devops/devopsSkills";
 import { Skill } from "../skillsData";
 
 export const emergingTechSkills: Skill[] = [
   ...aiSkills,
   ...securitySkills,
-  ...cloudSkills
+  ...cloudSkills,
+  ...iotSkills,
+  ...devopsSkills
 ];

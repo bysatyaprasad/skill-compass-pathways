@@ -1,6 +1,7 @@
 
 import { Shield } from "lucide-react";
 import { Skill } from "../../skillsData";
+import { cybersecuritySkills } from "./security/cybersecuritySkills";
 
 export const securitySkills: Skill[] = [
   {
@@ -30,5 +31,6 @@ export const securitySkills: Skill[] = [
     difficulty: "intermediate",
     timeToLearn: "6-9 months",
     salary: "₹7-20 LPA"
-  }
+  },
+  ...cybersecuritySkills
 ];

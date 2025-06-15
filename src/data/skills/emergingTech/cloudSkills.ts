@@ -3,6 +3,7 @@ import { Globe } from "lucide-react";
 import { Skill } from "../../skillsData";
 import { awsSkills } from "./cloud/aws/awsSkills";
 import { azureSkills } from "./cloud/azure/azureSkills";
+import { gcpSkills } from "./cloud/gcp/gcpSkills";
 
 export const cloudSkills: Skill[] = [
   {
@@ -20,5 +21,6 @@ export const cloudSkills: Skill[] = [
     salary: "₹6-18 LPA"
   },
   ...awsSkills,
-  ...azureSkills
+  ...azureSkills,
+  ...gcpSkills
 ];
