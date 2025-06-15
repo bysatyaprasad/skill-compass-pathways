@@ -1,7 +1,7 @@
 
-import { medicalTechSkills } from "./medical/medicalTechSkills";
+import { medicalTechSkills as medicalSpecificSkills } from "./medical/medicalTechSkills";
 import { Skill } from "../../skillsData";
 
 export const medicalTechSkills: Skill[] = [
-  ...medicalTechSkills
+  ...medicalSpecificSkills
 ];

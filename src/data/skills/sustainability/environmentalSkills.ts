@@ -1,7 +1,7 @@
 
-import { environmentalSkills } from "./analysis/environmentalSkills";
+import { environmentalSkills as analysisEnvironmentalSkills } from "./analysis/environmentalSkills";
 import { Skill } from "../../skillsData";
 
 export const environmentalSkills: Skill[] = [
-  ...environmentalSkills
+  ...analysisEnvironmentalSkills
 ];
