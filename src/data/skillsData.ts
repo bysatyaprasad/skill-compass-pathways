@@ -12,7 +12,9 @@ import {
   Headphones,
   ArrowUpRight,
   Scan,
-  Telescope
+  Telescope,
+  Wrench,
+  Building
 } from "lucide-react";
 
 // Import skills from granular files
@@ -27,6 +29,8 @@ import { sustainabilitySkills } from "./skills/sustainabilitySkills";
 import { mobileSkills } from "./skills/mobile/mobileSkills";
 import { businessSkills } from "./skills/business/businessSkills";
 import { qaSkills } from "./skills/qa/qaSkills";
+import { solutionsSkills } from "./skills/solutionsSkills";
+import { industrySkills } from "./skills/industrySkills";
 
 export interface Skill {
   id: string;
@@ -56,7 +60,9 @@ export const allSkills: Skill[] = [
   ...sustainabilitySkills,
   ...mobileSkills,
   ...businessSkills,
-  ...qaSkills
+  ...qaSkills,
+  ...solutionsSkills,
+  ...industrySkills
 ];
 
 // Categories for filtering
@@ -72,7 +78,16 @@ export const skillCategories = [
   "Sustainability Technology",
   "Mobile Development",
   "Business & Finance",
-  "Quality Assurance"
+  "Quality Assurance",
+  "Web Solutions",
+  "Business Solutions",
+  "Mobile Solutions",
+  "Data Analytics Solutions",
+  "Automation Solutions",
+  "Digital Transformation",
+  "Finance Industry",
+  "Healthcare Industry",
+  "Education Industry"
 ];
 
 // Helper functions
