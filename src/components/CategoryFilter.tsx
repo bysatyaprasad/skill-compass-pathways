@@ -13,6 +13,8 @@ interface CategoryFilterProps {
   onStatusChange: (status: string) => void;
   selectedDifficulty: string;
   onDifficultyChange: (difficulty: string) => void;
+  selectedRelevance: string;
+  onRelevanceChange: (relevance: string) => void;
 }
 
 export const CategoryFilter = ({ 
@@ -24,13 +26,16 @@ export const CategoryFilter = ({
   selectedStatus,
   onStatusChange,
   selectedDifficulty,
-  onDifficultyChange
+  onDifficultyChange,
+  selectedRelevance,
+  onRelevanceChange
 }: CategoryFilterProps) => {
   const getActiveFiltersCount = () => {
     let count = 0;
     if (selectedDemand !== "All") count++;
     if (selectedStatus !== "All") count++;
     if (selectedDifficulty !== "All") count++;
+    if (selectedRelevance !== "Relevance") count++;
     return count;
   };
 
@@ -68,6 +73,23 @@ export const CategoryFilter = ({
         </div>
         
         <div className="flex flex-wrap gap-3">
+          {/* Relevance/Sort Filter */}
+          <div className="flex flex-col gap-1">
+            <label className="text-xs text-gray-400 uppercase tracking-wider">Sort By</label>
+            <Select value={selectedRelevance} onValueChange={onRelevanceChange}>
+              <SelectTrigger className="w-32 bg-white/10 border-white/20 text-white">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="bg-gray-800 border-gray-700">
+                <SelectItem value="Relevance" className="text-white">Relevance</SelectItem>
+                <SelectItem value="Name A-Z" className="text-white">Name A-Z</SelectItem>
+                <SelectItem value="Name Z-A" className="text-white">Name Z-A</SelectItem>
+                <SelectItem value="Demand Level" className="text-white">Demand Level</SelectItem>
+                <SelectItem value="Difficulty" className="text-white">Difficulty</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
           {/* Demand Level Filter */}
           <div className="flex flex-col gap-1">
             <label className="text-xs text-gray-400 uppercase tracking-wider">Demand Level</label>
@@ -126,6 +148,7 @@ export const CategoryFilter = ({
               onDemandChange("All");
               onStatusChange("All");
               onDifficultyChange("All");
+              onRelevanceChange("Relevance");
             }}
             className="bg-white/10 border-white/20 text-white hover:bg-white/20"
           >

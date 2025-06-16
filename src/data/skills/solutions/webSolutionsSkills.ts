@@ -1,6 +1,6 @@
-
 import { Globe, ShoppingCart, Users, Calendar, MessageSquare, FileText, CreditCard, Search } from "lucide-react";
 import { Skill } from "../../skillsData";
+import { ecommerceSkills } from "./ecommerce/ecommerceSkills";
 
 export const webSolutionsSkills: Skill[] = [
   {
@@ -100,5 +100,7 @@ export const webSolutionsSkills: Skill[] = [
     difficulty: "advanced",
     timeToLearn: "8-12 months",
     salary: "₹12-35 LPA"
-  }
+  },
+  // Include all detailed e-commerce skills
+  ...ecommerceSkills
 ];

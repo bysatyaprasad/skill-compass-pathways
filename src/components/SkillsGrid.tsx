@@ -19,6 +19,7 @@ export const SkillsGrid = ({ skillsPerPage = 12 }: SkillsGridProps) => {
   const [selectedDemand, setSelectedDemand] = useState("All");
   const [selectedStatus, setSelectedStatus] = useState("All");
   const [selectedDifficulty, setSelectedDifficulty] = useState("All");
+  const [selectedRelevance, setSelectedRelevance] = useState("Relevance");
 
   const filteredSkills = useMemo(() => {
     let skills = getSkillsByCategory(selectedCategory);
@@ -46,9 +47,33 @@ export const SkillsGrid = ({ skillsPerPage = 12 }: SkillsGridProps) => {
     if (selectedDifficulty !== "All") {
       skills = skills.filter(skill => skill.difficulty === selectedDifficulty);
     }
+
+    // Sorting/Relevance filter
+    if (selectedRelevance !== "Relevance") {
+      switch (selectedRelevance) {
+        case "Name A-Z":
+          skills = [...skills].sort((a, b) => a.name.localeCompare(b.name));
+          break;
+        case "Name Z-A":
+          skills = [...skills].sort((a, b) => b.name.localeCompare(a.name));
+          break;
+        case "Demand Level":
+          skills = [...skills].sort((a, b) => {
+            const demandOrder = { high: 3, medium: 2, low: 1 };
+            return demandOrder[b.demandLevel] - demandOrder[a.demandLevel];
+          });
+          break;
+        case "Difficulty":
+          skills = [...skills].sort((a, b) => {
+            const difficultyOrder = { beginner: 1, intermediate: 2, advanced: 3 };
+            return difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty];
+          });
+          break;
+      }
+    }
     
     return skills;
-  }, [selectedCategory, searchTerm, selectedDemand, selectedStatus, selectedDifficulty]);
+  }, [selectedCategory, searchTerm, selectedDemand, selectedStatus, selectedDifficulty, selectedRelevance]);
 
   const totalPages = Math.ceil(filteredSkills.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -123,6 +148,11 @@ export const SkillsGrid = ({ skillsPerPage = 12 }: SkillsGridProps) => {
             setSelectedDifficulty(difficulty);
             handleFilterChange();
           }}
+          selectedRelevance={selectedRelevance}
+          onRelevanceChange={(relevance) => {
+            setSelectedRelevance(relevance);
+            handleFilterChange();
+          }}
         />
       </div>
 
@@ -131,6 +161,7 @@ export const SkillsGrid = ({ skillsPerPage = 12 }: SkillsGridProps) => {
         <p className="text-gray-300">
           Showing {currentSkills.length} of {filteredSkills.length} skills
           {selectedCategory !== "All Skills" && ` in ${selectedCategory}`}
+          {selectedRelevance !== "Relevance" && ` sorted by ${selectedRelevance}`}
         </p>
       </div>
 
