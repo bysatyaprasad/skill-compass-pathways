@@ -6,6 +6,8 @@ import { goSkills } from "./goSkills";
 import { rustSkills } from "./rustSkills";
 import { phpSkills } from "./phpSkills";
 import { rubySkills } from "./rubySkills";
+import { cSkills } from "./cSkills";
+import { cppSkills } from "./cppSkills";
 import { Skill } from "../../../../skillsData";
 
 export const languageSkills: Skill[] = [
@@ -15,5 +17,7 @@ export const languageSkills: Skill[] = [
   ...goSkills,
   ...rustSkills,
   ...phpSkills,
-  ...rubySkills
+  ...rubySkills,
+  ...cSkills,
+  ...cppSkills
 ];

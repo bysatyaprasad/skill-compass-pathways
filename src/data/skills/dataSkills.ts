@@ -1,12 +1,14 @@
 
 // Import granular skill categories
-import { databaseSkills } from "./data/databaseSkills";
 import { analyticsSkills } from "./data/analyticsSkills";
-import { dataScienceSkills } from "./data/dataScience/dataScienceSkills";
+import { databaseSkills } from "./data/databaseSkills";
+import { businessAnalyticsSkills } from "./analytics/business/businessAnalyticsSkills";
+import { advancedDatabaseSkills } from "./database/database/advancedDatabaseSkills";
 import { Skill } from "../skillsData";
 
 export const dataSkills: Skill[] = [
-  ...databaseSkills,
   ...analyticsSkills,
-  ...dataScienceSkills
+  ...databaseSkills,
+  ...businessAnalyticsSkills,
+  ...advancedDatabaseSkills
 ];
