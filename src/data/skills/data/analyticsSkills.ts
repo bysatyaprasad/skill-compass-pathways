@@ -1,5 +1,5 @@
 
-import { analyticsSkills as coreAnalyticsSkills } from "./analytics/analyticsSkills";
+import { analyticsSkills as coreAnalyticsSkills } from "./analytics/analytics/analyticsSkills";
 import { businessIntelligenceSkills } from "./analytics/business/businessIntelligenceSkills";
 import { Skill } from "../../skillsData";
 

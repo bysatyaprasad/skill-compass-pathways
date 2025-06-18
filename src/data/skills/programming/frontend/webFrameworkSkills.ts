@@ -1,34 +1,78 @@
 
-import { Code } from "lucide-react";
+import { Globe } from "lucide-react";
 import { Skill } from "../../../skillsData";
 
 export const webFrameworkSkills: Skill[] = [
   {
-    id: "angular",
-    name: "Angular",
+    id: "html",
+    name: "HTML",
     category: "Programming",
-    description: "Comprehensive TypeScript-based framework for building scalable web applications with powerful features and enterprise support.",
+    description: "Standard markup language for creating web pages and web applications.",
     status: "stable",
-    relevancePeriod: "Next 8+ years",
+    relevancePeriod: "Next 15+ years",
     demandLevel: "high",
-    icon: Code,
-    color: "from-red-600 to-pink-600",
-    difficulty: "advanced",
-    timeToLearn: "5-8 months",
-    salary: "₹8-20 LPA"
+    icon: Globe,
+    color: "from-orange-500 to-red-500",
+    difficulty: "beginner",
+    timeToLearn: "1-2 months",
+    salary: "₹3-10 LPA",
+    isFoundational: true
   },
   {
-    id: "svelte",
-    name: "Svelte",
+    id: "css",
+    name: "CSS",
     category: "Programming",
-    description: "Modern framework that compiles to vanilla JavaScript, offering excellent performance and developer experience.",
-    status: "emerging",
-    relevancePeriod: "Next 5+ years",
+    description: "Style sheet language for describing the presentation of web pages.",
+    status: "stable",
+    relevancePeriod: "Next 15+ years",
+    demandLevel: "high",
+    icon: Globe,
+    color: "from-blue-500 to-purple-500",
+    difficulty: "beginner",
+    timeToLearn: "2-3 months",
+    salary: "₹3-12 LPA",
+    isFoundational: true
+  },
+  {
+    id: "sass",
+    name: "Sass/SCSS",
+    category: "Programming",
+    description: "CSS preprocessor that adds features like variables, nesting, and mixins to CSS.",
+    status: "stable",
+    relevancePeriod: "Next 8+ years",
     demandLevel: "medium",
-    icon: Code,
-    color: "from-orange-600 to-red-600",
+    icon: Globe,
+    color: "from-pink-500 to-red-500",
     difficulty: "intermediate",
-    timeToLearn: "3-5 months",
-    salary: "₹6-16 LPA"
+    timeToLearn: "1-2 months",
+    salary: "₹4-14 LPA"
+  },
+  {
+    id: "webpack",
+    name: "Webpack",
+    category: "Programming",
+    description: "Module bundler for modern JavaScript applications with dependency management.",
+    status: "stable",
+    relevancePeriod: "Next 6+ years",
+    demandLevel: "medium",
+    icon: Globe,
+    color: "from-blue-600 to-teal-600",
+    difficulty: "advanced",
+    timeToLearn: "2-4 months",
+    salary: "₹6-18 LPA"
+  },
+  {
+    id: "vite",
+    name: "Vite",
+    category: "Programming",
+    description: "Fast build tool for modern web projects with instant hot module replacement.",
+    status: "emerging",
+    relevancePeriod: "Next 8+ years",
+    demandLevel: "high",
+    icon: Globe,
+    color: "from-purple-600 to-blue-600",
+    difficulty: "intermediate",
+    timeToLearn: "1-3 months",
+    salary: "₹6-18 LPA"
   }
 ];
