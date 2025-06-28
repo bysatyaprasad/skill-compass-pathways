@@ -1,4 +1,3 @@
-
 import { 
   Code, 
   Database, 
@@ -44,6 +43,11 @@ import { specializedAISkills } from "./skills/specializedAISkills";
 import { integrationSkills } from "./skills/integrationSkills";
 import { dataEngineeringSkills } from "./skills/dataEngineeringSkills";
 import { innovationSkills } from "./skills/innovationSkills";
+import { devopsAdvancedSkills } from "./skills/devops/devopsAdvancedSkills";
+import { architectureSkills } from "./skills/architecture/architectureSkills";
+import { bigDataAdvancedSkills } from "./skills/data/bigData/bigDataAdvancedSkills";
+import { productSkills } from "./skills/product/productSkills";
+import { securityAdvancedSkills } from "./skills/security/securityAdvancedSkills";
 
 export interface Skill {
   id: string;
@@ -82,7 +86,12 @@ export const allSkills: Skill[] = [
   ...specializedAISkills,
   ...integrationSkills,
   ...dataEngineeringSkills,
-  ...innovationSkills
+  ...innovationSkills,
+  ...devopsAdvancedSkills,
+  ...architectureSkills,
+  ...bigDataAdvancedSkills,
+  ...productSkills,
+  ...securityAdvancedSkills
 ];
 
 // Categories for filtering

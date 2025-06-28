@@ -10,6 +10,8 @@ import { vrSkills } from "./emerging/vr/vrSkills";
 import { blockchainSkills } from "./blockchain/blockchainSkills";
 import { cybersecuritySkills } from "./security/cybersecuritySkills";
 import { advancedIoTSkills } from "./iot/advancedIoTSkills";
+import { devopsAdvancedSkills } from "./devops/devopsAdvancedSkills";
+import { securityAdvancedSkills } from "./security/securityAdvancedSkills";
 import { Skill } from "../skillsData";
 
 export const emergingTechSkills: Skill[] = [
@@ -22,5 +24,7 @@ export const emergingTechSkills: Skill[] = [
   ...vrSkills,
   ...blockchainSkills,
   ...cybersecuritySkills,
-  ...advancedIoTSkills
+  ...advancedIoTSkills,
+  ...devopsAdvancedSkills,
+  ...securityAdvancedSkills
 ];
