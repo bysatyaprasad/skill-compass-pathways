@@ -1,5 +1,5 @@
 
-import { Globe, Shield } from "lucide-react";
+import { Cloud, GitBranch, Zap, Shield, Settings, Monitor, Package, Workflow } from "lucide-react";
 import { Skill } from "../../skillsData";
 
 export const devopsSkills: Skill[] = [
@@ -7,98 +7,112 @@ export const devopsSkills: Skill[] = [
     id: "docker",
     name: "Docker",
     category: "Emerging Technology",
-    description: "Containerization platform for packaging applications and their dependencies.",
+    description: "Containerization platform for packaging applications and their dependencies into portable containers.",
     status: "stable",
     relevancePeriod: "Next 10+ years",
     demandLevel: "high",
-    icon: Globe,
+    icon: Package,
     color: "from-blue-600 to-cyan-600",
     difficulty: "intermediate",
-    timeToLearn: "3-4 months",
-    salary: "₹8-20 LPA"
+    timeToLearn: "2-4 months",
+    salary: "₹8-22 LPA"
   },
   {
     id: "kubernetes",
     name: "Kubernetes",
     category: "Emerging Technology",
-    description: "Container orchestration platform for automating deployment and scaling.",
+    description: "Container orchestration platform for managing, scaling, and deploying containerized applications.",
     status: "emerging",
-    relevancePeriod: "Next 10+ years",
+    relevancePeriod: "Next 12+ years",
     demandLevel: "high",
-    icon: Globe,
-    color: "from-blue-500 to-purple-500",
+    icon: Cloud,
+    color: "from-purple-600 to-blue-600",
     difficulty: "advanced",
-    timeToLearn: "6-8 months",
-    salary: "₹12-30 LPA"
+    timeToLearn: "6-9 months",
+    salary: "₹15-40 LPA"
   },
   {
     id: "jenkins",
     name: "Jenkins",
     category: "Emerging Technology",
-    description: "Automation server for building, testing, and deploying applications.",
+    description: "Open-source automation server for continuous integration and continuous deployment (CI/CD).",
     status: "stable",
-    relevancePeriod: "Next 6+ years",
-    demandLevel: "medium",
-    icon: Globe,
-    color: "from-gray-600 to-blue-600",
+    relevancePeriod: "Next 8+ years",
+    demandLevel: "high",
+    icon: GitBranch,
+    color: "from-orange-600 to-red-600",
     difficulty: "intermediate",
     timeToLearn: "3-5 months",
-    salary: "₹7-18 LPA"
+    salary: "₹10-25 LPA"
   },
   {
     id: "terraform",
     name: "Terraform",
     category: "Emerging Technology",
-    description: "Infrastructure as Code tool for building and managing cloud infrastructure.",
+    description: "Infrastructure as Code tool for building, changing, and versioning infrastructure safely and efficiently.",
     status: "emerging",
-    relevancePeriod: "Next 8+ years",
+    relevancePeriod: "Next 10+ years",
     demandLevel: "high",
-    icon: Globe,
-    color: "from-purple-600 to-indigo-600",
-    difficulty: "intermediate",
-    timeToLearn: "4-6 months",
-    salary: "₹10-25 LPA"
+    icon: Settings,
+    color: "from-green-600 to-teal-600",
+    difficulty: "advanced",
+    timeToLearn: "4-7 months",
+    salary: "₹12-35 LPA"
   },
   {
     id: "ansible",
     name: "Ansible",
     category: "Emerging Technology",
-    description: "Automation tool for configuration management and application deployment.",
+    description: "Configuration management and application deployment tool for automating IT infrastructure.",
     status: "stable",
-    relevancePeriod: "Next 6+ years",
+    relevancePeriod: "Next 8+ years",
     demandLevel: "medium",
-    icon: Globe,
-    color: "from-red-600 to-orange-600",
+    icon: Workflow,
+    color: "from-red-600 to-pink-600",
+    difficulty: "intermediate",
+    timeToLearn: "3-5 months",
+    salary: "₹10-28 LPA"
+  },
+  {
+    id: "prometheus",
+    name: "Prometheus",
+    category: "Emerging Technology",
+    description: "Monitoring and alerting system for collecting metrics from configured targets at given intervals.",
+    status: "stable",
+    relevancePeriod: "Next 8+ years",
+    demandLevel: "medium",
+    icon: Monitor,
+    color: "from-yellow-600 to-orange-600",
     difficulty: "intermediate",
     timeToLearn: "3-4 months",
-    salary: "₹8-20 LPA"
+    salary: "₹12-30 LPA"
+  },
+  {
+    id: "grafana",
+    name: "Grafana",
+    category: "Emerging Technology",
+    description: "Open-source analytics and monitoring solution for creating dashboards and visualizing metrics.",
+    status: "stable",
+    relevancePeriod: "Next 8+ years",
+    demandLevel: "medium",
+    icon: Monitor,
+    color: "from-purple-600 to-indigo-600",
+    difficulty: "intermediate",
+    timeToLearn: "2-4 months",
+    salary: "₹10-25 LPA"
   },
   {
     id: "gitlab-ci",
     name: "GitLab CI/CD",
     category: "Emerging Technology",
-    description: "Continuous integration and deployment platform integrated with GitLab.",
+    description: "Continuous integration and deployment platform integrated with GitLab version control.",
     status: "stable",
-    relevancePeriod: "Next 6+ years",
-    demandLevel: "medium",
-    icon: Globe,
-    color: "from-orange-600 to-red-600",
-    difficulty: "intermediate",
-    timeToLearn: "2-3 months",
-    salary: "₹7-16 LPA"
-  },
-  {
-    id: "github-actions",
-    name: "GitHub Actions",
-    category: "Emerging Technology",
-    description: "Workflow automation and CI/CD platform integrated with GitHub repositories.",
-    status: "emerging",
     relevancePeriod: "Next 8+ years",
-    demandLevel: "high",
-    icon: Globe,
-    color: "from-gray-800 to-gray-600",
-    difficulty: "beginner",
-    timeToLearn: "2-3 months",
-    salary: "₹6-15 LPA"
+    demandLevel: "medium",
+    icon: GitBranch,
+    color: "from-orange-500 to-red-500",
+    difficulty: "intermediate",
+    timeToLearn: "2-4 months",
+    salary: "₹8-20 LPA"
   }
 ];
