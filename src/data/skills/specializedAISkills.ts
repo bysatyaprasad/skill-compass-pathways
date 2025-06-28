@@ -1,7 +1,7 @@
 
-import { specializedAISkills } from "./ai/specializedAISkills";
+import { specializedAISkills as specializedAISkillsData } from "./ai/specializedAISkills";
 import { Skill } from "../skillsData";
 
 export const specializedAISkills: Skill[] = [
-  ...specializedAISkills
+  ...specializedAISkillsData
 ];
