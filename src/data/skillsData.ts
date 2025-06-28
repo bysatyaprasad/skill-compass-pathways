@@ -14,7 +14,13 @@ import {
   Scan,
   Telescope,
   Wrench,
-  Building
+  Building,
+  Bot,
+  Atom,
+  Cloud,
+  Zap,
+  Settings,
+  Target
 } from "lucide-react";
 
 // Import skills from granular files
@@ -31,6 +37,13 @@ import { businessSkills } from "./skills/business/businessSkills";
 import { qaSkills } from "./skills/qa/qaSkills";
 import { solutionsSkills } from "./skills/solutionsSkills";
 import { industrySkills } from "./skills/industrySkills";
+import { automationSkills } from "./skills/automationSkills";
+import { quantumSkills } from "./skills/quantumSkills";
+import { cloudArchitectureSkills } from "./skills/cloudArchitectureSkills";
+import { specializedAISkills } from "./skills/specializedAISkills";
+import { integrationSkills } from "./skills/integrationSkills";
+import { dataEngineeringSkills } from "./skills/dataEngineeringSkills";
+import { innovationSkills } from "./skills/innovationSkills";
 
 export interface Skill {
   id: string;
@@ -62,7 +75,14 @@ export const allSkills: Skill[] = [
   ...businessSkills,
   ...qaSkills,
   ...solutionsSkills,
-  ...industrySkills
+  ...industrySkills,
+  ...automationSkills,
+  ...quantumSkills,
+  ...cloudArchitectureSkills,
+  ...specializedAISkills,
+  ...integrationSkills,
+  ...dataEngineeringSkills,
+  ...innovationSkills
 ];
 
 // Categories for filtering
