@@ -1,3 +1,4 @@
+
 import { 
   Code, 
   Database, 
@@ -61,6 +62,13 @@ import { operationsSkills } from "./skills/operationsSkills";
 import { metaverseSkills } from "./skills/metaverseSkills";
 import { graphqlSkills } from "./skills/graphqlSkills";
 import { edgeComputingSkills } from "./skills/edgeComputingSkills";
+import { fintechAdvancedSkills } from "./skills/fintechAdvancedSkills";
+import { contentCreationAdvancedSkills } from "./skills/contentCreationAdvancedSkills";
+import { accessibilitySkills } from "./skills/accessibilitySkills";
+import { performanceOptimizationSkills } from "./skills/performanceOptimizationSkills";
+import { remoteWorkSkills } from "./skills/remoteWorkSkills";
+import { greenTechAdvancedSkills } from "./skills/greenTechAdvancedSkills";
+import { technicalLeadershipSkills } from "./skills/technicalLeadershipSkills";
 
 export interface Skill {
   id: string;
@@ -117,7 +125,14 @@ export const allSkills: Skill[] = [
   ...operationsSkills,
   ...metaverseSkills,
   ...graphqlSkills,
-  ...edgeComputingSkills
+  ...edgeComputingSkills,
+  ...fintechAdvancedSkills,
+  ...contentCreationAdvancedSkills,
+  ...accessibilitySkills,
+  ...performanceOptimizationSkills,
+  ...remoteWorkSkills,
+  ...greenTechAdvancedSkills,
+  ...technicalLeadershipSkills
 ];
 
 // Categories for filtering
@@ -142,7 +157,14 @@ export const skillCategories = [
   "Digital Transformation",
   "Finance Industry",
   "Healthcare Industry",
-  "Education Industry"
+  "Education Industry",
+  "Finance Technology",
+  "Content Creation",
+  "Accessibility & Inclusion",
+  "Performance & Optimization",
+  "Remote Work & Collaboration",
+  "Green Technology",
+  "Technical Leadership"
 ];
 
 // Helper functions
