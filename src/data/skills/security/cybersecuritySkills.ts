@@ -1,5 +1,5 @@
 
-import { Shield, Lock, Bug, Eye, Zap, Search } from "lucide-react";
+import { Shield, Lock, AlertTriangle, Eye } from "lucide-react";
 import { Skill } from "../../skillsData";
 
 export const cybersecuritySkills: Skill[] = [
@@ -7,98 +7,56 @@ export const cybersecuritySkills: Skill[] = [
     id: "ethical-hacking",
     name: "Ethical Hacking",
     category: "Emerging Technology",
-    description: "Authorized penetration testing to identify and fix security vulnerabilities in systems.",
-    status: "emerging",
-    relevancePeriod: "Next 15+ years",
-    demandLevel: "high",
-    icon: Bug,
-    color: "from-red-600 to-orange-600",
-    difficulty: "advanced",
-    timeToLearn: "8-12 months",
-    salary: "₹18-45 LPA"
-  },
-  {
-    id: "penetration-testing",
-    name: "Penetration Testing",
-    category: "Emerging Technology",
-    description: "Simulated cyberattacks to evaluate the security of IT infrastructure and applications.",
-    status: "emerging",
-    relevancePeriod: "Next 15+ years",
+    description: "Authorized penetration testing to identify security vulnerabilities in systems and networks.",
+    status: "stable",
+    relevancePeriod: "Next 10+ years",
     demandLevel: "high",
     icon: Shield,
-    color: "from-purple-600 to-red-600",
+    color: "from-red-600 to-orange-600",
+    difficulty: "advanced",
+    timeToLearn: "6-12 months",
+    salary: "₹12-35 LPA"
+  },
+  {
+    id: "network-security",
+    name: "Network Security",
+    category: "Emerging Technology",
+    description: "Protecting computer networks from intrusions, attacks, and unauthorized access.",
+    status: "stable",
+    relevancePeriod: "Next 10+ years",
+    demandLevel: "high",
+    icon: Lock,
+    color: "from-blue-600 to-purple-600",
     difficulty: "advanced",
     timeToLearn: "6-10 months",
-    salary: "₹15-40 LPA"
+    salary: "₹10-30 LPA"
   },
   {
     id: "incident-response",
-    name: "Cybersecurity Incident Response",
+    name: "Incident Response",
     category: "Emerging Technology",
-    description: "Managing and mitigating security breaches, analyzing threats, and implementing recovery procedures.",
-    status: "emerging",
-    relevancePeriod: "Next 12+ years",
-    demandLevel: "high",
-    icon: Zap,
+    description: "Systematic approach to handling and managing security breaches and cyberattacks.",
+    status: "stable",
+    relevancePeriod: "Next 10+ years",
+    demandLevel: "medium",
+    icon: AlertTriangle,
     color: "from-orange-600 to-red-600",
     difficulty: "advanced",
-    timeToLearn: "6-9 months",
-    salary: "₹20-50 LPA"
+    timeToLearn: "4-8 months",
+    salary: "₹15-40 LPA"
   },
   {
     id: "digital-forensics",
     name: "Digital Forensics",
     category: "Emerging Technology",
-    description: "Investigating cybercrimes, recovering digital evidence, and analyzing security incidents.",
+    description: "Investigation and analysis of digital devices to recover and investigate digital evidence.",
     status: "stable",
-    relevancePeriod: "Next 12+ years",
+    relevancePeriod: "Next 8+ years",
     demandLevel: "medium",
-    icon: Search,
-    color: "from-blue-600 to-indigo-600",
-    difficulty: "advanced",
-    timeToLearn: "8-12 months",
-    salary: "₹15-35 LPA"
-  },
-  {
-    id: "malware-analysis",
-    name: "Malware Analysis",
-    category: "Emerging Technology",
-    description: "Reverse engineering and analyzing malicious software to understand threats and develop countermeasures.",
-    status: "stable",
-    relevancePeriod: "Next 10+ years",
-    demandLevel: "medium",
-    icon: Bug,
-    color: "from-red-600 to-pink-600",
-    difficulty: "advanced",
-    timeToLearn: "9-15 months",
-    salary: "₹18-42 LPA"
-  },
-  {
-    id: "soc-analyst",
-    name: "SOC Analyst",
-    category: "Emerging Technology",
-    description: "Security Operations Center analyst monitoring, detecting, and responding to security threats.",
-    status: "emerging",
-    relevancePeriod: "Next 12+ years",
-    demandLevel: "high",
     icon: Eye,
-    color: "from-cyan-600 to-blue-600",
-    difficulty: "intermediate",
-    timeToLearn: "4-6 months",
-    salary: "₹8-20 LPA"
-  },
-  {
-    id: "cloud-security",
-    name: "Cloud Security",
-    category: "Emerging Technology",
-    description: "Securing cloud infrastructure, implementing access controls, and managing cloud-specific security risks.",
-    status: "emerging",
-    relevancePeriod: "Next 15+ years",
-    demandLevel: "high",
-    icon: Lock,
-    color: "from-teal-600 to-cyan-600",
+    color: "from-purple-600 to-pink-600",
     difficulty: "advanced",
-    timeToLearn: "6-9 months",
-    salary: "₹16-38 LPA"
+    timeToLearn: "6-12 months",
+    salary: "₹12-32 LPA"
   }
 ];

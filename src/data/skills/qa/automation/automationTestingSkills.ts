@@ -1,5 +1,5 @@
 
-import { Code, Zap, Target, CheckCircle } from "lucide-react";
+import { CheckCircle, Zap, Settings, Monitor } from "lucide-react";
 import { Skill } from "../../../skillsData";
 
 export const automationTestingSkills: Skill[] = [
@@ -7,12 +7,12 @@ export const automationTestingSkills: Skill[] = [
     id: "selenium",
     name: "Selenium WebDriver",
     category: "Quality Assurance",
-    description: "Web application testing framework for automating browser interactions across platforms.",
+    description: "Web browser automation framework for testing web applications across different browsers.",
     status: "stable",
     relevancePeriod: "Next 8+ years",
     demandLevel: "high",
-    icon: Code,
-    color: "from-green-600 to-emerald-600",
+    icon: CheckCircle,
+    color: "from-green-600 to-blue-600",
     difficulty: "intermediate",
     timeToLearn: "3-5 months",
     salary: "₹6-18 LPA"
@@ -26,51 +26,37 @@ export const automationTestingSkills: Skill[] = [
     relevancePeriod: "Next 8+ years",
     demandLevel: "high",
     icon: Zap,
-    color: "from-cyan-600 to-green-600",
+    color: "from-green-500 to-teal-500",
     difficulty: "intermediate",
     timeToLearn: "2-4 months",
-    salary: "₹8-20 LPA"
+    salary: "₹8-22 LPA"
   },
   {
     id: "playwright",
     name: "Playwright",
     category: "Quality Assurance",
-    description: "Cross-browser automation library for reliable end-to-end testing of web applications.",
+    description: "Cross-browser automation library for testing modern web applications with multiple browser engines.",
     status: "emerging",
     relevancePeriod: "Next 8+ years",
     demandLevel: "medium",
-    icon: Target,
+    icon: Settings,
     color: "from-purple-600 to-blue-600",
     difficulty: "intermediate",
     timeToLearn: "2-4 months",
-    salary: "₹8-20 LPA"
-  },
-  {
-    id: "jest",
-    name: "Jest Testing Framework",
-    category: "Quality Assurance",
-    description: "JavaScript testing framework with built-in assertions, mocking, and code coverage.",
-    status: "stable",
-    relevancePeriod: "Next 6+ years",
-    demandLevel: "high",
-    icon: CheckCircle,
-    color: "from-red-600 to-orange-600",
-    difficulty: "intermediate",
-    timeToLearn: "2-3 months",
-    salary: "₹6-16 LPA"
+    salary: "₹10-25 LPA"
   },
   {
     id: "appium",
     name: "Appium",
     category: "Quality Assurance",
-    description: "Cross-platform mobile app automation testing framework for iOS and Android.",
+    description: "Open-source automation framework for testing native, hybrid, and mobile web applications.",
     status: "stable",
     relevancePeriod: "Next 6+ years",
     demandLevel: "medium",
-    icon: Code,
-    color: "from-blue-600 to-indigo-600",
+    icon: Monitor,
+    color: "from-orange-600 to-red-600",
     difficulty: "advanced",
-    timeToLearn: "4-6 months",
-    salary: "₹8-22 LPA"
+    timeToLearn: "4-7 months",
+    salary: "₹8-20 LPA"
   }
 ];

@@ -1,62 +1,48 @@
 
-import { Cloud, Database, Shield, Zap } from "lucide-react";
+import { Cloud, Database, Settings, Zap } from "lucide-react";
 import { Skill } from "../../../../skillsData";
 
 export const azureSkills: Skill[] = [
   {
-    id: "azure-solutions-architect",
-    name: "Azure Solutions Architect",
+    id: "azure-vm",
+    name: "Azure Virtual Machines",
     category: "Emerging Technology",
-    description: "Design and implement enterprise-level solutions on Microsoft Azure platform.",
-    status: "emerging",
-    relevancePeriod: "Next 12+ years",
+    description: "On-demand, scalable computing resources with choice of operating systems and configurations.",
+    status: "stable",
+    relevancePeriod: "Next 10+ years",
     demandLevel: "high",
     icon: Cloud,
     color: "from-blue-600 to-cyan-600",
-    difficulty: "advanced",
-    timeToLearn: "8-12 months",
-    salary: "₹18-45 LPA"
+    difficulty: "intermediate",
+    timeToLearn: "2-4 months",
+    salary: "₹8-22 LPA"
   },
   {
     id: "azure-functions",
     name: "Azure Functions",
     category: "Emerging Technology",
-    description: "Event-driven serverless compute platform for building applications without managing infrastructure.",
-    status: "emerging",
-    relevancePeriod: "Next 10+ years",
-    demandLevel: "high",
+    description: "Serverless compute service for running event-triggered code without managing infrastructure.",
+    status: "stable",
+    relevancePeriod: "Next 8+ years",
+    demandLevel: "medium",
     icon: Zap,
-    color: "from-cyan-600 to-blue-600",
+    color: "from-purple-600 to-blue-600",
     difficulty: "intermediate",
     timeToLearn: "3-5 months",
-    salary: "₹12-28 LPA"
+    salary: "₹10-24 LPA"
   },
   {
-    id: "azure-devops",
-    name: "Azure DevOps",
-    category: "Emerging Technology",
-    description: "Complete DevOps toolchain for planning, developing, delivering, and operating applications.",
-    status: "stable",
-    relevancePeriod: "Next 10+ years",
-    demandLevel: "high",
-    icon: Shield,
-    color: "from-indigo-600 to-blue-600",
-    difficulty: "intermediate",
-    timeToLearn: "4-6 months",
-    salary: "₹15-35 LPA"
-  },
-  {
-    id: "azure-sql-database",
+    id: "azure-sql",
     name: "Azure SQL Database",
     category: "Emerging Technology",
-    description: "Fully managed SQL database service with built-in intelligence and security.",
+    description: "Fully managed relational database service with built-in intelligence and security.",
     status: "stable",
     relevancePeriod: "Next 10+ years",
     demandLevel: "medium",
     icon: Database,
-    color: "from-blue-600 to-purple-600",
+    color: "from-blue-600 to-indigo-600",
     difficulty: "intermediate",
-    timeToLearn: "3-5 months",
-    salary: "₹12-25 LPA"
+    timeToLearn: "2-4 months",
+    salary: "₹9-21 LPA"
   }
 ];

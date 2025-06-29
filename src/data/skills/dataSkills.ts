@@ -1,4 +1,3 @@
-
 // Import granular skill categories
 import { analyticsSkills } from "./data/analyticsSkills";
 import { databaseSkills } from "./data/databaseSkills";
