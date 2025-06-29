@@ -54,6 +54,13 @@ import { legalSkills } from "./skills/legalSkills";
 import { retailSkills } from "./skills/retailSkills";
 import { freelancingSkills } from "./skills/freelancingSkills";
 import { communicationSkills } from "./skills/communicationSkills";
+import { consultingSkills } from "./skills/consultingSkills";
+import { advancedAnalyticsSkills } from "./skills/advancedAnalyticsSkills";
+import { lowCodeSkills } from "./skills/lowCodeSkills";
+import { operationsSkills } from "./skills/operationsSkills";
+import { metaverseSkills } from "./skills/metaverseSkills";
+import { graphqlSkills } from "./skills/graphqlSkills";
+import { edgeComputingSkills } from "./skills/edgeComputingSkills";
 
 export interface Skill {
   id: string;
@@ -103,7 +110,14 @@ export const allSkills: Skill[] = [
   ...legalSkills,
   ...retailSkills,
   ...freelancingSkills,
-  ...communicationSkills
+  ...communicationSkills,
+  ...consultingSkills,
+  ...advancedAnalyticsSkills,
+  ...lowCodeSkills,
+  ...operationsSkills,
+  ...metaverseSkills,
+  ...graphqlSkills,
+  ...edgeComputingSkills
 ];
 
 // Categories for filtering
