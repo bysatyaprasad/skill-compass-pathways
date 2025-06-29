@@ -48,6 +48,12 @@ import { architectureSkills } from "./skills/architecture/architectureSkills";
 import { bigDataAdvancedSkills } from "./skills/data/bigData/bigDataAdvancedSkills";
 import { productSkills } from "./skills/product/productSkills";
 import { securityAdvancedSkills } from "./skills/security/securityAdvancedSkills";
+import { salesSkills } from "./skills/salesSkills";
+import { gamingSkills } from "./skills/gamingSkills";
+import { legalSkills } from "./skills/legalSkills";
+import { retailSkills } from "./skills/retailSkills";
+import { freelancingSkills } from "./skills/freelancingSkills";
+import { communicationSkills } from "./skills/communicationSkills";
 
 export interface Skill {
   id: string;
@@ -91,7 +97,13 @@ export const allSkills: Skill[] = [
   ...architectureSkills,
   ...bigDataAdvancedSkills,
   ...productSkills,
-  ...securityAdvancedSkills
+  ...securityAdvancedSkills,
+  ...salesSkills,
+  ...gamingSkills,
+  ...legalSkills,
+  ...retailSkills,
+  ...freelancingSkills,
+  ...communicationSkills
 ];
 
 // Categories for filtering
