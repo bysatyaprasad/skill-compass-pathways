@@ -1,7 +1,7 @@
 
-import { integrationSkills as integrationSkillsData } from "./enterprise/integrationSkills";
+import { integrationSkills as enterpriseIntegrationSkills } from "./enterprise/integrationSkills";
 import { Skill } from "../skillsData";
 
 export const integrationSkills: Skill[] = [
-  ...integrationSkillsData
+  ...enterpriseIntegrationSkills
 ];

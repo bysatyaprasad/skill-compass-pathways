@@ -5,6 +5,7 @@ import { businessAnalyticsSkills } from "./analytics/business/businessAnalyticsS
 import { advancedDatabaseSkills } from "./database/database/advancedDatabaseSkills";
 import { dataScienceSkills } from "./data/dataScienceSkills";
 import { bigDataAdvancedSkills } from "./data/bigData/bigDataAdvancedSkills";
+import { businessIntelligenceSkills } from "./data/analytics/business/businessIntelligenceSkills";
 import { Skill } from "../skillsData";
 
 export const dataSkills: Skill[] = [
@@ -13,5 +14,6 @@ export const dataSkills: Skill[] = [
   ...businessAnalyticsSkills,
   ...advancedDatabaseSkills,
   ...dataScienceSkills,
-  ...bigDataAdvancedSkills
+  ...bigDataAdvancedSkills,
+  ...businessIntelligenceSkills
 ];

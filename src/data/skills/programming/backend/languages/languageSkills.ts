@@ -1,4 +1,3 @@
-
 import { pythonSkills } from "./pythonSkills";
 import { javaSkills } from "./javaSkills";
 import { csharpSkills } from "./csharpSkills";
@@ -8,6 +7,7 @@ import { phpSkills } from "./phpSkills";
 import { rubySkills } from "./rubySkills";
 import { cSkills } from "./cSkills";
 import { cppSkills } from "./cppSkills";
+import { specializedLanguages } from "./specializedLanguages";
 import { Skill } from "../../../../skillsData";
 
 export const languageSkills: Skill[] = [
@@ -19,5 +19,6 @@ export const languageSkills: Skill[] = [
   ...phpSkills,
   ...rubySkills,
   ...cSkills,
-  ...cppSkills
+  ...cppSkills,
+  ...specializedLanguages
 ];
