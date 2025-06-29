@@ -1,7 +1,7 @@
 
-import { consultingSkills } from "./business/consulting/consultingSkills";
+import { consultingSkills as consultingSkillsData } from "./business/consulting/consultingSkills";
 import { Skill } from "../skillsData";
 
 export const consultingSkills: Skill[] = [
-  ...consultingSkills
+  ...consultingSkillsData
 ];
