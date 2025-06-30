@@ -1,4 +1,3 @@
-
 import { 
   Code, 
   Database, 
@@ -69,6 +68,14 @@ import { performanceOptimizationSkills } from "./skills/performanceOptimizationS
 import { remoteWorkSkills } from "./skills/remoteWorkSkills";
 import { greenTechAdvancedSkills } from "./skills/greenTechAdvancedSkills";
 import { technicalLeadershipSkills } from "./skills/technicalLeadershipSkills";
+import { cybersecurityAdvancedSkills } from "./skills/cybersecurityAdvancedSkills";
+import { dataGovernanceSkills } from "./skills/dataGovernanceSkills";
+import { apiManagementSkills } from "./skills/apiManagementSkills";
+import { webAssemblySkills } from "./skills/webAssemblySkills";
+import { conversationalAISkills } from "./skills/conversationalAISkills";
+import { propTechSkills } from "./skills/propTechSkills";
+import { socialMediaTechSkills } from "./skills/socialMediaTechSkills";
+import { industry4Skills } from "./skills/industry4Skills";
 
 export interface Skill {
   id: string;
@@ -132,7 +139,15 @@ export const allSkills: Skill[] = [
   ...performanceOptimizationSkills,
   ...remoteWorkSkills,
   ...greenTechAdvancedSkills,
-  ...technicalLeadershipSkills
+  ...technicalLeadershipSkills,
+  ...cybersecurityAdvancedSkills,
+  ...dataGovernanceSkills,
+  ...apiManagementSkills,
+  ...webAssemblySkills,
+  ...conversationalAISkills,
+  ...propTechSkills,
+  ...socialMediaTechSkills,
+  ...industry4Skills
 ];
 
 // Categories for filtering
@@ -164,7 +179,12 @@ export const skillCategories = [
   "Performance & Optimization",
   "Remote Work & Collaboration",
   "Green Technology",
-  "Technical Leadership"
+  "Technical Leadership",
+  "Cybersecurity & Privacy",
+  "Modern Web Technologies",
+  "Conversational AI & Automation",
+  "Property Technology",
+  "Industrial Automation"
 ];
 
 // Helper functions
