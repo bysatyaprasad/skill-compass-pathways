@@ -44,7 +44,7 @@ const careerPaths: CareerPath[] = [
     growth: 'high',
     demand: 'high',
     timeToTransition: '6-12 months',
-    keyCompanies: ['Flipkart', 'Swiggy', 'Zomato', 'Paytm', 'Byju\'s', 'Razorpay'],
+    keyCompanies: ['Flipkart', 'Swiggy', 'Zomato', 'Paytm', 'Byjus', 'Razorpay'],
     futureOutlook: 'Stable growth with continuous demand for digital transformation'
   },
   {
@@ -59,6 +59,227 @@ const careerPaths: CareerPath[] = [
     timeToTransition: '8-15 months',
     keyCompanies: ['Google', 'Amazon', 'Meta', 'Uber', 'Ola', 'PhonePe'],
     futureOutlook: 'High growth as companies focus on product-led strategies'
+  },
+  {
+    id: 'data-scientist',
+    title: 'Data Scientist',
+    description: 'Extract insights from data to drive business decisions',
+    skills: ['Python', 'R', 'SQL', 'Statistics', 'Machine Learning', 'Data Visualization'],
+    salaryRange: '₹10-45 LPA',
+    experienceLevel: 'Intermediate to Advanced',
+    growth: 'high',
+    demand: 'high',
+    timeToTransition: '8-14 months',
+    keyCompanies: ['Netflix', 'Airbnb', 'LinkedIn', 'Walmart Labs', 'JPMorgan', 'Goldman Sachs'],
+    futureOutlook: 'Strong demand as data becomes core business asset'
+  },
+  {
+    id: 'devops-engineer',
+    title: 'DevOps Engineer',
+    description: 'Bridge development and operations for efficient software delivery',
+    skills: ['Docker', 'Kubernetes', 'AWS/Azure', 'CI/CD', 'Linux', 'Terraform'],
+    salaryRange: '₹12-40 LPA',
+    experienceLevel: 'Intermediate to Advanced',
+    growth: 'high',
+    demand: 'high',
+    timeToTransition: '10-16 months',
+    keyCompanies: ['Amazon', 'Microsoft', 'Red Hat', 'Atlassian', 'GitLab', 'HashiCorp'],
+    futureOutlook: 'Critical role in cloud-first infrastructure strategies'
+  },
+  {
+    id: 'cybersecurity-specialist',
+    title: 'Cybersecurity Specialist',
+    description: 'Protect organizations from cyber threats and security breaches',
+    skills: ['Network Security', 'Ethical Hacking', 'Risk Assessment', 'Compliance', 'Incident Response', 'SIEM'],
+    salaryRange: '₹8-35 LPA',
+    experienceLevel: 'Intermediate to Advanced',
+    growth: 'high',
+    demand: 'high',
+    timeToTransition: '12-18 months',
+    keyCompanies: ['Palo Alto Networks', 'CrowdStrike', 'Fortinet', 'IBM Security', 'Accenture', 'Deloitte'],
+    futureOutlook: 'Exponential growth due to increasing cyber threats'
+  },
+  {
+    id: 'cloud-architect',
+    title: 'Cloud Solutions Architect',
+    description: 'Design and implement scalable cloud infrastructure solutions',
+    skills: ['AWS/Azure/GCP', 'System Design', 'Microservices', 'Security', 'Cost Optimization', 'Migration'],
+    salaryRange: '₹18-55 LPA',
+    experienceLevel: 'Advanced',
+    growth: 'high',
+    demand: 'high',
+    timeToTransition: '18-24 months',
+    keyCompanies: ['Amazon Web Services', 'Microsoft Azure', 'Google Cloud', 'IBM Cloud', 'Oracle', 'VMware'],
+    futureOutlook: 'Essential as enterprises migrate to cloud-first strategies'
+  },
+  {
+    id: 'ux-designer',
+    title: 'UX/UI Designer',
+    description: 'Create intuitive and engaging user experiences for digital products',
+    skills: ['Design Thinking', 'Figma', 'User Research', 'Prototyping', 'Usability Testing', 'Visual Design'],
+    salaryRange: '₹6-30 LPA',
+    experienceLevel: 'Beginner to Advanced',
+    growth: 'high',
+    demand: 'high',
+    timeToTransition: '6-10 months',
+    keyCompanies: ['Adobe', 'Airbnb', 'Spotify', 'Zomato', 'Phonepe', 'Flipkart'],
+    futureOutlook: 'Growing importance as user experience becomes competitive advantage'
+  },
+  {
+    id: 'blockchain-developer',
+    title: 'Blockchain Developer',
+    description: 'Build decentralized applications and smart contracts',
+    skills: ['Solidity', 'Web3', 'Smart Contracts', 'Ethereum', 'DeFi', 'Cryptography'],
+    salaryRange: '₹10-45 LPA',
+    experienceLevel: 'Intermediate to Advanced',
+    growth: 'high',
+    demand: 'medium',
+    timeToTransition: '12-18 months',
+    keyCompanies: ['Coinbase', 'Binance', 'Polygon', 'WazirX', 'CoinDCX', 'Zebpay'],
+    futureOutlook: 'High potential as Web3 and DeFi ecosystems mature'
+  },
+  {
+    id: 'mobile-developer',
+    title: 'Mobile App Developer',
+    description: 'Create native and cross-platform mobile applications',
+    skills: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Mobile UI/UX', 'App Store Optimization'],
+    salaryRange: '₹7-32 LPA',
+    experienceLevel: 'Beginner to Advanced',
+    growth: 'medium',
+    demand: 'high',
+    timeToTransition: '8-12 months',
+    keyCompanies: ['Google', 'Apple', 'Uber', 'Instagram', 'WhatsApp', 'Swiggy'],
+    futureOutlook: 'Steady demand as mobile-first approach continues'
+  },
+  {
+    id: 'digital-marketing-manager',
+    title: 'Digital Marketing Manager',
+    description: 'Drive online marketing strategies and customer acquisition',
+    skills: ['SEO/SEM', 'Social Media Marketing', 'Content Strategy', 'Analytics', 'Paid Advertising', 'Marketing Automation'],
+    salaryRange: '₹5-25 LPA',
+    experienceLevel: 'Beginner to Advanced',
+    growth: 'high',
+    demand: 'high',
+    timeToTransition: '4-8 months',
+    keyCompanies: ['Google', 'Meta', 'Amazon', 'HubSpot', 'Salesforce', 'Adobe'],
+    futureOutlook: 'Essential as businesses prioritize digital presence'
+  },
+  {
+    id: 'sales-engineer',
+    title: 'Technical Sales Engineer',
+    description: 'Bridge technical products with customer needs and sales',
+    skills: ['Technical Communication', 'Solution Architecture', 'CRM', 'Presentation', 'Negotiation', 'Product Knowledge'],
+    salaryRange: '₹8-40 LPA',
+    experienceLevel: 'Intermediate',
+    growth: 'medium',
+    demand: 'high',
+    timeToTransition: '6-10 months',
+    keyCompanies: ['Salesforce', 'Oracle', 'Microsoft', 'IBM', 'SAP', 'Cisco'],
+    futureOutlook: 'Growing need for technical expertise in B2B sales'
+  },
+  {
+    id: 'business-analyst',
+    title: 'Business Analyst',
+    description: 'Analyze business processes and recommend technology solutions',
+    skills: ['Requirements Analysis', 'Process Mapping', 'SQL', 'Data Analysis', 'Stakeholder Management', 'Documentation'],
+    salaryRange: '₹6-28 LPA',
+    experienceLevel: 'Beginner to Intermediate',
+    growth: 'medium',
+    demand: 'high',
+    timeToTransition: '4-8 months',
+    keyCompanies: ['Accenture', 'TCS', 'Infosys', 'Capgemini', 'Deloitte', 'EY'],
+    futureOutlook: 'Stable demand for digital transformation initiatives'
+  },
+  {
+    id: 'qa-engineer',
+    title: 'QA/Test Engineer',
+    description: 'Ensure software quality through testing and automation',
+    skills: ['Test Automation', 'Selenium', 'API Testing', 'Performance Testing', 'Bug Tracking', 'Test Planning'],
+    salaryRange: '₹4-22 LPA',
+    experienceLevel: 'Beginner to Advanced',
+    growth: 'medium',
+    demand: 'high',
+    timeToTransition: '4-8 months',
+    keyCompanies: ['Microsoft', 'Google', 'Amazon', 'Cognizant', 'Wipro', 'HCL'],
+    futureOutlook: 'Consistent demand as software quality becomes critical'
+  },
+  {
+    id: 'content-creator',
+    title: 'Digital Content Creator',
+    description: 'Create engaging content across digital platforms',
+    skills: ['Content Writing', 'Video Editing', 'Social Media', 'SEO', 'Analytics', 'Brand Building'],
+    salaryRange: '₹3-20 LPA',
+    experienceLevel: 'Beginner to Intermediate',
+    growth: 'high',
+    demand: 'high',
+    timeToTransition: '3-6 months',
+    keyCompanies: ['YouTube', 'Instagram', 'LinkedIn', 'Medium', 'Substack', 'Patreon'],
+    futureOutlook: 'Explosive growth in creator economy and personal branding'
+  },
+  {
+    id: 'fintech-analyst',
+    title: 'FinTech Analyst',
+    description: 'Analyze financial technology trends and investment opportunities',
+    skills: ['Financial Analysis', 'Python/R', 'SQL', 'Risk Management', 'Regulatory Knowledge', 'Market Research'],
+    salaryRange: '₹8-35 LPA',
+    experienceLevel: 'Intermediate',
+    growth: 'high',
+    demand: 'high',
+    timeToTransition: '8-12 months',
+    keyCompanies: ['JPMorgan Chase', 'Goldman Sachs', 'Paytm', 'Razorpay', 'CRED', 'Zerodha'],
+    futureOutlook: 'High growth as financial services digitize rapidly'
+  },
+  {
+    id: 'game-developer',
+    title: 'Game Developer',
+    description: 'Create interactive gaming experiences across platforms',
+    skills: ['Unity', 'Unreal Engine', 'C#', 'C++', 'Game Design', '3D Modeling'],
+    salaryRange: '₹5-30 LPA',
+    experienceLevel: 'Beginner to Advanced',
+    growth: 'high',
+    demand: 'medium',
+    timeToTransition: '10-15 months',
+    keyCompanies: ['Ubisoft', 'EA Games', 'Rockstar', 'Dream11', 'MPL', 'Nazara'],
+    futureOutlook: 'Growing rapidly with mobile gaming and esports boom'
+  },
+  {
+    id: 'robotics-engineer',
+    title: 'Robotics Engineer',
+    description: 'Design and develop robotic systems and automation solutions',
+    skills: ['ROS', 'Python', 'C++', 'Computer Vision', 'Control Systems', 'Mechanical Design'],
+    salaryRange: '₹8-40 LPA',
+    experienceLevel: 'Advanced',
+    growth: 'high',
+    demand: 'medium',
+    timeToTransition: '15-24 months',
+    keyCompanies: ['Boston Dynamics', 'Tesla', 'ABB', 'KUKA', 'Fanuc', 'Tata Motors'],
+    futureOutlook: 'Emerging field with automation driving industrial transformation'
+  },
+  {
+    id: 'sustainability-consultant',
+    title: 'Sustainability Consultant',
+    description: 'Help organizations implement sustainable and eco-friendly practices',
+    skills: ['Environmental Analysis', 'Sustainability Reporting', 'ESG', 'Carbon Footprint', 'Renewable Energy', 'Policy'],
+    salaryRange: '₹6-30 LPA',
+    experienceLevel: 'Intermediate',
+    growth: 'high',
+    demand: 'high',
+    timeToTransition: '8-12 months',
+    keyCompanies: ['McKinsey', 'Deloitte', 'Accenture', 'EY', 'KPMG', 'Tata Consultancy'],
+    futureOutlook: 'Critical growth area as ESG becomes business imperative'
+  },
+  {
+    id: 'technical-writer',
+    title: 'Technical Writer',
+    description: 'Create clear documentation and content for technical products',
+    skills: ['Technical Writing', 'API Documentation', 'Content Strategy', 'User Guides', 'Information Architecture', 'Tools Knowledge'],
+    salaryRange: '₹4-20 LPA',
+    experienceLevel: 'Beginner to Intermediate',
+    growth: 'medium',
+    demand: 'medium',
+    timeToTransition: '3-6 months',
+    keyCompanies: ['Google', 'Microsoft', 'Amazon', 'Atlassian', 'MongoDB', 'Stripe'],
+    futureOutlook: 'Steady demand as complex products need clear documentation'
   }
 ];
 
@@ -87,7 +308,7 @@ const CareerPaths = () => {
             Career Paths
           </h1>
           <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-            Explore career opportunities and understand the skills needed for your dream job
+            Explore {careerPaths.length} career opportunities and understand the skills needed for your dream job
           </p>
         </div>
 
