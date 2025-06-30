@@ -48,7 +48,7 @@ export const HeroSection = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="border-2 border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg font-semibold rounded-2xl backdrop-blur-sm min-w-[200px]"
+              className="border-2 border-white/50 bg-white/10 text-white hover:bg-white/20 hover:border-white/60 px-8 py-4 text-lg font-semibold rounded-2xl backdrop-blur-sm min-w-[200px] transition-all duration-300"
             >
               Start with Basics
             </Button>
