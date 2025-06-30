@@ -1,12 +1,9 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Target, TrendingUp, Users, Briefcase, GraduationCap, DollarSign, MapPin, Clock, ArrowRight, Search, Filter } from "lucide-react";
+import { useParams, Link } from "react-router-dom";
+import { ArrowLeft, DollarSign, Clock, TrendingUp, Users, Building2, Star } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface CareerPath {
   id: string;
@@ -22,8 +19,7 @@ interface CareerPath {
   futureOutlook: string;
 }
 
-const ITEMS_PER_PAGE = 12;
-
+// Import the same career paths data from the main page
 const careerPaths: CareerPath[] = [
   {
     id: 'ai-engineer',
@@ -547,32 +543,24 @@ const careerPaths: CareerPath[] = [
   }
 ];
 
-const CareerPaths = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [growthFilter, setGrowthFilter] = useState("all");
-  const [demandFilter, setDemandFilter] = useState("all");
-  const [experienceFilter, setExperienceFilter] = useState("all");
+const CareerPathDetail = () => {
+  const { id } = useParams();
+  const careerPath = careerPaths.find(path => path.id === id);
 
-  // Filter logic
-  const filteredPaths = careerPaths.filter(path => {
-    const matchesSearch = path.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         path.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         path.skills.some(skill => skill.toLowerCase().includes(searchTerm.toLowerCase()));
-    
-    const matchesGrowth = growthFilter === "all" || path.growth === growthFilter;
-    const matchesDemand = demandFilter === "all" || path.demand === demandFilter;
-    const matchesExperience = experienceFilter === "all" || 
-                             path.experienceLevel.toLowerCase().includes(experienceFilter.toLowerCase());
-
-    return matchesSearch && matchesGrowth && matchesDemand && matchesExperience;
-  });
-
-  // Pagination logic
-  const totalPages = Math.ceil(filteredPaths.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
-  const currentPaths = filteredPaths.slice(startIndex, endIndex);
+  if (!careerPath) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-20 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-white mb-4">Career Path Not Found</h1>
+          <Link to="/career-paths">
+            <Button className="bg-gradient-to-r from-purple-600 to-pink-600">
+              Back to Career Paths
+            </Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   const getGrowthColor = (growth: string) => {
     switch (growth) {
@@ -587,201 +575,118 @@ const CareerPaths = () => {
     }
   };
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-20">
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        {/* Back Button */}
+        <Link to="/career-paths" className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 mb-8">
+          <ArrowLeft className="h-4 w-4" />
+          Back to Career Paths
+        </Link>
+
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold font-poppins mb-6 text-gradient">
-            Career Paths
-          </h1>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
-            Explore {careerPaths.length} career opportunities and understand the skills needed for your dream job
-          </p>
+        <div className="mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">{careerPath.title}</h1>
+          <p className="text-xl text-gray-300 mb-6">{careerPath.description}</p>
           
-          {/* Search and Filters */}
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <Input
-                  placeholder="Search careers..."
-                  value={searchTerm}
-                  onChange={(e) => {
-                    setSearchTerm(e.target.value);
-                    setCurrentPage(1);
-                  }}
-                  className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-gray-400"
-                />
-              </div>
-              
-              <Select value={growthFilter} onValueChange={(value) => {
-                setGrowthFilter(value);
-                setCurrentPage(1);
-              }}>
-                <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                  <SelectValue placeholder="Growth Rate" />
-                </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
-                  <SelectItem value="all" className="text-white">All Growth</SelectItem>
-                  <SelectItem value="high" className="text-white">High Growth</SelectItem>
-                  <SelectItem value="medium" className="text-white">Medium Growth</SelectItem>
-                  <SelectItem value="low" className="text-white">Low Growth</SelectItem>
-                </SelectContent>
-              </Select>
-              
-              <Select value={demandFilter} onValueChange={(value) => {
-                setDemandFilter(value);
-                setCurrentPage(1);
-              }}>
-                <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                  <SelectValue placeholder="Market Demand" />
-                </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
-                  <SelectItem value="all" className="text-white">All Demand</SelectItem>
-                  <SelectItem value="high" className="text-white">High Demand</SelectItem>
-                  <SelectItem value="medium" className="text-white">Medium Demand</SelectItem>
-                  <SelectItem value="low" className="text-white">Low Demand</SelectItem>
-                </SelectContent>
-              </Select>
-              
-              <Select value={experienceFilter} onValueChange={(value) => {
-                setExperienceFilter(value);
-                setCurrentPage(1);
-              }}>
-                <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                  <SelectValue placeholder="Experience Level" />
-                </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
-                  <SelectItem value="all" className="text-white">All Levels</SelectItem>
-                  <SelectItem value="beginner" className="text-white">Beginner</SelectItem>
-                  <SelectItem value="intermediate" className="text-white">Intermediate</SelectItem>
-                  <SelectItem value="advanced" className="text-white">Advanced</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            
-            <div className="text-sm text-gray-400 mb-8">
-              Showing {currentPaths.length} of {filteredPaths.length} career paths
-            </div>
+          <div className="flex gap-4 flex-wrap">
+            <Badge className={getGrowthColor(careerPath.growth)}>
+              <TrendingUp className="h-3 w-3 mr-1" />
+              {careerPath.growth} growth
+            </Badge>
+            <Badge className={getGrowthColor(careerPath.demand)}>
+              <Users className="h-3 w-3 mr-1" />
+              {careerPath.demand} demand
+            </Badge>
+            <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30">
+              <DollarSign className="h-3 w-3 mr-1" />
+              {careerPath.salaryRange}
+            </Badge>
+            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30">
+              <Clock className="h-3 w-3 mr-1" />
+              {careerPath.timeToTransition}
+            </Badge>
           </div>
         </div>
 
-        {/* Career Paths Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-12">
-          {currentPaths.map((path, index) => (
-            <Card 
-              key={path.id} 
-              className="glass-card hover:scale-105 transition-all duration-300"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div>
-                    <CardTitle className="text-white text-xl mb-2">{path.title}</CardTitle>
-                    <CardDescription className="text-gray-300 mb-3">
-                      {path.description}
-                    </CardDescription>
-                  </div>
-                  <Target className="h-6 w-6 text-purple-400 flex-shrink-0" />
-                </div>
-                
-                <div className="flex gap-2 flex-wrap">
-                  <Badge className={getGrowthColor(path.growth)}>
-                    {path.growth} growth
-                  </Badge>
-                  <Badge className={getGrowthColor(path.demand)}>
-                    {path.demand} demand
-                  </Badge>
-                </div>
-              </CardHeader>
+        {/* Detailed Content */}
+        <Tabs defaultValue="overview" className="w-full">
+          <TabsList className="grid w-full grid-cols-4 bg-white/10 mb-8">
+            <TabsTrigger value="overview" className="text-white">Overview</TabsTrigger>
+            <TabsTrigger value="skills" className="text-white">Skills</TabsTrigger>
+            <TabsTrigger value="companies" className="text-white">Companies</TabsTrigger>
+            <TabsTrigger value="roadmap" className="text-white">Learning Path</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="overview" className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Card className="glass-card">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <Star className="h-5 w-5 text-yellow-400" />
+                    Future Outlook
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-300">{careerPath.futureOutlook}</p>
+                </CardContent>
+              </Card>
               
-              <CardContent className="space-y-4">
-                <div className="flex items-center gap-2 text-sm text-gray-300">
-                  <DollarSign className="h-4 w-4" />
-                  <span>{path.salaryRange}</span>
-                </div>
-                
-                <div className="flex items-center gap-2 text-sm text-gray-300">
-                  <Clock className="h-4 w-4" />
-                  <span>Transition: {path.timeToTransition}</span>
-                </div>
-                
-                <div>
-                  <h4 className="text-white font-medium mb-2">Key Skills:</h4>
-                  <div className="flex flex-wrap gap-1">
-                    {path.skills.slice(0, 4).map((skill) => (
-                      <Badge key={skill} variant="outline" className="text-xs border-purple-500/30 text-purple-300">
-                        {skill}
-                      </Badge>
-                    ))}
-                    {path.skills.length > 4 && (
-                      <Badge variant="outline" className="text-xs border-gray-500/30 text-gray-400">
-                        +{path.skills.length - 4} more
-                      </Badge>
-                    )}
-                  </div>
-                </div>
-                
-                <Link to={`/career-paths/${path.id}`}>
-                  <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700">
-                    Learn More <ArrowRight className="h-4 w-4 ml-2" />
-                  </Button>
-                </Link>
+              <Card className="glass-card">
+                <CardHeader>
+                  <CardTitle className="text-white">Experience Level</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-300">{careerPath.experienceLevel}</p>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="skills">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {careerPath.skills.map((skill) => (
+                <Card key={skill} className="glass-card">
+                  <CardContent className="p-4">
+                    <h4 className="text-white font-medium mb-2">{skill}</h4>
+                    <p className="text-gray-400 text-sm">Essential skill for this role</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="companies">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {careerPath.keyCompanies.map((company) => (
+                <Card key={company} className="glass-card text-center">
+                  <CardContent className="p-6">
+                    <Building2 className="h-8 w-8 mx-auto mb-3 text-purple-400" />
+                    <h4 className="text-white font-medium">{company}</h4>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="roadmap">
+            <Card className="glass-card">
+              <CardContent className="p-8 text-center">
+                <h3 className="text-white text-xl font-semibold mb-4">Detailed Learning Roadmap</h3>
+                <p className="text-gray-300 mb-6">
+                  A comprehensive step-by-step learning path is being developed for this career. 
+                  This will include specific courses, projects, and milestones to help you transition successfully.
+                </p>
+                <Button className="bg-gradient-to-r from-purple-600 to-pink-600">
+                  Coming Soon
+                </Button>
               </CardContent>
             </Card>
-          ))}
-        </div>
-
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="flex justify-center">
-            <Pagination>
-              <PaginationContent>
-                <PaginationItem>
-                  <PaginationPrevious 
-                    onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
-                    className={`${currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer hover:bg-white/10'} text-white border-white/20`}
-                  />
-                </PaginationItem>
-                
-                {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                  const page = i + 1;
-                  return (
-                    <PaginationItem key={page}>
-                      <PaginationLink
-                        onClick={() => handlePageChange(page)}
-                        isActive={currentPage === page}
-                        className={`cursor-pointer text-white border-white/20 ${
-                          currentPage === page 
-                            ? 'bg-purple-600 text-white' 
-                            : 'hover:bg-white/10'
-                        }`}
-                      >
-                        {page}
-                      </PaginationLink>
-                    </PaginationItem>
-                  );
-                })}
-                
-                <PaginationItem>
-                  <PaginationNext 
-                    onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
-                    className={`${currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer hover:bg-white/10'} text-white border-white/20`}
-                  />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
-          </div>
-        )}
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
 };
 
-export default CareerPaths;
+export default CareerPathDetail;

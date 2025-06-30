@@ -49,7 +49,7 @@ const Index = () => {
           
           <div className="text-center">
             <Link to="/foundational-skills">
-              <Button className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white px-8 py-4 text-lg font-semibold rounded-2xl">
+              <Button className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white px-8 py-4 text-lg font-semibold rounded-2xl shadow-lg">
                 Learn Foundational Skills
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -109,7 +109,7 @@ const Index = () => {
           
           <div className="text-center">
             <Link to="/financial-freedom">
-              <Button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-4 text-lg font-semibold rounded-2xl">
+              <Button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-4 text-lg font-semibold rounded-2xl shadow-lg">
                 Start Your Wealth Journey
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -143,7 +143,7 @@ const Index = () => {
               </CardHeader>
               <CardContent className="text-center">
                 <Link to="/skills">
-                  <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700">
+                  <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg">
                     Explore Skills <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
@@ -162,7 +162,7 @@ const Index = () => {
               </CardHeader>
               <CardContent className="text-center">
                 <Link to="/ai-prompts">
-                  <Button className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700">
+                  <Button className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-lg">
                     Get AI Prompts <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
@@ -181,7 +181,7 @@ const Index = () => {
               </CardHeader>
               <CardContent className="text-center">
                 <Link to="/career-paths">
-                  <Button className="bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700">
+                  <Button className="bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white shadow-lg">
                     Explore Careers <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
